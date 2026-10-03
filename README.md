@@ -47,6 +47,7 @@ Use Stripe test card `4242 4242 4242 4242` with any future date and any CVC.
 4. **Domain:** in the Pages project → Custom domains, add `kingpuck.com` and `www.kingpuck.com`. If the domain's DNS is already on Cloudflare, this takes one click.
 5. **Order webhook:** in Stripe → Developers → Webhooks, add the endpoint `https://kingpuck.com/api/stripe-webhook` for the event `checkout.session.completed`, then copy its signing secret into `STRIPE_WEBHOOK_SECRET`.
 6. **Order log (optional):** run `npx wrangler kv namespace create ORDERS`, then uncomment the block in `wrangler.toml` and paste in the id. Paid orders will also be saved there. Stripe's dashboard always lists every order either way.
+7. **Password (optional, e.g. before launch):** add a secret `SITE_PASSWORD`, then redeploy. Every page then asks for it (any username works). Delete the secret and redeploy to open the site. The Stripe webhook is never blocked.
 
 Until `STRIPE_SECRET_KEY` is set, the site works fully but checkout shows "The shop isn't taking orders just yet".
 
