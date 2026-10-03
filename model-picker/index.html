@@ -1,0 +1,599 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Plain-English Model Picker</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Familjen+Grotesk:wght@500;600;700&family=Source+Sans+3:wght@400;600;700&family=JetBrains+Mono:wght@400;600&display=swap">
+<style>
+/* Layout: settings rail on the left (sticky on desktop), results on the right — a consumer rating guide, scores read as 0–100 bars. */
+:root {
+  --bg: #f3f5f8;
+  --surface: #ffffff;
+  --ink: #16202e;
+  --muted: #5a6577;
+  --line: #dde2ea;
+  --accent: #2650b8;
+  --accent-soft: #e4ebfa;
+  --pick: #c9811a;
+  --pick-soft: #fbf0dd;
+  --good: #1f8a5b;
+  --warn: #b6461f;
+  --c-text: #2650b8;
+  --c-image: #b0398a;
+  --c-video: #c9811a;
+  --c-3d: #1f8a7a;
+  --f-display: "Familjen Grotesk", "Helvetica Neue", Arial, sans-serif;
+  --f-body: "Source Sans 3", "Segoe UI", system-ui, sans-serif;
+  --f-mono: "JetBrains Mono", ui-monospace, Menlo, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0f141c; --surface: #171e29; --ink: #e6ebf3; --muted: #9aa6b8; --line: #2a3443;
+    --accent: #7d9ef0; --accent-soft: #1f2b45; --pick: #e7a948; --pick-soft: #3a2c15;
+    --good: #4fc78f; --warn: #f08a62;
+    --c-text: #7d9ef0; --c-image: #e07cc2; --c-video: #e7a948; --c-3d: #4fc7b4;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0f141c; --surface: #171e29; --ink: #e6ebf3; --muted: #9aa6b8; --line: #2a3443;
+  --accent: #7d9ef0; --accent-soft: #1f2b45; --pick: #e7a948; --pick-soft: #3a2c15;
+  --good: #4fc78f; --warn: #f08a62;
+  --c-text: #7d9ef0; --c-image: #e07cc2; --c-video: #e7a948; --c-3d: #4fc7b4;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body { background: var(--bg); color: var(--ink); font-family: var(--f-body); font-size: 15px; line-height: 1.5; }
+.wrap { max-width: 1180px; margin: 0 auto; padding-inline: 20px; padding-block: 28px 48px; }
+h1, h2, h3 { font-family: var(--f-display); text-wrap: balance; margin: 0; letter-spacing: -0.01em; }
+h1 { font-size: clamp(1.7rem, 3.2vw, 2.4rem); line-height: 1.1; }
+h2 { font-size: 1.25rem; }
+h3 { font-size: 1rem; }
+.lede { color: var(--muted); max-width: 64ch; margin: 8px 0 0; }
+.eyebrow { font: 600 0.72rem/1 var(--f-mono); letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+header.top { display: grid; gap: 6px; margin-bottom: 22px; }
+
+.presets { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
+.presets button {
+  font: 600 0.88rem var(--f-body); color: var(--ink); background: var(--surface);
+  border: 1px solid var(--line); border-radius: 999px; padding: 6px 14px; cursor: pointer;
+}
+.presets button:hover { border-color: var(--accent); }
+.presets button[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: var(--surface); }
+
+.layout { display: grid; grid-template-columns: minmax(0, 340px) minmax(0, 1fr); gap: 24px; align-items: start; }
+@media (max-width: 860px) { .layout { grid-template-columns: minmax(0, 1fr); } }
+
+.panel { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 18px; }
+aside.panel { position: sticky; top: calc(env(safe-area-inset-top, 0px) + 12px); display: grid; gap: 18px; }
+@media (max-width: 860px) { aside.panel { position: static; } }
+
+.field { display: grid; gap: 6px; }
+.field label, .field .lbl { font-weight: 600; font-size: 0.92rem; display: flex; justify-content: space-between; gap: 8px; }
+.field .val { font-family: var(--f-mono); font-weight: 600; font-size: 0.85rem; color: var(--accent); white-space: nowrap; }
+.field .hint { color: var(--muted); font-size: 0.82rem; }
+input[type="range"] { width: 100%; accent-color: var(--accent); }
+.budget-row { display: flex; gap: 10px; align-items: center; }
+.budget-row input[type="number"] {
+  width: 96px; font: 600 1rem var(--f-mono); padding: 6px 8px; border: 1px solid var(--line);
+  border-radius: 6px; background: var(--bg); color: var(--ink);
+}
+.group { display: grid; gap: 12px; padding-top: 14px; border-top: 1px solid var(--line); }
+.group-title { display: flex; align-items: center; gap: 8px; }
+.dot { width: 10px; height: 10px; border-radius: 50%; flex: none; }
+.sub { display: grid; gap: 10px; padding-left: 18px; }
+
+main { display: grid; gap: 22px; min-width: 0; }
+
+.summary { display: grid; gap: 14px; }
+.summary-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 10px; }
+.total { font: 700 2.2rem/1 var(--f-display); font-variant-numeric: tabular-nums; }
+.total small { font: 400 0.95rem var(--f-body); color: var(--muted); }
+.meter { height: 12px; border-radius: 6px; background: var(--bg); border: 1px solid var(--line); overflow: hidden; display: flex; }
+.meter span { display: block; height: 100%; }
+.meter-legend { display: flex; flex-wrap: wrap; gap: 6px 16px; font-size: 0.82rem; color: var(--muted); }
+.meter-legend span { display: inline-flex; align-items: center; gap: 6px; }
+.status { font-weight: 600; font-size: 0.92rem; padding: 4px 10px; border-radius: 999px; }
+.status.ok { color: var(--good); background: color-mix(in srgb, var(--good) 12%, transparent); }
+.status.over { color: var(--warn); background: color-mix(in srgb, var(--warn) 12%, transparent); }
+
+.picks { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 14px; }
+.pick { background: var(--surface); border: 1px solid var(--line); border-top: 4px solid var(--cat); border-radius: 10px; padding: 16px; display: grid; gap: 10px; align-content: start; }
+.pick .cat { font: 600 0.72rem/1 var(--f-mono); letter-spacing: 0.08em; text-transform: uppercase; color: var(--cat); }
+.pick .name { font: 700 1.2rem/1.2 var(--f-display); }
+.pick .maker { color: var(--muted); font-size: 0.85rem; }
+.pick .why { font-size: 0.88rem; background: var(--pick-soft); color: var(--ink); border-radius: 6px; padding: 6px 10px; }
+.pick .cost { font: 600 1rem var(--f-mono); font-variant-numeric: tabular-nums; }
+.pick .alt { font-size: 0.85rem; color: var(--muted); display: grid; gap: 2px; }
+.pick .alt b { color: var(--ink); font-weight: 600; }
+.mini { display: grid; gap: 6px; }
+.mini-row { display: grid; grid-template-columns: 62px 1fr 30px; gap: 8px; align-items: center; font-size: 0.8rem; color: var(--muted); }
+.mini-row .n { font-family: var(--f-mono); color: var(--ink); text-align: right; font-variant-numeric: tabular-nums; }
+.bar { height: 8px; background: var(--bg); border-radius: 4px; overflow: hidden; border: 1px solid var(--line); }
+.bar i { display: block; height: 100%; background: var(--fill, var(--accent)); border-radius: 4px; }
+.advisor { display: grid; gap: 10px; border-left: 4px solid var(--pick); }
+#advice { display: grid; gap: 10px; max-width: 70ch; }
+#advice p { margin: 0; }
+#advice b { font-weight: 700; }
+.review { font-size: 0.88rem; margin: 0; }
+.fit { display: grid; gap: 4px; font-size: 0.82rem; }
+.fit span { display: grid; grid-template-columns: 62px 1fr; gap: 8px; }
+.fit em { font-style: normal; font: 600 0.68rem/1.6 var(--f-mono); letter-spacing: 0.05em; text-transform: uppercase; }
+.fit .g em { color: var(--good); }
+.fit .s em { color: var(--warn); }
+.mrev { display: block; font-size: 0.82rem; margin-top: 4px; max-width: 46ch; }
+td:first-child { min-width: 260px; }
+.skipped { color: var(--muted); font-size: 0.9rem; }
+
+.tabs { display: flex; flex-wrap: wrap; gap: 4px; border-bottom: 1px solid var(--line); margin-bottom: 12px; }
+.tabs button {
+  font: 600 0.92rem var(--f-body); background: none; border: 0; border-bottom: 3px solid transparent;
+  color: var(--muted); padding: 8px 12px; cursor: pointer; margin-bottom: -1px;
+}
+.tabs button[aria-selected="true"] { color: var(--ink); border-bottom-color: var(--cat); }
+.table-wrap { overflow-x: auto; }
+table { width: 100%; border-collapse: collapse; font-size: 0.9rem; min-width: 720px; }
+th { text-align: left; font: 600 0.72rem var(--f-mono); letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); padding: 8px; border-bottom: 1px solid var(--line); white-space: nowrap; }
+td { padding: 9px 8px; border-bottom: 1px solid var(--line); vertical-align: middle; }
+td.num { font-family: var(--f-mono); font-variant-numeric: tabular-nums; white-space: nowrap; }
+tr.is-pick td { background: var(--pick-soft); }
+.badge { display: inline-block; font: 600 0.68rem var(--f-mono); letter-spacing: 0.05em; text-transform: uppercase; color: var(--pick); border: 1px solid var(--pick); border-radius: 4px; padding: 1px 5px; margin-left: 6px; vertical-align: 1px; }
+.mname { font-weight: 600; }
+.mnote { display: block; font-size: 0.78rem; color: var(--muted); }
+.scorecell { display: grid; grid-template-columns: 34px minmax(60px, 1fr); gap: 8px; align-items: center; min-width: 110px; }
+.scorecell span { font-family: var(--f-mono); text-align: right; }
+.q-input { width: 52px; font: 600 0.85rem var(--f-mono); padding: 3px 4px; border: 1px dashed var(--line); border-radius: 4px; background: transparent; color: var(--ink); text-align: right; }
+.q-input:focus { border-style: solid; border-color: var(--accent); outline: none; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+.explain { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px 24px; font-size: 0.9rem; }
+.explain p { margin: 4px 0 0; color: var(--muted); }
+.foot { font-size: 0.82rem; color: var(--muted); display: grid; gap: 6px; }
+.foot a { color: var(--accent); }
+.reset { font: 600 0.82rem var(--f-body); color: var(--accent); background: none; border: 0; padding: 0; cursor: pointer; text-decoration: underline; }
+@media (prefers-reduced-motion: no-preference) { .bar i, .meter span { transition: width .25s ease; } }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <header class="top">
+    <span class="eyebrow">AI model buyer's guide · prices as of Oct 2026</span>
+    <h1>Which AI should you pay for?</h1>
+    <p class="lede">Set a monthly budget, say how much you'll use it and what matters to you. Every model gets a plain 0–100 score for quality, cost and value, and you get one recommended setup that fits your budget.</p>
+    <div class="presets" id="presets" role="group" aria-label="Start from an example"></div>
+  </header>
+
+  <div class="layout">
+    <aside class="panel" aria-label="Your needs">
+      <div class="field">
+        <span class="lbl">Monthly budget <span class="val" id="budgetVal"></span></span>
+        <div class="budget-row">
+          <input type="number" id="budgetNum" min="0" max="5000" step="1" aria-label="Monthly budget in dollars">
+          <input type="range" id="budgetRange" min="0" max="500" step="1" aria-label="Monthly budget slider">
+        </div>
+      </div>
+      <div class="field">
+        <label for="money">How much does saving money matter? <span class="val" id="moneyVal"></span></label>
+        <input type="range" id="money" min="0" max="5" step="1">
+      </div>
+      <div id="catControls"></div>
+    </aside>
+
+    <main>
+      <section class="panel summary" aria-live="polite">
+        <div class="summary-head">
+          <div>
+            <span class="eyebrow">Your recommended setup</span>
+            <div class="total" id="total"></div>
+          </div>
+          <span class="status" id="status"></span>
+        </div>
+        <div class="meter" id="meter" aria-hidden="true"></div>
+        <div class="meter-legend" id="meterLegend"></div>
+      </section>
+
+      <section class="panel advisor" aria-live="polite">
+        <span class="eyebrow">If I were you</span>
+        <div id="advice"></div>
+      </section>
+
+      <section class="picks" id="picks"></section>
+
+      <section class="panel">
+        <div class="summary-head" style="margin-bottom:10px">
+          <h2>Normalized scores</h2>
+          <button class="reset" id="resetQ" type="button">Reset quality scores</button>
+        </div>
+        <p class="lede" style="margin:0 0 12px">All scores run 0–100 inside each category. Quality scores are our estimates; click any quality number to change it and the recommendation updates.</p>
+        <div class="tabs" role="tablist" id="tabs"></div>
+        <div class="table-wrap"><table id="table"></table></div>
+      </section>
+
+      <section class="panel">
+        <h2 style="margin-bottom:12px">How the scores work</h2>
+        <div class="explain">
+          <div><h3>Quality (0–100)</h3><p>An editorial estimate of output quality, drawn from public benchmarks and reviews. A 90 vs 85 gap is noticeable; under 3 points is mostly taste.</p></div>
+          <div><h3>Cost score (0–100)</h3><p>100 is the cheapest option in its category at your usage, 0 the most expensive. Uses a log scale, so a model that costs 10× more drops a lot.</p></div>
+          <div><h3>Value (0–100)</h3><p>Quality per dollar, ranked within the category. High value means you get a lot for what you pay, not that it's the best.</p></div>
+          <div><h3>"$1 buys"</h3><p>The same price in everyday units, so you can compare text, images, video and 3D side by side. A chat message assumes about 2 pages read in and half a page written back.</p></div>
+        </div>
+      </section>
+
+      <footer class="foot">
+        <div>Prices are pay-as-you-go API rates collected in early October 2026 and change often. Flat chat subscriptions can work out cheaper if you chat heavily; compare against your estimated text cost above. Sora 2 is left out because its API was scheduled to close in September 2026.</div>
+        <div>Sources: <a href="https://benchlm.ai/llm-pricing" target="_blank" rel="noopener">BenchLM LLM pricing</a> · <a href="https://benchlm.ai/anthropic/api-pricing" target="_blank" rel="noopener">Claude pricing</a> · <a href="https://benchlm.ai/openai/api-pricing" target="_blank" rel="noopener">OpenAI pricing</a> · <a href="https://benchlm.ai/google/api-pricing" target="_blank" rel="noopener">Gemini pricing</a> · <a href="https://benchlm.ai/deepseek/api-pricing" target="_blank" rel="noopener">DeepSeek pricing</a> · <a href="https://www.siliconflow.com/articles/the-cheapest-image-gen-models" target="_blank" rel="noopener">SiliconFlow image models</a> · <a href="https://www.digitalapplied.com/blog/ai-image-generation-api-pricing-comparison-2026" target="_blank" rel="noopener">Digital Applied image pricing</a> · <a href="https://www.cometapi.com/ai-video-api-pricing/" target="_blank" rel="noopener">CometAPI video pricing</a> · <a href="https://fluxnote.io/guides/ai-video-model-pricing-comparison-2026" target="_blank" rel="noopener">Fluxnote video pricing</a> · <a href="https://www.3daistudio.com/blog/best-3d-model-generation-apis-2026" target="_blank" rel="noopener">3D AI Studio 3D APIs</a></div>
+      </footer>
+    </main>
+  </div>
+</div>
+
+<script>
+// Text cost per message assumes 3,000 tokens in (your message + history) and 800 tokens out.
+const TOK_IN = 3000, TOK_OUT = 800;
+
+// Reviews are our plain-English take: "good" = who it suits, "skip" = who should look elsewhere.
+const CATS = [
+  { id: 'text', label: 'Text & chat', color: '--c-text', unit: 'message', units: 'messages',
+    usageLabel: 'Messages per month', max: 3000, step: 10, impLabel: 'Writing quality',
+    models: [
+      { n: 'Claude Fable 5.1', by: 'Anthropic', q: 96, pin: 10, pout: 50,
+        rev: 'The most capable option here, and the most expensive by a wide margin. Shines on long, hard tasks: big documents, tricky reasoning, serious coding.',
+        good: 'Professionals whose time is worth more than the bill', skip: 'Everyday chat, where you would pay over 2× for little visible gain' },
+      { n: 'Claude Opus 5.5', by: 'Anthropic', q: 94, pin: 4, pout: 20,
+        rev: 'Near the top for writing, analysis and coding, at well under half the price of Fable. Careful, natural-sounding prose.',
+        good: 'Serious writing, research and code on a sensible budget', skip: 'Quick questions; a mid-tier model answers those just as well' },
+      { n: 'GPT-5.6 Sol', by: 'OpenAI', q: 94, pin: 4, pout: 20,
+        rev: 'OpenAI’s flagship. Same price as Opus 5.5 and a similar level overall; strong all-rounder with a broad tool ecosystem.',
+        good: 'People who want a top model and already use OpenAI tools', skip: 'Tight budgets' },
+      { n: 'Gemini 3.1 Pro', by: 'Google', q: 90, pin: 2, pout: 12,
+        rev: 'Google’s top general model at half the flagship price. Handles very long inputs well and fits neatly with Google apps.',
+        good: 'Long documents, research, Google Workspace users', skip: 'Prompts over 200K tokens, which cost more than shown' },
+      { n: 'GPT-5.6 Terra', by: 'OpenAI', q: 88, pin: 2, pout: 12,
+        rev: 'OpenAI’s middle tier. Most people will not notice a gap from Sol in everyday use.',
+        good: 'Daily work, emails, summaries, homework help', skip: 'Your hardest problems' },
+      { n: 'Claude Sonnet 5', by: 'Anthropic', q: 88, pin: 2, pout: 10,
+        rev: 'The sweet spot for many people: fast, capable, and cheaper on output than its rivals in this tier.',
+        good: 'Heavy daily chat and writing where cost adds up', skip: 'Work that needs the very best reasoning' },
+      { n: 'Gemini 3.8 Flash', by: 'Google', q: 84, pin: 0.75, pout: 3.75, note: 'Intro price until 31 Dec 2026',
+        rev: 'Quick and cheap while the intro price lasts. Solid for most chat; expect the price to rise next year.',
+        good: 'High volume, quick answers', skip: 'Anyone who wants a price that will not change' },
+      { n: 'DeepSeek V4.1 Flash', by: 'DeepSeek', q: 76, pin: 0.30, pout: 1.20, note: 'Peak-hour price',
+        rev: 'Remarkably cheap for what it does. Good at maths and code; weaker at polished English writing.',
+        good: 'Bulk tasks and tinkering on a shoestring', skip: 'Sensitive data, if where it is processed matters to you' },
+      { n: 'Claude Haiku 4.5', by: 'Anthropic', q: 74, pin: 1, pout: 5,
+        rev: 'Small and fast. Fine for sorting, short replies and simple Q&A, but you will feel the limits on longer writing.',
+        good: 'Simple, repetitive tasks', skip: 'Anything you would show a client' },
+      { n: 'GPT-5.6 Luna', by: 'OpenAI', q: 72, pin: 0.20, pout: 1.20,
+        rev: 'OpenAI’s budget model. Costs almost nothing per message; good for quick lookups and short drafts.',
+        good: 'Light use where price is everything', skip: 'Nuanced writing or advice' },
+      { n: 'Gemini 3.5 Flash-Lite', by: 'Google', q: 70, pin: 0.30, pout: 2.50,
+        rev: 'The lightest Gemini. Quick, but now outclassed for the price by 3.8 Flash during its intro offer.',
+        good: 'Very simple, high-volume jobs', skip: 'Most people; 3.8 Flash is better value right now' },
+    ] },
+  { id: 'image', label: 'Images', color: '--c-image', unit: 'image', units: 'images',
+    usageLabel: 'Images per month', max: 1000, step: 5, impLabel: 'Image quality',
+    models: [
+      { n: 'GPT Image 2', by: 'OpenAI', q: 95, price: 0.05, note: '$0.006–$0.21 by size; medium shown',
+        rev: 'Best at doing exactly what you asked, including readable text in images. Photoreal and detailed. Price swings a lot with size and quality setting.',
+        good: 'Ads, posters, anything with words in it', skip: 'Thousands of quick drafts' },
+      { n: 'Imagen 4 Ultra', by: 'Google', q: 92, price: 0.06,
+        rev: 'Google’s top image tier. Excellent photorealism and lighting; slightly behind GPT Image 2 on following complex instructions.',
+        good: 'Product shots and realistic scenes', skip: 'Budget work; standard Imagen 4 is close for less' },
+      { n: 'Imagen 4', by: 'Google', q: 87, price: 0.04,
+        rev: 'The dependable middle choice. Clean, good-looking results at the price most production work lands on.',
+        good: 'Regular social posts and blog images', skip: 'Hero images where every detail counts' },
+      { n: 'Seedream 5.0 Lite', by: 'ByteDance', q: 84, price: 0.026,
+        rev: 'Strong value. Production-quality pictures at around half the price of the big names.',
+        good: 'Steady content output on a budget', skip: 'Images with lots of text' },
+      { n: 'Imagen 4 Fast', by: 'Google', q: 80, price: 0.02,
+        rev: 'Quick drafts from Google. Good for trying ideas before paying for a final render.',
+        good: 'Brainstorming and thumbnails', skip: 'Final, polished images' },
+      { n: 'Z-Image Turbo', by: 'Alibaba', q: 72, price: 0.01, note: 'Good for drafts',
+        rev: 'A penny a picture. Rough edges and odd details show up, but great for testing lots of ideas.',
+        good: 'Mood boards and experimenting', skip: 'Anything public-facing' },
+      { n: 'FLUX.1 Schnell', by: 'Black Forest Labs', q: 65, price: 0.0027, note: 'Via Together AI',
+        rev: 'The cheapest by far: hundreds of images for a dollar. Older model; hands, text and fine detail are hit and miss.',
+        good: 'Huge volumes, placeholders, learning', skip: 'Quality-sensitive work' },
+    ] },
+  { id: 'video', label: 'Video', color: '--c-video', unit: 'second', units: 'seconds',
+    usageLabel: 'Seconds of video per month', max: 1200, step: 5, impLabel: 'Video quality',
+    models: [
+      { n: 'Veo 3.1 with audio', by: 'Google', q: 96, price: 0.75,
+        rev: 'The best-looking clips here, and it makes matching sound and dialogue too. A one-minute video costs about $45, so it adds up fast.',
+        good: 'Finished clips where sound matters', skip: 'Testing ideas; draft cheaply first' },
+      { n: 'Veo 3.1 silent', by: 'Google', q: 92, price: 0.50,
+        rev: 'Same great picture without generated audio. Sensible if you add your own music or voiceover.',
+        good: 'Editors who handle sound themselves', skip: 'Anyone on a tight budget' },
+      { n: 'Kling 3.0 Turbo', by: 'Kuaishou', q: 87, price: 0.095,
+        rev: 'Big value. Good motion and realism for a fraction of Veo’s price; a favourite among social creators.',
+        good: 'Regular social video', skip: 'Cinema-grade polish' },
+      { n: 'Kling 3.0 Standard', by: 'Kuaishou', q: 84, price: 0.07,
+        rev: 'Slightly below Turbo for a bit less money. A minute of video for about $4.',
+        good: 'Volume content and experiments', skip: 'Hero pieces' },
+      { n: 'Veo 3.1 Lite', by: 'Google', q: 75, price: 0.05,
+        rev: 'Cheapest way to try Google’s video. Noticeably softer and less consistent than full Veo.',
+        good: 'Drafts and storyboards', skip: 'Anything you will publish as-is' },
+    ] },
+  { id: '3d', label: '3D models', color: '--c-3d', unit: 'model', units: 'models',
+    usageLabel: '3D models per month', max: 200, step: 1, impLabel: '3D quality',
+    models: [
+      { n: 'Rodin Gen-2', by: 'Hyper3D', q: 93, price: 0.50, fixed: 120, note: 'API needs a $120/mo business plan',
+        rev: 'The most detailed meshes and textures here, but slow (up to ~3 minutes each) and the $120 plan makes it costly unless you make a lot.',
+        good: 'Studios and high-end game or product assets', skip: 'Hobbyists and small volumes' },
+      { n: 'Tripo', by: 'Tripo AI', q: 82, price: 0.20,
+        rev: 'Fast and affordable with clean shapes. Free credits on signup make it easy to try.',
+        good: 'Indie games, 3D printing, quick props', skip: 'Hero assets that need fine detail' },
+      { n: 'Meshy', by: 'Meshy', q: 80, price: 0.20, note: '$0.10–$0.30 per model',
+        rev: 'Very similar to Tripo on price and speed, with a friendly app and a free monthly allowance.',
+        good: 'Beginners and lots of quick models', skip: 'Production-ready characters' },
+    ] },
+];
+CATS.forEach(c => c.models.forEach(m => {
+  m.unitCost = m.price != null ? m.price : (TOK_IN * m.pin + TOK_OUT * m.pout) / 1e6;
+  m.q0 = m.q;
+}));
+
+const PRESETS = [
+  { name: 'Casual chatting', budget: 10, money: 4, use: { text: 150, image: 10, video: 0, '3d': 0 }, imp: { text: 3, image: 2, video: 2, '3d': 2 } },
+  { name: 'Writing & study', budget: 25, money: 3, use: { text: 600, image: 0, video: 0, '3d': 0 }, imp: { text: 5, image: 2, video: 2, '3d': 2 } },
+  { name: 'Social media content', budget: 60, money: 3, use: { text: 200, image: 150, video: 60, '3d': 0 }, imp: { text: 3, image: 5, video: 4, '3d': 2 } },
+  { name: 'Video maker', budget: 200, money: 2, use: { text: 100, image: 50, video: 600, '3d': 0 }, imp: { text: 2, image: 3, video: 5, '3d': 2 } },
+  { name: 'Game & 3D assets', budget: 80, money: 3, use: { text: 200, image: 100, video: 0, '3d': 50 }, imp: { text: 3, image: 4, video: 2, '3d': 5 } },
+];
+const IMP_WORDS = ["Don't care", 'Barely', 'A little', 'Matters', 'Very', 'Must be best'];
+
+const state = { budget: 60, money: 3, use: {}, imp: {}, tab: 'text', preset: 2 };
+function applyPreset(i) {
+  const p = PRESETS[i];
+  state.preset = i; state.budget = p.budget; state.money = p.money;
+  state.use = { ...p.use }; state.imp = { ...p.imp };
+}
+applyPreset(2);
+
+// Per-viewer quality overrides
+const QKEY = 'model-picker-q';
+try {
+  const saved = JSON.parse(localStorage.getItem(QKEY) || '{}');
+  CATS.forEach(c => c.models.forEach(m => { if (typeof saved[m.n] === 'number') m.q = saved[m.n]; }));
+} catch (e) {}
+function saveQ() {
+  const o = {};
+  CATS.forEach(c => c.models.forEach(m => { if (m.q !== m.q0) o[m.n] = m.q; }));
+  try { localStorage.setItem(QKEY, JSON.stringify(o)); } catch (e) {}
+}
+
+const $ = id => document.getElementById(id);
+const css = v => getComputedStyle(document.documentElement).getPropertyValue(v).trim();
+function money(x) {
+  if (x === 0) return '$0';
+  if (x < 0.01) return '<$0.01';
+  if (x < 10) return '$' + x.toFixed(2);
+  return '$' + Math.round(x).toLocaleString();
+}
+function unitMoney(x) {
+  if (x < 0.01) return '$' + x.toFixed(4);
+  if (x < 1) return '$' + x.toFixed(3);
+  return '$' + x.toFixed(2);
+}
+function buys(perUnit, c) {
+  const n = 1 / perUnit;
+  const v = n >= 100 ? Math.round(n).toLocaleString() : n >= 10 ? Math.round(n) : n.toFixed(1);
+  return v + ' ' + (n === 1 ? c.unit : c.units);
+}
+
+// Monthly cost of a model at the current usage (fixed fee only applies when used)
+function monthly(m, c) {
+  const u = state.use[c.id] || 0;
+  return u > 0 ? m.unitCost * u + (m.fixed || 0) : 0;
+}
+// Effective cost per unit, including any fixed fee spread over usage
+function effUnit(m, c) {
+  const u = Math.max(state.use[c.id] || 0, 1);
+  return m.unitCost + (m.fixed || 0) / u;
+}
+
+function scoreCategory(c) {
+  const effs = c.models.map(m => effUnit(m, c));
+  const lo = Math.log(Math.min(...effs)), hi = Math.log(Math.max(...effs));
+  const vals = c.models.map((m, i) => Math.log(m.q / effs[i]));
+  const vlo = Math.min(...vals), vhi = Math.max(...vals);
+  const qs = c.models.map(m => m.q);
+  const qlo = Math.min(...qs), qhi = Math.max(...qs);
+  c.models.forEach((m, i) => {
+    m.eff = effs[i];
+    m.costScore = hi === lo ? 100 : Math.round(100 * (hi - Math.log(effs[i])) / (hi - lo));
+    m.value = vhi === vlo ? 100 : Math.round(100 * (vals[i] - vlo) / (vhi - vlo));
+    m.qn = qhi === qlo ? 1 : (m.q - qlo) / (qhi - qlo);
+    m.month = monthly(m, c);
+  });
+}
+
+// Try every combination across active categories; keep the best one that fits the budget.
+function recommend() {
+  CATS.forEach(scoreCategory);
+  const active = CATS.filter(c => (state.use[c.id] || 0) > 0);
+  const budget = Math.max(state.budget, 0.01);
+  let best = null, cheapest = null;
+  const walk = (k, chosen, cost, util) => {
+    if (k === active.length) {
+      const score = util - state.money * (cost / budget);
+      if (!cheapest || cost < cheapest.cost) cheapest = { chosen: chosen.slice(), cost };
+      if (cost <= state.budget + 1e-9 && (!best || score > best.score)) best = { chosen: chosen.slice(), cost, score };
+      return;
+    }
+    const c = active[k];
+    for (const m of c.models) {
+      chosen.push(m);
+      walk(k + 1, chosen, cost + m.month, util + (state.imp[c.id] || 0) * m.qn + 0.001 * m.q);
+      chosen.pop();
+    }
+  };
+  walk(0, [], 0, 0);
+  const res = best || cheapest || { chosen: [], cost: 0 };
+  const picks = {};
+  active.forEach((c, i) => { picks[c.id] = res.chosen[i]; });
+  return { picks, cost: res.cost, fits: !!best, active };
+}
+
+function buildControls() {
+  $('presets').innerHTML = PRESETS.map((p, i) => `<button type="button" data-i="${i}">${p.name}</button>`).join('');
+  $('presets').addEventListener('click', e => {
+    const b = e.target.closest('button'); if (!b) return;
+    applyPreset(+b.dataset.i); syncControls(); render();
+  });
+  $('catControls').innerHTML = CATS.map(c => `
+    <div class="group">
+      <div class="group-title"><span class="dot" style="background:var(${c.color})"></span><h3>${c.label}</h3></div>
+      <div class="sub">
+        <div class="field">
+          <label for="use-${c.id}">${c.usageLabel} <span class="val" id="useVal-${c.id}"></span></label>
+          <input type="range" id="use-${c.id}" min="0" max="${c.max}" step="${c.step}" data-cat="${c.id}" data-kind="use">
+          <span class="hint" id="useHint-${c.id}"></span>
+        </div>
+        <div class="field">
+          <label for="imp-${c.id}">${c.impLabel} <span class="val" id="impVal-${c.id}"></span></label>
+          <input type="range" id="imp-${c.id}" min="0" max="5" step="1" data-cat="${c.id}" data-kind="imp">
+        </div>
+      </div>
+    </div>`).join('');
+  $('catControls').addEventListener('input', e => {
+    const t = e.target; if (!t.dataset.cat) return;
+    state[t.dataset.kind][t.dataset.cat] = +t.value; state.preset = -1; render();
+  });
+  $('budgetRange').addEventListener('input', e => { state.budget = +e.target.value; $('budgetNum').value = state.budget; state.preset = -1; render(); });
+  $('budgetNum').addEventListener('input', e => {
+    const v = Math.max(0, +e.target.value || 0); state.budget = v;
+    $('budgetRange').value = Math.min(v, 500); state.preset = -1; render();
+  });
+  $('money').addEventListener('input', e => { state.money = +e.target.value; state.preset = -1; render(); });
+  $('tabs').addEventListener('click', e => {
+    const b = e.target.closest('button'); if (!b) return;
+    state.tab = b.dataset.tab; try { localStorage.setItem('model-picker-tab', state.tab); } catch (e) {}
+    render();
+  });
+  $('table').addEventListener('change', e => {
+    const t = e.target; if (!t.classList.contains('q-input')) return;
+    const c = CATS.find(c => c.id === state.tab); const m = c.models[+t.dataset.i];
+    m.q = Math.max(1, Math.min(100, Math.round(+t.value || m.q0))); saveQ(); render();
+  });
+  $('resetQ').addEventListener('click', () => {
+    CATS.forEach(c => c.models.forEach(m => { m.q = m.q0; })); saveQ(); render();
+  });
+  try { const t = localStorage.getItem('model-picker-tab'); if (CATS.some(c => c.id === t)) state.tab = t; } catch (e) {}
+}
+
+function syncControls() {
+  $('budgetNum').value = state.budget; $('budgetRange').value = Math.min(state.budget, 500);
+  $('money').value = state.money;
+  CATS.forEach(c => { $('use-' + c.id).value = state.use[c.id]; $('imp-' + c.id).value = state.imp[c.id]; });
+}
+
+// A friend's recommendation, written from the picks and the user's settings
+function advise(r) {
+  if (!r.active.length) return '<p>Tell me what you plan to do on the left (chatting, images, video or 3D) and I’ll tell you what to get.</p>';
+  const out = [];
+  const total = r.cost;
+  if (!r.fits) out.push(`<p>Straight answer: ${money(state.budget)} a month won’t cover all of this. The cheapest setup that does what you want is about <b>${money(total)}</b>. Either raise the budget or cut back on how much you plan to make.</p>`);
+  else out.push(`<p>For about <b>${money(total)} a month</b> you can cover everything you asked for${state.budget - total > 1 ? `, leaving ${money(state.budget - total)} spare` : ''}. Here’s what I’d get.</p>`);
+  r.active.forEach(c => {
+    const m = r.picks[c.id], imp = state.imp[c.id];
+    const top = [...c.models].sort((a, b) => b.q - a.q)[0];
+    const up = [...c.models].filter(x => x.q > m.q && x.month > m.month).sort((a, b) => a.month - b.month)[0];
+    let line = `<b>${c.label}: get ${m.n}.</b> `;
+    if (m === top) line += imp >= 4 ? `You said quality really matters, and this is the best there is. ` : `It’s the best in class and still fits your budget, so there’s no reason to settle. `;
+    else if (imp <= 1) line += `You said quality barely matters here, so don’t overpay. `;
+    else if (m.value >= 70) line += `It gives you the most for your money at the level of quality you asked for. `;
+    else line += `It’s the best trade-off between quality and price for you. `;
+    line += `Expect to spend about ${money(m.month)} a month (${buys(m.eff, c)} per dollar).`;
+    if (up && r.fits && up.month - m.month <= Math.max(state.budget - total, 0)) line += ` If you want a step up, ${up.n} fits in your leftover budget for +${money(up.month - m.month)}.`;
+    else if (up && imp >= 4) line += ` ${up.n} is better, but it would cost +${money(up.month - m.month)} a month.`;
+    out.push(`<p>${line}</p>`);
+  });
+  const t = r.picks.text;
+  if (t && t.month >= 15) out.push(`<p>One tip: you chat a lot. A flat-rate chat subscription from the same company may cost less than paying per message, so compare it against the ${money(t.month)} above.</p>`);
+  const v = r.picks.video;
+  if (v && v.q >= 92) out.push(`<p>Tip for video: draft your ideas with Kling first, then render the final version with ${v.n}. You’ll waste far less money on clips you throw away.</p>`);
+  return out.join('');
+}
+
+function bar(v, color) { return `<div class="bar"><i style="width:${Math.max(v, 2)}%;--fill:var(${color})"></i></div>`; }
+
+function render() {
+  [...$('presets').children].forEach((b, i) => b.setAttribute('aria-pressed', i === state.preset));
+  $('budgetVal').textContent = money(state.budget) + '/mo';
+  $('moneyVal').textContent = IMP_WORDS[state.money];
+  CATS.forEach(c => {
+    const u = state.use[c.id];
+    $('useVal-' + c.id).textContent = u ? u.toLocaleString() : 'None';
+    $('useHint-' + c.id).textContent = u ? `About ${(u / 30).toFixed(u < 300 ? 1 : 0)} ${c.units} a day` : 'Not using this';
+    $('impVal-' + c.id).textContent = IMP_WORDS[state.imp[c.id]];
+  });
+
+  const r = recommend();
+  $('total').innerHTML = `${money(r.cost)} <small>estimated per month</small>`;
+  const st = $('status');
+  if (!r.active.length) { st.className = 'status ok'; st.textContent = 'Turn on at least one use'; }
+  else if (r.fits) { st.className = 'status ok'; st.textContent = `${money(Math.max(state.budget - r.cost, 0))} under your ${money(state.budget)} budget`; }
+  else { st.className = 'status over'; st.textContent = `Over budget by ${money(r.cost - state.budget)}. Showing the cheapest setup.`; }
+
+  const scale = Math.max(state.budget, r.cost, 0.01);
+  $('meter').innerHTML = r.active.map(c => `<span style="width:${100 * r.picks[c.id].month / scale}%;background:var(${c.color})"></span>`).join('');
+  $('meterLegend').innerHTML = r.active.map(c => `<span><i class="dot" style="background:var(${c.color})"></i>${c.label} ${money(r.picks[c.id].month)}</span>`).join('')
+    + (r.cost < state.budget ? `<span><i class="dot" style="background:var(--line)"></i>Unused ${money(state.budget - r.cost)}</span>` : '');
+
+  $('picks').innerHTML = CATS.map(c => {
+    const m = r.picks[c.id];
+    if (!m) return `<div class="pick" style="--cat:var(${c.color})"><span class="cat">${c.label}</span><span class="skipped">Not needed. Raise "${c.usageLabel.toLowerCase()}" to get a pick.</span></div>`;
+    const byQ = [...c.models].sort((a, b) => b.q - a.q || a.month - b.month);
+    const top = byQ[0], cheap = [...c.models].sort((a, b) => a.month - b.month || b.q - a.q)[0];
+    const why = m === top ? 'Top quality in this category, and it fits.' : m === cheap ? 'Lowest cost. Good enough for how you weighted quality.' : 'Best balance of quality and price for your settings.';
+    const up = byQ.filter(x => x.q > m.q && x.month > m.month).pop();
+    const down = c.models.filter(x => x.month < m.month).sort((a, b) => b.q - a.q)[0];
+    return `<div class="pick" style="--cat:var(${c.color})">
+      <span class="cat">${c.label}</span>
+      <div><div class="name">${m.n}</div><div class="maker">${m.by}</div></div>
+      <div class="cost">${money(m.month)}/mo <span class="maker">· ${unitMoney(m.unitCost)} per ${c.unit}</span></div>
+      <div class="mini">
+        <div class="mini-row">Quality ${bar(m.q, c.color)}<span class="n">${m.q}</span></div>
+        <div class="mini-row">Cost ${bar(m.costScore, c.color)}<span class="n">${m.costScore}</span></div>
+        <div class="mini-row">Value ${bar(m.value, c.color)}<span class="n">${m.value}</span></div>
+      </div>
+      <p class="review">${m.rev}</p>
+      <div class="fit"><span class="g"><em>Great for</em>${m.good}</span><span class="s"><em>Skip if</em>${m.skip}</span></div>
+      <div class="why">${why}</div>
+      <div class="alt">
+        ${up ? `<span>Upgrade: <b>${up.n}</b> (quality ${up.q}) for +${money(up.month - m.month)}/mo</span>` : ''}
+        ${down ? `<span>Save: <b>${down.n}</b> (quality ${down.q}) for −${money(m.month - down.month)}/mo</span>` : ''}
+      </div>
+    </div>`;
+  }).join('');
+
+  $('advice').innerHTML = advise(r);
+
+  $('tabs').innerHTML = CATS.map(c => `<button type="button" role="tab" data-tab="${c.id}" aria-selected="${c.id === state.tab}" style="--cat:var(${c.color})">${c.label}</button>`).join('');
+  const c = CATS.find(c => c.id === state.tab);
+  const pick = r.picks[c.id];
+  const rows = c.models.map((m, i) => ({ m, i })).sort((a, b) => b.m.q - a.m.q || a.m.eff - b.m.eff);
+  const priceHead = c.id === 'text' ? 'Price (in / out per 1M tokens)' : `Price per ${c.unit}`;
+  $('table').innerHTML = `<thead><tr><th>Model</th><th>Quality</th><th>Cost score</th><th>Value</th><th>${priceHead}</th><th>$1 buys</th><th>Your month</th></tr></thead><tbody>` +
+    rows.map(({ m, i }) => `<tr class="${m === pick ? 'is-pick' : ''}">
+      <td><span class="mname">${m.n}</span>${m === pick ? '<span class="badge">Pick</span>' : ''}<span class="mnote">${m.by}${m.note ? ' · ' + m.note : ''}</span><span class="mrev">${m.rev}</span><span class="fit" style="margin-top:4px"><span class="g"><em>Great for</em>${m.good}</span><span class="s"><em>Skip if</em>${m.skip}</span></span></td>
+      <td><div class="scorecell"><input class="q-input" type="number" min="1" max="100" value="${m.q}" data-i="${i}" id="q-${c.id}-${i}" aria-label="Quality score for ${m.n}">${bar(m.q, c.color)}</div></td>
+      <td><div class="scorecell"><span>${m.costScore}</span>${bar(m.costScore, c.color)}</div></td>
+      <td><div class="scorecell"><span>${m.value}</span>${bar(m.value, c.color)}</div></td>
+      <td class="num">${c.id === 'text' ? `$${m.pin} / $${m.pout}<span class="mnote">${unitMoney(m.unitCost)} per message</span>` : unitMoney(m.unitCost) + (m.fixed ? `<span class="mnote">+ $${m.fixed}/mo plan</span>` : '')}</td>
+      <td class="num">${buys(m.eff, c)}</td>
+      <td class="num">${state.use[c.id] ? money(m.month) : '—'}</td>
+    </tr>`).join('') + '</tbody>';
+}
+
+buildControls();
+syncControls();
+render();
+</script>
+</body>
+</html>
