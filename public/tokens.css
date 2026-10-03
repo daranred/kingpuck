@@ -100,7 +100,8 @@
   --border-width-hair: 1px;
   --border-width-thick: 2px;
   --border-rule: var(--border-width-hair) solid var(--color-rule);
-  --border-ink: var(--border-width-hair) solid var(--color-ink);
+  /* Form field outlines only. Dividers always use --border-rule, never ink. */
+  --border-field: var(--border-width-hair) solid var(--color-ink);
   --border-night: var(--border-width-hair) solid var(--color-night-rule);
   --border-dashed: var(--border-width-hair) dashed var(--color-muted);
   --border-accent: var(--border-width-thick) solid var(--color-red);

@@ -8,9 +8,9 @@ export const Borders = {
       [
         sb.section(
           "Borders",
-          "Thin rules carry the editorial structure. Ink rules open a section; paper rules divide within it.",
+          "Thin rules carry the editorial structure. Every divider uses the light --border-rule — never black. --border-field (ink) is only for form field outlines, which need the contrast.",
           tokensWith("--border-")
-            .map((t) => sb.row([sb.code(t.name), t.name.includes("width") ? `<div style="border-top:var(${t.name}) solid var(--color-ink);width:100%"></div>` : `<div style="border:var(${t.name});height:56px;background:${t.name.includes("night") ? "var(--color-night)" : "var(--color-card)"}"></div>`, `<span class="muted" style="font-size:var(--text-xs)">${t.value}</span>`]))
+            .map((t) => sb.row([sb.code(t.name), t.name.includes("width") ? `<div style="border-top:var(${t.name}) solid var(--color-rule);width:100%"></div>` : `<div style="border:var(${t.name});height:56px;background:${t.name.includes("night") ? "var(--color-night)" : "var(--color-card)"}"></div>`, `<span class="muted" style="font-size:var(--text-xs)">${t.value}</span>`]))
             .join(""),
         ),
         sb.section(
