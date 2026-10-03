@@ -7,7 +7,7 @@ Everything still open for kingpuck.com, in rough order. Tick items off (`- [x]`)
 - [ ] In Workers & Pages → kingpuck → Custom domains, add `kingpuck.com` and `www.kingpuck.com`, and wait for both to show **Active**.
 - [ ] SSL/TLS: set the mode to **Full** and turn on **Always Use HTTPS**.
 - [ ] Optional: redirect `www.kingpuck.com` to `kingpuck.com` (Rules → Redirect Rules).
-- [ ] Optional: password-protect the site until launch with the `SITE_PASSWORD` secret, and remove it at launch.
+- [ ] Optional: password-protect the site until launch: add the `SITE_PASSWORD` secret in Cloudflare (branded password screen is built), and remove it at launch.
 
 ## Payments (Stripe)
 - [ ] Activate the Stripe account (identity and business details, Irish or EU bank account).
