@@ -8,11 +8,23 @@ A site celebrating the history of Puck Fair (Killorglin, Co. Kerry), with an onl
 - **Products:** `functions/_lib/catalog.json`, the single source of truth. The browser only sends product ids and quantities; prices are always looked up on the server.
 
 ```
-public/            index, history, shop, success, 404, styles.css, app.js, img/
-functions/api/     products.js (GET), checkout.js (POST), stripe-webhook.js (POST)
-functions/_lib/    catalog.json, cart.js, stripe.js
+src/site.mjs       site hierarchy (drives the menus, sidebar, bottom bar and footer sitemap)
+src/layout.mjs     shared chrome: masthead, tablet sidebar, phone bottom bar, footer, cart drawer
+src/pages/*.html   page content; `npm run build` wraps each in the layout and writes public/
+public/            the deployed site: tokens.css (design tokens), styles.css, app.js, img/, stays.json
+functions/api/     products, checkout, stripe-webhook, submit (archive uploads)
+functions/_lib/    catalog.json (products), cart.js, stripe.js
+tools/             build.mjs (pages), posters.mjs (poster SVGs)
 test/              node --test unit tests
 ```
+
+**Editing pages:** change `src/pages/*.html` (or `src/layout.mjs` for the header/footer), run `npm run build`, and commit both `src/` and `public/`. Cloudflare serves `public/` as-is, so no build command is needed there.
+
+**Navigation:** desktop (≥1100px) top bar with dropdowns · tablet (700–1099px) left sidebar · phone (<700px) bottom tab bar with a Menu sheet.
+
+**Where to Stay (VRBO):** edit `public/stays.json`. Add featured listings (title, url, image, area, sleeps, priceFrom) and, if you join the Expedia Group affiliate programme, your `affiliateId`. Update the `fair` dates each year.
+
+**Archive submissions:** run `npx wrangler r2 bucket create kingpuck-archive`, uncomment the `[[r2_buckets]]` block in `wrangler.toml`, then add the R2 binding `ARCHIVE` to the Pages project. Submissions land in `submissions/<id>/` for review.
 
 ## Run locally
 

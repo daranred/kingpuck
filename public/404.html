@@ -2,65 +2,152 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>Not found — King Puck</title>
   <meta name="description" content="Page not found.">
   <meta property="og:title" content="Not found — King Puck">
   <meta property="og:description" content="Page not found.">
-  <meta property="og:image" content="https://kingpuck.com/img/logo.svg">
+  <meta property="og:image" content="https://kingpuck.com/img/emblem.svg">
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Libre+Caslon+Text:ital,wght@0,400;0,700;1,400&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/tokens.css">
   <link rel="stylesheet" href="/styles.css">
-  <script src="/app.js" defer></script>
+  <script type="module" src="/app.js"></script>
 </head>
 <body>
-<header class="site-header">
-  <div class="wrap">
-    <a class="brand" href="/"><img src="/img/logo.svg" alt="">King Puck</a>
-    <nav class="nav">
-      <a href="/">Home</a>
-      <a href="/history.html">History</a>
-      <a href="/shop.html">Shop</a>
+<header class="masthead">
+  <div class="wrap masthead-top">
+    <a class="wordmark" href="/" aria-label="King Puck home"><img src="/img/emblem.svg" alt="" width="30" height="30"><span>King Puck</span></a>
+    <nav class="site-nav" id="site-nav" aria-label="Main">
+      <p class="sheet-title">Explore King Puck</p>
+      <ul class="nav-list">
+        <li class="nav-item">
+          <a href="/story">Story</a>
+          <ul class="nav-sub"><li><a href="/story#what-is-puck-fair">What Is Puck Fair?</a></li><li><a href="/story#history">History</a></li><li><a href="/story#why-a-goat">Why a Goat?</a></li><li><a href="/story#legend">Legend</a></li><li><a href="/story#three-days">The Three Days</a></li></ul>
+        </li>
+        <li class="nav-item">
+          <a href="/king-puck">King Puck</a>
+          <ul class="nav-sub"><li><a href="/king-puck#crowned-goat">The Crowned Goat</a></li><li><a href="/king-puck#kings">Kings Through the Years</a></li><li><a href="/king-puck#gallery">Gallery</a></li><li><a href="/king-puck#coronation">Coronation</a></li><li><a href="/king-puck#after-the-fair">What Happens to the Goat?</a></li></ul>
+        </li>
+        <li class="nav-item">
+          <a href="/queen-puck">Queen Puck</a>
+          <ul class="nav-sub"><li><a href="/queen-puck#tradition">Tradition</a></li><li><a href="/queen-puck#queens">Queens Through the Years</a></li><li><a href="/queen-puck#gallery">Gallery</a></li><li><a href="/queen-puck#queen-stories">Queen Stories</a></li><li><a href="/queen-puck#current-queen">Current Queen</a></li></ul>
+        </li>
+        <li class="nav-item">
+          <a href="/archive">Archive</a>
+          <ul class="nav-sub"><li><a href="/archive#photographs">Historic Photos</a></li><li><a href="/archive#posters">Posters</a></li><li><a href="/archive#ephemera">Newspapers &amp; Ephemera</a></li><li><a href="/archive#programs">Programs</a></li><li><a href="/archive#film">Video &amp; Film</a></li><li><a href="/archive#audio">Audio</a></li><li><a href="/archive#search">Search</a></li></ul>
+        </li>
+        <li class="nav-item">
+          <a href="/stories">Stories</a>
+          <ul class="nav-sub"><li><a href="/stories#puck-stories">Puck Stories</a></li><li><a href="/stories#people">People of Puck</a></li><li><a href="/stories#where-are-they-now">Where Are They Now?</a></li><li><a href="/stories#memories">Memories</a></li><li><a href="/stories#legends-and-lore">Legends &amp; Lore</a></li><li><a href="/stories#photo-stories">Photo Stories</a></li></ul>
+        </li>
+        <li class="nav-item">
+          <a href="/puck-fair">Puck Fair</a>
+          <ul class="nav-sub"><li><a href="/puck-fair#three-days">Three Days</a></li><li><a href="/puck-fair#coronation">Coronation</a></li><li><a href="/puck-fair#schedule">Schedule</a></li><li><a href="/puck-fair#music">Music &amp; Entertainment</a></li><li><a href="/puck-fair#traditions">Traditions</a></li><li><a href="/puck-fair#visit">Visit Killorglin</a></li><li><a href="/stay">Where to Stay</a></li></ul>
+        </li>
+        <li class="nav-item">
+          <a href="/shop">Shop</a>
+          <ul class="nav-sub"><li><a href="/shop?c=apparel">Apparel</a></li><li><a href="/shop?c=books">Books</a></li><li><a href="/shop?c=prints">Prints &amp; Posters</a></li><li><a href="/shop?c=archive">Archive Collection</a></li><li><a href="/shop?c=pins">Pins &amp; Patches</a></li><li><a href="/shop?c=gifts">Home &amp; Gifts</a></li><li><a href="/shop?c=limited">Limited Editions</a></li></ul>
+        </li>
+        <li class="nav-item">
+          <a href="/support">Support</a>
+          <ul class="nav-sub"><li><a href="/support#submit">Submit a Story</a></li><li><a href="/support#submit">Submit a Photograph</a></li><li><a href="/support#membership">Membership</a></li><li><a href="/support#sponsorship">Sponsorship</a></li><li><a href="/support#donate">Donate</a></li></ul>
+        </li>
+        <li class="nav-item">
+          <a href="/about">About</a>
+          <ul class="nav-sub"><li><a href="/about#mission">Mission</a></li><li><a href="/about#contact">Contact</a></li><li><a href="/about#rights">Rights &amp; Licensing</a></li><li><a href="/about#press">Press</a></li></ul>
+        </li>
+      </ul>
     </nav>
-    <button class="cart-btn" type="button" data-open-cart>Cart · <span data-cart-count>0</span></button>
+    <div class="masthead-actions">
+      <button class="cart-btn" type="button" data-open-cart>Cart <span data-cart-count>0</span></button>
+    </div>
   </div>
 </header>
-
+<aside class="sidebar" aria-label="Sections">
+  <a class="wordmark" href="/"><img src="/img/emblem.svg" alt="" width="28" height="28"><span>King Puck</span></a>
+  <nav><ul class="side-list">
+      <li class="side-item is-current"><a href="/" aria-current="page"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 11l9-7 9 7"/><path d="M5 10v10h14V10"/><path d="M10 20v-6h4v6"/></svg><span>Home</span></a></li>
+      <li class="side-item">
+        <a href="/story"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h6a3 3 0 013 3v12a2 2 0 00-2-2H4z"/><path d="M20 5h-6a3 3 0 00-3 3v12a2 2 0 012-2h7z"/></svg><span>The Story</span></a>
+        
+      </li>
+      <li class="side-item">
+        <a href="/king-puck"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 18l1.5-10 4.5 5 2-7 2 7 4.5-5L20 18z"/><path d="M4 21h16"/></svg><span>King Puck</span></a>
+        
+      </li>
+      <li class="side-item">
+        <a href="/queen-puck"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 16l1-7 3 3 2-5 2 5 3-3 1 7z"/><circle cx="12" cy="4" r="1"/><path d="M6 19h12"/></svg><span>Queen Puck</span></a>
+        
+      </li>
+      <li class="side-item">
+        <a href="/archive"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="5"/><path d="M5 9v11h14V9"/><path d="M10 13h4"/></svg><span>The Archive</span></a>
+        
+      </li>
+      <li class="side-item">
+        <a href="/stories"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16v11H9l-5 4z"/><path d="M8 9h8M8 12h5"/></svg><span>Stories</span></a>
+        
+      </li>
+      <li class="side-item">
+        <a href="/puck-fair"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 20l9-15 9 15z"/><path d="M12 5v15M8.5 20l3.5-6 3.5 6"/></svg><span>Puck Fair</span></a>
+        
+      </li>
+      <li class="side-item">
+        <a href="/shop"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 8h14l-1 12H6z"/><path d="M9 8V6a3 3 0 016 0v2"/></svg><span>Shop</span></a>
+        
+      </li>
+      <li class="side-item">
+        <a href="/support"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20s-7-4.5-7-10a4 4 0 017-2.6A4 4 0 0119 10c0 5.5-7 10-7 10z"/></svg><span>Support the Archive</span></a>
+        
+      </li>
+      <li class="side-item">
+        <a href="/about"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 7.5v.5"/></svg><span>About</span></a>
+        
+      </li>
+  </ul></nav>
+  <button class="side-cart" type="button" data-open-cart><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 8h14l-1 12H6z"/><path d="M9 8V6a3 3 0 016 0v2"/></svg><span>Cart</span><b data-cart-count>0</b></button>
+</aside>
+<div class="page">
 <main>
-<section>
-  <div class="wrap center">
-    <h1>This goat has wandered off</h1>
+<section class="block center">
+  <div class="wrap narrow">
+    <h1>This goat has wandered off.</h1>
     <p class="lead" style="margin-inline:auto">The page you're looking for has gone back to the mountains.</p>
-    <a class="btn" href="/">Back to the town square</a>
+    <a class="btn red" href="/">Back to the Square →</a>
   </div>
 </section>
 </main>
-
 <footer class="site-footer">
   <div class="wrap">
-    <div>
-      <h4>King Puck</h4>
-      <p>Celebrating Puck Fair in Killorglin, Co. Kerry — one of Ireland's oldest festivals — and the wild goat who is crowned king every August.</p>
+    <div class="footer-lead">
+      <p class="footer-mark">Long live King Puck.</p>
+      <p>KingPuck.com is the living archive of Puck Fair: the story, people and culture behind one of Ireland's oldest fairs.</p>
+      <a class="btn red" href="/support#submit">Your Puck. Your story. →</a>
     </div>
-    <div>
-      <h4>Explore</h4>
-      <a href="/">Home</a>
-      <a href="/history.html">History</a>
-      <a href="/shop.html">Shop</a>
+    <div class="sitemap">
+      <div><h4><a href="/story">The Story</a></h4><a href="/story#what-is-puck-fair">What Is Puck Fair?</a><a href="/story#history">History</a><a href="/story#why-a-goat">Why a Goat?</a><a href="/story#legend">Legend</a><a href="/story#three-days">The Three Days</a></div>
+      <div><h4><a href="/king-puck">King Puck</a></h4><a href="/king-puck#crowned-goat">The Crowned Goat</a><a href="/king-puck#kings">Kings Through the Years</a><a href="/king-puck#gallery">Gallery</a><a href="/king-puck#coronation">Coronation</a><a href="/king-puck#after-the-fair">What Happens to the Goat?</a></div>
+      <div><h4><a href="/queen-puck">Queen Puck</a></h4><a href="/queen-puck#tradition">Tradition</a><a href="/queen-puck#queens">Queens Through the Years</a><a href="/queen-puck#gallery">Gallery</a><a href="/queen-puck#queen-stories">Queen Stories</a><a href="/queen-puck#current-queen">Current Queen</a></div>
+      <div><h4><a href="/archive">The Archive</a></h4><a href="/archive#photographs">Historic Photos</a><a href="/archive#posters">Posters</a><a href="/archive#ephemera">Newspapers &amp; Ephemera</a><a href="/archive#programs">Programs</a><a href="/archive#film">Video &amp; Film</a><a href="/archive#audio">Audio</a><a href="/archive#search">Search</a></div>
+      <div><h4><a href="/stories">Stories</a></h4><a href="/stories#puck-stories">Puck Stories</a><a href="/stories#people">People of Puck</a><a href="/stories#where-are-they-now">Where Are They Now?</a><a href="/stories#memories">Memories</a><a href="/stories#legends-and-lore">Legends &amp; Lore</a><a href="/stories#photo-stories">Photo Stories</a></div>
+      <div><h4><a href="/puck-fair">Puck Fair</a></h4><a href="/puck-fair#three-days">Three Days</a><a href="/puck-fair#coronation">Coronation</a><a href="/puck-fair#schedule">Schedule</a><a href="/puck-fair#music">Music &amp; Entertainment</a><a href="/puck-fair#traditions">Traditions</a><a href="/puck-fair#visit">Visit Killorglin</a><a href="/stay">Where to Stay</a></div>
+      <div><h4><a href="/shop">Shop</a></h4><a href="/shop?c=apparel">Apparel</a><a href="/shop?c=books">Books</a><a href="/shop?c=prints">Prints &amp; Posters</a><a href="/shop?c=archive">Archive Collection</a><a href="/shop?c=pins">Pins &amp; Patches</a><a href="/shop?c=gifts">Home &amp; Gifts</a><a href="/shop?c=limited">Limited Editions</a></div>
+      <div><h4><a href="/support">Support the Archive</a></h4><a href="/support#submit">Submit a Story</a><a href="/support#submit">Submit a Photograph</a><a href="/support#membership">Membership</a><a href="/support#sponsorship">Sponsorship</a><a href="/support#donate">Donate</a></div>
+      <div><h4><a href="/about">About</a></h4><a href="/about#mission">Mission</a><a href="/about#contact">Contact</a><a href="/about#rights">Rights &amp; Licensing</a><a href="/about#press">Press</a></div>
     </div>
-    <div>
-      <h4>Shop</h4>
-      <a href="/shop.html?c=apparel">T-shirts &amp; Apparel</a>
-      <a href="/shop.html?c=posters">Posters &amp; Prints</a>
-      <a href="/shop.html?c=books">Books</a>
-      <a href="/shop.html?c=gifts">Gifts</a>
-    </div>
-    <p class="fine">© 2026 KingPuck.com · Secure payments by Stripe · Questions? <a href="mailto:hello@kingpuck.com" style="display:inline">hello@kingpuck.com</a></p>
+    <p class="fine">© 2026 KingPuck.com. An independent project, not the official Puck Fair organisation. Secure payments by Stripe.</p>
   </div>
 </footer>
-
+</div>
+<nav class="tabbar" aria-label="Quick navigation">
+  <a class="tab is-current" href="/" aria-current="page"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 11l9-7 9 7"/><path d="M5 10v10h14V10"/><path d="M10 20v-6h4v6"/></svg><span>Home</span></a>
+  <a class="tab" href="/story"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h6a3 3 0 013 3v12a2 2 0 00-2-2H4z"/><path d="M20 5h-6a3 3 0 00-3 3v12a2 2 0 012-2h7z"/></svg><span>Story</span></a>
+  <a class="tab" href="/archive"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="5"/><path d="M5 9v11h14V9"/><path d="M10 13h4"/></svg><span>Archive</span></a>
+  <a class="tab" href="/shop"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 8h14l-1 12H6z"/><path d="M9 8V6a3 3 0 016 0v2"/></svg><span>Shop</span></a>
+  <button class="tab" type="button" data-menu aria-controls="site-nav" aria-expanded="false"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg><span>Menu</span></button>
+</nav>
 <div class="drawer-backdrop" data-close-cart></div>
 <aside class="drawer" aria-label="Shopping cart">
   <header><h2>Your cart</h2><button class="icon-btn" type="button" aria-label="Close cart" data-close-cart>×</button></header>
@@ -69,7 +156,7 @@
     <div class="row"><span>Subtotal</span><span data-subtotal>€0.00</span></div>
     <p class="note" data-ship-note></p>
     <p class="error" data-cart-error role="alert"></p>
-    <button class="btn gold" type="button" data-checkout disabled>Checkout securely</button>
+    <button class="btn red" type="button" data-checkout disabled>Checkout securely</button>
     <p class="note">Shipping and taxes are calculated at checkout.</p>
   </footer>
 </aside>

@@ -11,3 +11,10 @@ CURRENCY = "eur"
 # [[kv_namespaces]]
 # binding = "ORDERS"
 # id = "REPLACE_ME"
+
+# Archive submissions (photos + stories) land here for review.
+# Create with: npx wrangler r2 bucket create kingpuck-archive
+# then uncomment:
+# [[r2_buckets]]
+# binding = "ARCHIVE"
+# bucket_name = "kingpuck-archive"

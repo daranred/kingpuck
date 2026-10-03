@@ -1,0 +1,14 @@
+{
+  "_readme": "Featured VRBO rentals shown on /stay. Add real listings: copy the listing URL from vrbo.com. Set affiliateId if you join the Expedia Group affiliate programme (it is appended to every VRBO link).",
+  "affiliateId": "",
+  "fair": { "checkIn": "2027-08-09", "checkOut": "2027-08-13", "label": "Puck Fair 2027 · 10–12 August" },
+  "areas": [
+    { "name": "Killorglin", "distance": "In town", "query": "Killorglin, County Kerry, Ireland", "note": "Walk to the Square. Books up first." },
+    { "name": "Glenbeigh", "distance": "15 min drive", "query": "Glenbeigh, County Kerry, Ireland", "note": "Rossbeigh beach and the Ring of Kerry." },
+    { "name": "Killarney", "distance": "25 min drive", "query": "Killarney, County Kerry, Ireland", "note": "The most choice, plus the National Park." },
+    { "name": "Tralee", "distance": "30 min drive", "query": "Tralee, County Kerry, Ireland", "note": "Kerry's county town, near Kerry Airport." },
+    { "name": "Caragh Lake", "distance": "10 min drive", "query": "Caragh Lake, County Kerry, Ireland", "note": "Lakeside houses below the Reeks." },
+    { "name": "Milltown", "distance": "10 min drive", "query": "Milltown, County Kerry, Ireland", "note": "Quiet village close to the fair." }
+  ],
+  "featured": []
+}

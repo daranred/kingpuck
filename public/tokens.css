@@ -1,0 +1,139 @@
+/* King Puck design tokens. Single source for the site and Storybook (Foundations). */
+:root {
+  /* Color — paper */
+  --color-paper: #efe8da;
+  --color-paper-2: #e4dbc7;
+  --color-card: #f7f2e7;
+  /* Color — ink */
+  --color-ink: #141412;
+  --color-ink-2: #36342f;
+  --color-muted: #6e695f;
+  --color-rule: #cdc2aa;
+  /* Color — night (dark bands) */
+  --color-night: #121211;
+  --color-night-2: #1e1d1b;
+  --color-night-rule: #3b3934;
+  --color-night-text: #cfc8b8;
+  --color-night-muted: #9a9486;
+  /* Color — accents */
+  --color-red: #9b1c1c;
+  --color-red-2: #b42828;
+  --color-gold: #b08a3e;
+  --color-gold-2: #d4b56d;
+  --color-green: #2b4a36;
+  /* Color — evidence labels */
+  --color-documented: #2b4a36;
+  --color-tradition: #8a6a26;
+  --color-legend: #9b1c1c;
+  --color-unknown: #6e695f;
+
+  /* Typography — families */
+  --font-display: "Instrument Serif", "Bodoni 72", Didot, Georgia, serif;
+  --font-serif: "Libre Caslon Text", Georgia, "Times New Roman", serif;
+  --font-sans: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  /* Typography — scale */
+  --text-2xs: 0.68rem;
+  --text-xs: 0.75rem;
+  --text-sm: 0.875rem;
+  --text-md: 1rem;
+  --text-lg: 1.2rem;
+  --text-xl: clamp(1.4rem, 2.2vw, 1.75rem);
+  --text-2xl: clamp(2rem, 4vw, 3rem);
+  --text-3xl: clamp(2.6rem, 6vw, 4.6rem);
+  --text-4xl: clamp(4.2rem, 13vw, 10rem);
+  /* Typography — line height */
+  --leading-display: 0.9;
+  --leading-tight: 1.1;
+  --leading-snug: 1.35;
+  --leading-normal: 1.65;
+  /* Typography — letter spacing */
+  --tracking-tight: -0.01em;
+  --tracking-normal: 0;
+  --tracking-wide: 0.04em;
+  --tracking-caps: 0.16em;
+  --tracking-caps-wide: 0.26em;
+  /* Typography — weight */
+  --weight-regular: 400;
+  --weight-medium: 500;
+  --weight-semibold: 600;
+  --weight-bold: 700;
+
+  /* Spacing */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --space-8: 64px;
+  --space-9: 96px;
+  --space-10: 128px;
+  --space-section: clamp(64px, 9vw, 120px);
+
+  /* Gap + stack — semantic steps on the spacing scale.
+     gap-*   space between siblings in flex/grid (cluster, grid)
+     stack-* vertical rhythm between stacked blocks (.stack) */
+  --gap-2xs: var(--space-1);
+  --gap-xs: var(--space-2);
+  --gap-sm: var(--space-3);
+  --gap-md: var(--space-4);
+  --gap-lg: var(--space-5);
+  --gap-xl: var(--space-6);
+  --gap-2xl: var(--space-7);
+  --gap-3xl: var(--space-8);
+  --stack-2xs: var(--space-1);
+  --stack-xs: var(--space-2);
+  --stack-sm: var(--space-3);
+  --stack-md: var(--space-4);
+  --stack-lg: var(--space-5);
+  --stack-xl: var(--space-6);
+  --stack-2xl: var(--space-7);
+  --stack-3xl: var(--space-8);
+  /* Component insets (padding) */
+  --inset-xs: var(--space-1) var(--space-2);
+  --inset-sm: var(--space-2) var(--space-3);
+  --inset-md: var(--space-3) var(--space-5);
+  --inset-lg: var(--space-5);
+
+  /* Borders */
+  --border-width-hair: 1px;
+  --border-width-thick: 2px;
+  --border-rule: var(--border-width-hair) solid var(--color-rule);
+  --border-ink: var(--border-width-hair) solid var(--color-ink);
+  --border-night: var(--border-width-hair) solid var(--color-night-rule);
+  --border-dashed: var(--border-width-hair) dashed var(--color-muted);
+  --border-accent: var(--border-width-thick) solid var(--color-red);
+
+  /* Radius */
+  --radius-none: 0;
+  --radius-sm: 2px;
+  --radius-full: 999px;
+
+  /* Shadow */
+  --shadow-print: 0 10px 28px rgba(18, 18, 17, 0.28);
+  --shadow-raised: 0 2px 10px rgba(18, 18, 17, 0.12);
+
+  /* Layout */
+  --container: 1200px;
+  --container-narrow: 760px;
+  --gutter: 16px;
+  --header-height: 68px;
+  --sidebar-width: 236px;
+  --tabbar-height: 64px;
+  /* Breakpoints (for reference; media queries can't read variables):
+     phone < 700px  → top bar + bottom tab bar
+     tablet 700–1099px → left sidebar
+     desktop ≥ 1100px → top masthead with dropdowns */
+
+  /* Motion */
+  --duration-fast: 0.15s;
+  --duration-base: 0.25s;
+  --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+
+  /* Layers */
+  --z-header: 30;
+  --z-nav: 35;
+  --z-backdrop: 40;
+  --z-drawer: 50;
+}
