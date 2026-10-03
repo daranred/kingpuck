@@ -1,4 +1,4 @@
-import catalog from "../../functions/_lib/catalog.json";
+import catalog from "../../functions/_lib/catalog.js";
 import { productCard, renderShop, stayArea } from "../../public/app.js";
 import stays from "../../public/stays.json";
 

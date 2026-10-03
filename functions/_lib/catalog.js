@@ -1,4 +1,5 @@
-{
+// Product catalog. Shared by the API (functions/) and Storybook.
+export default {
   "categories": [
     {
       "id": "apparel",
@@ -300,4 +301,4 @@
     ],
     "freeOver": 7500
   }
-}
+};

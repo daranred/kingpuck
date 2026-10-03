@@ -1,6 +1,6 @@
 import { homeSection } from "../_home.js";
 import { initCompare, productCard } from "../../public/app.js";
-import catalog from "../../functions/_lib/catalog.json";
+import catalog from "../../functions/_lib/catalog.js";
 
 export default { title: "Sections/Home" };
 

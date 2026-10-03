@@ -1,4 +1,4 @@
-import catalog from "./catalog.json" with { type: "json" };
+import catalog from "./catalog.js";
 
 export { catalog };
 

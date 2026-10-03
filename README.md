@@ -5,7 +5,7 @@ A site celebrating the history of Puck Fair (Killorglin, Co. Kerry), with an onl
 - **Hosting:** Cloudflare Pages (static files in `public/`)
 - **API:** Cloudflare Pages Functions (`functions/api/`)
 - **Payments:** Stripe Checkout (cards, Apple Pay and Google Pay, promo codes, shipping address)
-- **Products:** `functions/_lib/catalog.json`, the single source of truth. The browser only sends product ids and quantities; prices are always looked up on the server.
+- **Products:** `functions/_lib/catalog.js`, the single source of truth. The browser only sends product ids and quantities; prices are always looked up on the server.
 
 ```
 src/site.mjs       site hierarchy (drives the menus, sidebar, bottom bar and footer sitemap)
@@ -13,7 +13,7 @@ src/layout.mjs     shared chrome: masthead, tablet sidebar, phone bottom bar, fo
 src/pages/*.html   page content; `npm run build` wraps each in the layout and writes public/
 public/            the deployed site: tokens.css (design tokens), styles.css, app.js, img/, stays.json
 functions/api/     products, checkout, stripe-webhook, submit (archive uploads)
-functions/_lib/    catalog.json (products), cart.js, stripe.js
+functions/_lib/    catalog.js (products), cart.js, stripe.js
 tools/             build.mjs (pages), posters.mjs (poster SVGs)
 test/              node --test unit tests
 ```
@@ -75,7 +75,7 @@ To publish it, create a second Cloudflare Pages project from this repo with buil
 
 ## Editing products
 
-Edit `functions/_lib/catalog.json`. Prices are in cents (`2800` = €28.00). `variants` lists sizes or options, and `variantPrices` overrides the price for a specific option. Put product photos in `public/img/products/` and update `image`. The current images are placeholder illustrations.
+Edit `functions/_lib/catalog.js`. Prices are in cents (`2800` = €28.00). `variants` lists sizes or options, and `variantPrices` overrides the price for a specific option. Put product photos in `public/img/products/` and update `image`. The current images are placeholder illustrations.
 
 ## Before launch
 

@@ -27,7 +27,7 @@ export default {
 };
 
 // Storybook has no Pages Functions: answer the shop's API calls from the real catalog.
-import catalog from "../functions/_lib/catalog.json";
+import catalog from "../functions/_lib/catalog.js";
 const realFetch = window.fetch.bind(window);
 window.fetch = (input, init) => {
   const url = typeof input === "string" ? input : input.url;
