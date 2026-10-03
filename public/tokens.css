@@ -114,7 +114,8 @@
   --border-divider-chrome: var(--border-width-hair) solid var(--color-divider-chrome);
   --border-rule: var(--border-divider); /* legacy alias */
   /* Form field outlines only. Dividers always use --border-divider*, never ink. */
-  --border-field: var(--border-width-hair) solid var(--color-ink);
+  --color-field: #7a7a78; /* neutral grey: 3:1+ on every paper tone (AA for control outlines) */
+  --border-field: var(--border-width-hair) solid var(--color-field);
   --border-night: var(--border-divider-night); /* legacy alias */
   --border-dashed: var(--border-width-hair) dashed var(--color-muted);
   --border-accent: var(--border-width-thick) solid var(--color-red);

@@ -331,7 +331,8 @@ h4 { font-size: var(--text-lg); }
 .form label small { font: var(--text-sm) var(--font-sans); color: var(--color-muted); }
 .form input, .form textarea, .form select { width: 100%; min-height: var(--control-height); padding: 0 var(--space-4); border: var(--border-field); border-radius: var(--radius-control); background: var(--color-card); color: var(--color-ink); font: var(--text-md) var(--font-sans); }
 .form input:focus-visible, .form textarea:focus-visible, .form select:focus-visible { outline: var(--border-accent); outline-offset: 2px; }
-.form input[type=file] { padding-block: var(--space-3); }
+.form input[type=file] { height: var(--control-height); padding: 0 var(--space-1); line-height: calc(var(--control-height) - 2px); font-size: var(--text-sm); }
+.form input[type=file]::file-selector-button { height: calc(var(--control-height) - 10px); margin: 0 var(--space-3) 0 0; padding: 0 var(--space-3); border: var(--border-field); border-radius: calc(var(--radius-control) - 3px); background: var(--color-paper); color: var(--color-ink); font: var(--weight-semibold) var(--text-sm) var(--font-sans); cursor: pointer; }
 .form textarea { min-height: 150px; padding-block: var(--space-3); resize: vertical; }
 .form .check { display: flex; align-items: center; min-height: var(--target-min); gap: var(--gap-sm); font: var(--text-sm)/var(--leading-snug) var(--font-sans); }
 .form .check input { width: 24px; height: 24px; min-height: 0; margin: 0; flex: none; }
