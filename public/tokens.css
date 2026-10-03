@@ -8,7 +8,6 @@
   --color-ink: #141412;
   --color-ink-2: #36342f;
   --color-muted: #5f5a51; /* 4.97:1 on paper-2, 5.61:1 on paper (AA) */
-  --color-rule: #cdc2aa;
   /* Color — brand: navy, forest green, red (from the King Puck marks) */
   --color-navy: #14202e;
   --color-navy-2: #1d2c3d;
@@ -17,9 +16,14 @@
   /* Color — night (dark surfaces are navy) */
   --color-night: var(--color-navy);
   --color-night-2: var(--color-navy-2);
-  --color-night-rule: #34465a;
   --color-night-text: #d9d2c1; /* 10.9:1 on navy, 9:1 on forest */
   --color-night-muted: #a9b4c0; /* 7.8:1 on navy, 6.4:1 on forest */
+  /* Color — dividers. The only colours used for rules, card edges and separators. */
+  --color-divider: #c9bda3; /* visible on paper, paper-2 and card */
+  --color-divider-strong: #9c9078; /* section openers and emphasis */
+  --color-divider-night: #34465a; /* on navy and forest */
+  --color-rule: var(--color-divider); /* legacy alias */
+  --color-night-rule: var(--color-divider-night); /* legacy alias */
   /* Color — accents */
   --color-red: #b01e23; /* 5:1+ on every paper tone */
   --color-red-2: #8f171b;
@@ -98,10 +102,13 @@
   /* Borders */
   --border-width-hair: 1px;
   --border-width-thick: 2px;
-  --border-rule: var(--border-width-hair) solid var(--color-rule);
-  /* Form field outlines only. Dividers always use --border-rule, never ink. */
+  --border-divider: var(--border-width-hair) solid var(--color-divider);
+  --border-divider-strong: var(--border-width-hair) solid var(--color-divider-strong);
+  --border-divider-night: var(--border-width-hair) solid var(--color-divider-night);
+  --border-rule: var(--border-divider); /* legacy alias */
+  /* Form field outlines only. Dividers always use --border-divider*, never ink. */
   --border-field: var(--border-width-hair) solid var(--color-ink);
-  --border-night: var(--border-width-hair) solid var(--color-night-rule);
+  --border-night: var(--border-divider-night); /* legacy alias */
   --border-dashed: var(--border-width-hair) dashed var(--color-muted);
   --border-accent: var(--border-width-thick) solid var(--color-red);
 

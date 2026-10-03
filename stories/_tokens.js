@@ -31,5 +31,5 @@ export const sb = {
     `<section class="stack stack-lg"><div class="stack stack-xs"><h2 class="display sm mb-0">${title}</h2>${note ? `<p class="muted mb-0" style="font-family:var(--font-sans);font-size:var(--text-sm)">${note}</p>` : ""}</div>${inner}</section>`,
   code: (s) => `<code style="font:12px/1.4 ui-monospace,Menlo,monospace">${s}</code>`,
   row: (cells) =>
-    `<div style="display:grid;grid-template-columns:200px 1fr 220px;gap:var(--gap-lg);align-items:center;padding:var(--space-3) 0;border-bottom:var(--border-rule)">${cells.join("")}</div>`,
+    `<div style="display:grid;grid-template-columns:200px 1fr 220px;gap:var(--gap-lg);align-items:center;padding:var(--space-3) 0;border-bottom:var(--border-divider)">${cells.join("")}</div>`,
 };

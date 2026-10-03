@@ -5,7 +5,7 @@ export default {
   parameters: { docs: { description: { component: "Three primitives carry the spacing system: `.stack` (vertical rhythm), `.cluster` (wrapping rows) and `.grid-auto` (responsive grid). Pick a size modifier rather than adding margins." } } },
 };
 
-const box = (t, h = 48) => `<div style="background:var(--color-paper-2);border:var(--border-rule);min-height:${h}px;padding:var(--space-2);font:var(--text-sm) var(--font-sans)">${t}</div>`;
+const box = (t, h = 48) => `<div style="background:var(--color-paper-2);border:var(--border-divider);min-height:${h}px;padding:var(--space-2);font:var(--text-sm) var(--font-sans)">${t}</div>`;
 
 export const Stack = {
   args: { size: "md" },

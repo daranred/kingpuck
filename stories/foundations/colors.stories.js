@@ -3,7 +3,7 @@ import { groupsWith, resolved, sb } from "../_tokens.js";
 export default { title: "Foundations/Color" };
 
 const swatch = ({ name, value }) => `
-  <div style="border:var(--border-rule);background:var(--color-card)">
+  <div style="border:var(--border-divider);background:var(--color-card)">
     <div style="height:88px;background:var(${name})"></div>
     <div style="padding:var(--space-3);display:grid;gap:var(--gap-2xs);font-family:var(--font-sans)">
       <b style="font-size:var(--text-sm)">${name.replace("--color-", "")}</b>
@@ -36,7 +36,7 @@ export const Pairings = {
           ["--color-night", "--color-gold-2", "Night / Gold 2"],
           ["--color-red", "--color-card", "Red / Card"],
         ]
-          .map(([bg, fg, label]) => `<div style="background:var(${bg});color:var(${fg});padding:var(--space-5);border:var(--border-rule)"><h3 class="mb-0">${label}</h3><p class="mb-0" style="font-size:var(--text-sm)">The goat. The crown. The legend.</p></div>`)
+          .map(([bg, fg, label]) => `<div style="background:var(${bg});color:var(${fg});padding:var(--space-5);border:var(--border-divider)"><h3 class="mb-0">${label}</h3><p class="mb-0" style="font-size:var(--text-sm)">The goat. The crown. The legend.</p></div>`)
           .join("")}</div>`,
       ),
     ),

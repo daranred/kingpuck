@@ -2,6 +2,33 @@ import { tokensWith, sb } from "../_tokens.js";
 
 export default { title: "Foundations/Borders, radius & effects" };
 
+export const Dividers = {
+  parameters: { docs: { description: { story: "Use these for every rule, card edge and separator. `--border-divider` is the default; `--border-divider-strong` opens a section; `--border-divider-night` on navy and forest." } } },
+  render: () =>
+    sb.page(
+      sb.section(
+        "Dividers",
+        "One divider colour family, shown on every surface it's used on.",
+        `<div class="grid-auto" style="--grid-min:240px">${[
+          ["--color-paper", "Paper"],
+          ["--color-paper-2", "Paper 2"],
+          ["--color-card", "Card"],
+          ["--color-navy", "Navy"],
+          ["--color-forest", "Forest"],
+        ]
+          .map(([bg, label]) => {
+            const night = bg === "--color-navy" || bg === "--color-forest";
+            const tokens = night ? ["--border-divider-night"] : ["--border-divider", "--border-divider-strong"];
+            return `<div style="background:var(${bg});color:${night ? "var(--color-card)" : "var(--color-ink)"};padding:var(--space-5)" class="stack stack-md">
+              <b style="font:var(--weight-semibold) var(--text-sm) var(--font-sans)">${label}</b>
+              ${tokens.map((t) => `<div class="stack stack-xs"><div style="border-top:var(${t})"></div>${sb.code(t)}</div>`).join("")}
+            </div>`;
+          })
+          .join("")}</div>`,
+      ),
+    ),
+};
+
 export const Borders = {
   render: () =>
     sb.page(
@@ -10,7 +37,7 @@ export const Borders = {
           "Borders",
           "Thin rules carry the editorial structure. Every divider uses the light --border-rule — never black. --border-field (ink) is only for form field outlines, which need the contrast.",
           tokensWith("--border-")
-            .map((t) => sb.row([sb.code(t.name), t.name.includes("width") ? `<div style="border-top:var(${t.name}) solid var(--color-rule);width:100%"></div>` : `<div style="border:var(${t.name});height:56px;background:${t.name.includes("night") ? "var(--color-night)" : "var(--color-card)"}"></div>`, `<span class="muted" style="font-size:var(--text-xs)">${t.value}</span>`]))
+            .map((t) => sb.row([sb.code(t.name), t.name.includes("width") ? `<div style="border-top:var(${t.name}) solid var(--color-divider);width:100%"></div>` : `<div style="border:var(${t.name});height:56px;background:${t.name.includes("night") ? "var(--color-night)" : "var(--color-card)"}"></div>`, `<span class="muted" style="font-size:var(--text-xs)">${t.value}</span>`]))
             .join(""),
         ),
         sb.section(
