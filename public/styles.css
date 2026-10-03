@@ -193,7 +193,13 @@ h4 { font-size: var(--text-lg); }
 .hero-meta { color: var(--color-night-text); margin-bottom: var(--stack-xl); }
 
 /* ---------- Page header ---------- */
-.page-head { background: var(--color-forest); color: var(--color-card); padding: var(--space-9) 0 var(--space-8); }
+.page-head { background: var(--color-forest); color: var(--color-card); padding: var(--space-9) 0 var(--space-8); position: relative; overflow: hidden; isolation: isolate; }
+/* Header photo: fills the right half and fades into the green, so the text always sits on solid colour. */
+.page-head .head-photo { position: absolute; top: 0; right: 0; width: 50%; height: 100%; object-fit: cover; z-index: -1; -webkit-mask-image: linear-gradient(90deg, transparent, #000 45%); mask-image: linear-gradient(90deg, transparent, #000 45%); }
+@media (max-width: 860px) {
+  .page-head .head-photo { width: 100%; -webkit-mask-image: none; mask-image: none; }
+  .page-head:has(.head-photo)::after { content: ""; position: absolute; inset: 0; z-index: -1; background: rgba(29, 51, 38, 0.9); } /* AA even over white pixels */
+}
 .page-head h1 { max-width: 18ch; }
 .page-head .lead { color: var(--color-night-text); margin: 0; }
 .crumbs { font: var(--text-sm) var(--font-sans); letter-spacing: var(--tracking-wide); color: var(--color-night-muted); margin-bottom: var(--stack-lg); }
