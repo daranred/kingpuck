@@ -510,7 +510,8 @@ main.page-stack { display: flex; flex-direction: column; gap: 0; }
 /* Inline-sized things keep their own width inside a stack. */
 :where(.block, .content-section, .page-head) :where(.wrap, .wrap.split > div, .prose) > :where(.btn, .arrow-link, .tag, .success-mark, a:only-child),
 .royal-card > .more, .footer-lead > .btn, .empty-state > .btn { align-self: flex-start; }
-.center > .wrap > :is(.btn, .arrow-link, .success-mark), .block.center .wrap > :is(.btn, .arrow-link, .success-mark), .empty-state > .btn { align-self: center; }
+.center > .wrap > :is(.btn, .arrow-link, .success-mark), .block.center .wrap > :is(.btn, .arrow-link, .success-mark), .wrap.center > :is(.btn, .arrow-link, .success-mark), .empty-state > .btn { align-self: center; }
+.center .illustration-note { justify-content: center; }
 
 /* ---------- Page headers over a photo ---------- */
 .page-head.photo-band { background: var(--color-chrome); }
