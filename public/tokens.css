@@ -19,8 +19,8 @@
   --color-night-text: #d9d2c1; /* 10.9:1 on navy, 9:1 on forest */
   --color-night-muted: #a9b4c0; /* 7.8:1 on navy, 6.4:1 on forest */
   /* Color — chrome: header, sidebar, bottom bar and footer share one dark grey. */
-  --color-chrome: #1f1f1e; /* night-text 12:1, gold-2 8.9:1 */
-  --color-chrome-2: #2c2c2a; /* hover / current item */
+  --color-chrome: #080e17; /* blue-black: header, sidebar, tab bar, footer. night-text 13:1, gold-2 10:1 */
+  --color-chrome-2: #131d2b; /* hover / current item */
   --color-divider-chrome: #3e3e3b;
   /* Color — dividers. The only colours used for rules, card edges and separators. */
   --color-divider: #c9bda3; /* visible on paper, paper-2 and card */
