@@ -59,6 +59,7 @@ export async function renderCart() {
   const cart = readCart();
   const count = cart.reduce((n, l) => n + l.qty, 0);
   document.querySelectorAll("[data-cart-count]").forEach((el) => (el.textContent = count));
+  document.querySelectorAll("[data-open-cart]").forEach((b) => b.setAttribute("aria-label", `Cart, ${count} item${count === 1 ? "" : "s"}`));
   const list = document.querySelector(".cart-items");
   const subtotalEl = document.querySelector("[data-subtotal]");
   const noteEl = document.querySelector("[data-ship-note]");
@@ -118,7 +119,7 @@ async function checkout(btn) {
 export function productCard(p, onAdd = () => {}) {
   const card = document.createElement("article");
   card.className = "card";
-  card.innerHTML = `<img src="${p.image}" alt="" loading="lazy"><div class="card-body"><h3></h3><p></p><div class="card-foot"><span class="price"></span>${p.variants ? `<select aria-label="Option">${p.variants.map((v) => `<option>${v}</option>`).join("")}</select>` : ""}<button class="btn" type="button">Add</button></div></div>`;
+  card.innerHTML = `<img src="${p.image}" alt="" loading="lazy"><div class="card-body"><h3></h3><p></p><div class="card-foot"><span class="price"></span>${p.variants ? `<select aria-label="Option">${p.variants.map((v) => `<option>${v}</option>`).join("")}</select>` : ""}<button class="btn add-to-cart" type="button">Add to cart</button></div></div>`;
   card.querySelector("h3").textContent = p.name;
   card.querySelector("p").textContent = p.description;
   const price = card.querySelector(".price");

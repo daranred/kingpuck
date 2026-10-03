@@ -18,6 +18,10 @@
   --color-night-2: var(--color-navy-2);
   --color-night-text: #d9d2c1; /* 10.9:1 on navy, 9:1 on forest */
   --color-night-muted: #a9b4c0; /* 7.8:1 on navy, 6.4:1 on forest */
+  /* Color — chrome: header, sidebar, bottom bar and footer share one dark grey. */
+  --color-chrome: #1f1f1e; /* night-text 12:1, gold-2 8.9:1 */
+  --color-chrome-2: #2c2c2a; /* hover / current item */
+  --color-divider-chrome: #3e3e3b;
   /* Color — dividers. The only colours used for rules, card edges and separators. */
   --color-divider: #c9bda3; /* visible on paper, paper-2 and card */
   --color-divider-strong: #9c9078; /* section openers and emphasis */
@@ -99,6 +103,7 @@
   --inset-sm: var(--space-2) var(--space-3);
   --inset-md: var(--space-3) var(--space-5);
   --inset-lg: var(--space-5);
+  --inset-card: var(--space-5); /* 24px inside every card, panel and drawer */
 
   /* Borders */
   --border-width-hair: 1px;
@@ -106,6 +111,7 @@
   --border-divider: var(--border-width-hair) solid var(--color-divider);
   --border-divider-strong: var(--border-width-hair) solid var(--color-divider-strong);
   --border-divider-night: var(--border-width-hair) solid var(--color-divider-night);
+  --border-divider-chrome: var(--border-width-hair) solid var(--color-divider-chrome);
   --border-rule: var(--border-divider); /* legacy alias */
   /* Form field outlines only. Dividers always use --border-divider*, never ink. */
   --border-field: var(--border-width-hair) solid var(--color-ink);
@@ -131,7 +137,7 @@
   /* Layout */
   --container: 1200px;
   --container-narrow: 760px;
-  --gutter: 16px;
+  --gutter: var(--space-5); /* 24px page padding at every breakpoint */
   --header-height: 68px;
   --sidebar-width: 236px;
   --tabbar-height: 64px;

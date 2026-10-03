@@ -12,9 +12,9 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif&family=Inter:wght@400;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/tokens.css">
-  <link rel="stylesheet" href="/styles.css">
-  <script type="module" src="/app.js"></script>
+  <link rel="stylesheet" href="/tokens.css?v=f581c6c5ea">
+  <link rel="stylesheet" href="/styles.css?v=c582192a7e">
+  <script type="module" src="/app.js?v=67a8eca033"></script>
 </head>
 <body>
 <header class="masthead">
@@ -63,7 +63,7 @@
     </nav>
     <div class="masthead-actions">
       <a class="account-btn" href="/login" data-account-link aria-label="Sign in"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"/></svg><span data-account-label>Sign in</span></a>
-      <button class="cart-btn" type="button" data-open-cart>Cart <span data-cart-count>0</span></button>
+      <button class="cart-btn" type="button" data-open-cart aria-label="Cart, 0 items"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 8h14l-1 12H6z"/><path d="M9 8V6a3 3 0 016 0v2"/></svg><span data-cart-count>0</span></button>
     </div>
   </div>
 </header>
@@ -109,11 +109,12 @@
       </li>
   </ul></nav>
   <a class="side-account" href="/login" data-account-link><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"/></svg><span data-account-label>Sign in</span></a>
-  <button class="side-cart" type="button" data-open-cart><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 8h14l-1 12H6z"/><path d="M9 8V6a3 3 0 016 0v2"/></svg><span>Cart</span><b data-cart-count>0</b></button>
+  <button class="side-cart" type="button" data-open-cart aria-label="Cart, 0 items"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 8h14l-1 12H6z"/><path d="M9 8V6a3 3 0 016 0v2"/></svg><span>Cart</span><b data-cart-count>0</b></button>
 </aside>
 <div class="page">
-<main>
-<header class="page-head">
+<main class="page-stack">
+<header class="page-head photo-band">
+  <img class="band-photo soft" src="/img/scenes/scene-18.jpg" alt="" fetchpriority="high">
   <div class="wrap">
     <p class="crumbs"><a href="/">Home</a> / Account</p>
     <h1>Your account</h1>

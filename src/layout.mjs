@@ -33,7 +33,7 @@ export function header(current) {
     </nav>
     <div class="masthead-actions">
       <a class="account-btn" href="/login" data-account-link aria-label="Sign in">${icon("user")}<span data-account-label>Sign in</span></a>
-      <button class="cart-btn" type="button" data-open-cart>Cart <span data-cart-count>0</span></button>
+      <button class="cart-btn" type="button" data-open-cart aria-label="Cart, 0 items">${icon("cart")}<span data-cart-count>0</span></button>
     </div>
   </div>
 </header>`;
@@ -55,7 +55,7 @@ export function sidebar(current) {
       <li class="side-item${!current ? " is-current" : ""}"><a href="/"${!current ? ' aria-current="page"' : ""}>${icon("home")}<span>Home</span></a></li>${items}
   </ul></nav>
   <a class="side-account" href="/login" data-account-link>${icon("user")}<span data-account-label>Sign in</span></a>
-  <button class="side-cart" type="button" data-open-cart>${icon("cart")}<span>Cart</span><b data-cart-count>0</b></button>
+  <button class="side-cart" type="button" data-open-cart aria-label="Cart, 0 items">${icon("cart")}<span>Cart</span><b data-cart-count>0</b></button>
 </aside>`;
 }
 
@@ -118,7 +118,7 @@ const withSectionIndex = (section, body) => {
 export const chrome = (section, body) => `${header(section)}
 ${sidebar(section)}
 <div class="page">
-<main>
+<main class="page-stack">
 ${withSectionIndex(section, body)}
 </main>
 ${footer()}

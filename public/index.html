@@ -12,9 +12,9 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif&family=Inter:wght@400;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/tokens.css">
-  <link rel="stylesheet" href="/styles.css">
-  <script type="module" src="/app.js"></script>
+  <link rel="stylesheet" href="/tokens.css?v=f581c6c5ea">
+  <link rel="stylesheet" href="/styles.css?v=c582192a7e">
+  <script type="module" src="/app.js?v=67a8eca033"></script>
 </head>
 <body class="home">
 <header class="masthead">
@@ -63,7 +63,7 @@
     </nav>
     <div class="masthead-actions">
       <a class="account-btn" href="/login" data-account-link aria-label="Sign in"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"/></svg><span data-account-label>Sign in</span></a>
-      <button class="cart-btn" type="button" data-open-cart>Cart <span data-cart-count>0</span></button>
+      <button class="cart-btn" type="button" data-open-cart aria-label="Cart, 0 items"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 8h14l-1 12H6z"/><path d="M9 8V6a3 3 0 016 0v2"/></svg><span data-cart-count>0</span></button>
     </div>
   </div>
 </header>
@@ -109,10 +109,10 @@
       </li>
   </ul></nav>
   <a class="side-account" href="/login" data-account-link><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"/></svg><span data-account-label>Sign in</span></a>
-  <button class="side-cart" type="button" data-open-cart><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 8h14l-1 12H6z"/><path d="M9 8V6a3 3 0 016 0v2"/></svg><span>Cart</span><b data-cart-count>0</b></button>
+  <button class="side-cart" type="button" data-open-cart aria-label="Cart, 0 items"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 8h14l-1 12H6z"/><path d="M9 8V6a3 3 0 016 0v2"/></svg><span>Cart</span><b data-cart-count>0</b></button>
 </aside>
 <div class="page">
-<main>
+<main class="page-stack">
 <section class="hero photo-band">
   <img class="band-photo" src="/img/king/crowned.jpg" alt="" style="object-position: 60% 30%">
   <div class="wrap hero-inner">
@@ -150,8 +150,9 @@
       <li><b>Today</b><span class="tag documented">Documented</span></li>
     </ol>
     <div class="strip">
-      <div class="ph-photo"><span>Archive photo</span></div><div class="ph-photo"><span>Archive photo</span></div><div class="ph-photo"><span>Archive photo</span></div><div class="ph-photo"><span>Archive photo</span></div><div class="ph-photo"><span>Archive photo</span></div>
+<div class="ph-photo"><img src="/img/scenes/engraving-goat-on-plinth.jpg" alt="Engraving-style illustration of the goat on his plinth" loading="lazy"></div><div class="ph-photo"><img src="/img/scenes/engraving-town-and-bridge.jpg" alt="Engraving-style illustration of the town and bridge" loading="lazy"></div><div class="ph-photo"><img src="/img/scenes/sepia-bridge-crowd.jpg" alt="Sepia illustration of crowds on the bridge" loading="lazy"></div><div class="ph-photo"><img src="/img/scenes/sepia-goat-on-plinth.jpg" alt="Sepia illustration of the crowned goat above a crowd" loading="lazy"></div><div class="ph-photo"><img src="/img/scenes/bunting-street-king.jpg" alt="The King above a bunting-lined street today" loading="lazy"></div>
     </div>
+    <p class="illustration-note"><span class="tag illustration">Illustration</span> Artist's impressions, not archive photographs. <a href="/support#submit">Have the real thing? Share it.</a></p>
     <a class="btn line" href="/story#history">Explore the timeline →</a>
   </div>
 </section>
@@ -185,13 +186,14 @@
 <section class="block">
   <div class="wrap center">
     <div class="compare" data-compare>
-      <!-- Replace each placeholder with <img src="..." alt="..."> of the same scene, then and now -->
-      <div class="compare-now ph-photo now"><span>Now · the same view today</span></div>
-      <div class="compare-then ph-photo"><span>Then · historic photograph</span></div>
+      <!-- Swap in real archive photographs of the same view when they arrive -->
+      <div class="compare-now ph-photo now"><img src="/img/scenes/town-bridge-panorama.jpg" alt="Killorglin's bridge and town today, mountains behind"></div>
+      <div class="compare-then ph-photo"><img src="/img/scenes/sepia-bridge-bunting-crowd.jpg" alt="Sepia illustration of crowds on the bridge under bunting"></div>
       <span class="compare-label l">Then</span><span class="compare-label r">Now</span>
       <div class="compare-handle" aria-hidden="true"></div>
       <input type="range" min="0" max="100" value="50" aria-label="Compare then and now">
     </div>
+    <p class="illustration-note"><span class="tag illustration">Illustration</span> Then and now shown as artist's impressions until archive photographs of the same view arrive.</p>
     <h2 class="display sm mt-2">The faces change.<br>The fair remains.</h2>
     <p class="muted">Different times. The same extraordinary tradition.</p>
     <a class="btn line dark-text" href="/archive#photographs">Explore more then &amp; now →</a>
@@ -239,7 +241,7 @@
 
 <!-- 10 The CTA -->
 <section class="block dark photo-band closing-band">
-  <div class="band-photo ph-photo" aria-hidden="true"></div>
+  <img class="band-photo soft" src="/img/scenes/scene-39.jpg" alt="" loading="lazy">
   <div class="wrap center">
     <h2 class="display">400+ years of stories.<br>And still counting.</h2>
     <p class="lead" style="margin-inline:auto">Your Puck. Your story.</p>

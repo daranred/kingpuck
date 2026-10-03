@@ -3,6 +3,10 @@
 import { mkdirSync, readdirSync, readFileSync, writeFileSync } from "node:fs";
 import { chrome, esc, parsePage, FONTS } from "../src/layout.mjs";
 import { events, ics } from "../src/calendar.mjs";
+import { createHash } from "node:crypto";
+
+// Content fingerprint for cache-busting: a deploy that changes a file changes its URL.
+const v = (file) => createHash("sha256").update(readFileSync(`public/${file}`)).digest("hex").slice(0, 10);
 
 if (import.meta.url === `file://${process.argv[1]}`) {
   for (const file of readdirSync("src/pages").filter((f) => f.endsWith(".html"))) {
@@ -21,9 +25,9 @@ if (import.meta.url === `file://${process.argv[1]}`) {
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="${FONTS}" rel="stylesheet">
-  <link rel="stylesheet" href="/tokens.css">
-  <link rel="stylesheet" href="/styles.css">
-  <script type="module" src="/app.js"></script>
+  <link rel="stylesheet" href="/tokens.css?v=${v("tokens.css")}">
+  <link rel="stylesheet" href="/styles.css?v=${v("styles.css")}">
+  <script type="module" src="/app.js?v=${v("app.js")}"></script>
 </head>
 <body${meta.bodyAttrs ? " " + meta.bodyAttrs : ""}>
 ${chrome(meta.section, body)}
