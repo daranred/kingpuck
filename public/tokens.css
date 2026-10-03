@@ -72,6 +72,7 @@
   --space-8: 64px;
   --space-9: 96px;
   --space-10: 128px;
+  --space-hero: 40px; /* inset around the hero copy at every breakpoint */
   --space-section: clamp(64px, 9vw, 120px);
 
   /* Gap + stack — semantic steps on the spacing scale.
@@ -120,7 +121,7 @@
   --radius-full: 999px;
 
   /* Controls: buttons, inputs and selects share one height. Touch targets are never under 44px. */
-  --control-height: 48px;
+  --control-height: 40px; /* every button, select and text field */
   --target-min: 44px;
 
   /* Shadow */
