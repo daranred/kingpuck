@@ -97,7 +97,7 @@ export const footer = () => `<footer class="site-footer">
 
 export const drawer = () => `<div class="drawer-backdrop" data-close-cart></div>
 <aside class="drawer" aria-label="Shopping cart">
-  <header><h2>Your cart</h2><button class="icon-btn" type="button" aria-label="Close cart" data-close-cart>×</button></header>
+  <header><h2>Your Cart</h2><button class="icon-btn" type="button" aria-label="Close cart" data-close-cart>×</button></header>
   <ul class="cart-items"></ul>
   <footer>
     <div class="row"><span>Subtotal</span><span data-subtotal>€0.00</span></div>

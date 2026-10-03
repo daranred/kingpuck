@@ -7,7 +7,7 @@ export const Families = {
     sb.page(
       sb.section(
         "Families",
-        "Two families. Display serif for headings (only h1 is uppercase); Inter for everything else: body, navigation, buttons and labels.",
+        "Two families. Display serif for headings, always in Title Case (only the wordmark is in capitals); Inter for everything else: body, navigation, buttons and labels.",
         tokensWith("--font-")
           .map((t) => sb.row([sb.code(t.name), `<span style="font-family:var(${t.name});font-size:var(--text-2xl)">King Puck · Killorglin 1613</span>`, `<span class="muted" style="font:var(--text-sm) var(--font-sans)">${t.value}</span>`]))
           .join(""),
