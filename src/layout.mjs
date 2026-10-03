@@ -1,5 +1,8 @@
 // Shared page chrome. Used by tools/build.mjs (static pages) and by Storybook.
 import { sections, childHref, icons, sectionIcon, tabs } from "./site.mjs";
+
+// Support and About live in the footer only; the header and sidebar skip them.
+const navSections = sections.filter((s) => !s.footerOnly);
 import { expandCalendars } from "./calendar.mjs";
 
 export const FONTS = "https://fonts.googleapis.com/css2?family=Instrument+Serif&family=Inter:wght@400;600&display=swap";
@@ -18,7 +21,7 @@ const subLinks = (s) => s.children.map((c) => `<li><a href="${childHref(s, c)}">
 
 /* Desktop masthead (≥1200px). On phones it collapses to logo + cart; its nav becomes the Menu sheet. */
 export function header(current) {
-  const items = sections.map((s) => `
+  const items = navSections.map((s) => `
         <li class="nav-item${s.href === current ? " is-current" : ""}">
           <a href="${s.href}"${s.href === current ? ' aria-current="page"' : ""}>${esc(shortLabel[s.label] ?? s.label)}</a>
           <ul class="nav-sub">${subLinks(s)}</ul>
@@ -41,7 +44,7 @@ export function header(current) {
 
 /* Tablet sidebar (700–1199px): every section, the current one expanded. */
 export function sidebar(current) {
-  const items = sections.map((s) => {
+  const items = navSections.map((s) => {
     const on = s.href === current;
     return `
       <li class="side-item${on ? " is-current" : ""}">

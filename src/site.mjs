@@ -3,6 +3,9 @@ export const sections = [
   { href: "/story", label: "The Story", children: [
     ["what-is-puck-fair", "What Is Puck Fair?"], ["history", "History"], ["why-a-goat", "Why a Goat?"],
     ["legend", "Legend"], ["three-days", "The Three Days"] ] },
+  { href: "/puck-fair", label: "Puck Fair", children: [
+    ["three-days", "Three Days"], ["coronation", "Coronation"], ["schedule", "Schedule"],
+    ["music", "Music & Entertainment"], ["traditions", "Traditions"], ["visit", "Visit Killorglin"], ["/stay", "Where to Stay"] ] },
   { href: "/king-puck", label: "King Puck", children: [
     ["crowned-goat", "The Crowned Goat"], ["kings", "Kings Through the Years"], ["gallery", "Gallery"],
     ["coronation", "Coronation"], ["after-the-fair", "What Happens to the Goat?"] ] },
@@ -15,17 +18,14 @@ export const sections = [
   { href: "/stories", label: "Stories", children: [
     ["puck-stories", "Puck Stories"], ["people", "People of Puck"], ["where-are-they-now", "Where Are They Now?"],
     ["memories", "Memories"], ["legends-and-lore", "Legends & Lore"], ["photo-stories", "Photo Stories"] ] },
-  { href: "/puck-fair", label: "Puck Fair", children: [
-    ["three-days", "Three Days"], ["coronation", "Coronation"], ["schedule", "Schedule"],
-    ["music", "Music & Entertainment"], ["traditions", "Traditions"], ["visit", "Visit Killorglin"], ["/stay", "Where to Stay"] ] },
   { href: "/shop", label: "Shop", children: [
     ["?c=apparel", "Apparel"], ["?c=books", "Books"], ["?c=prints", "Prints & Posters"],
     ["?c=archive", "Archive Collection"], ["?c=pins", "Pins & Patches"], ["?c=gifts", "Home & Gifts"],
     ["?c=limited", "Limited Editions"] ] },
-  { href: "/support", label: "Support the Archive", children: [
+  { href: "/support", label: "Support the Archive", footerOnly: true, children: [
     ["submit", "Submit a Story"], ["submit", "Submit a Photograph"], ["membership", "Membership"],
     ["sponsorship", "Sponsorship"], ["donate", "Donate"] ] },
-  { href: "/about", label: "About", children: [
+  { href: "/about", label: "About", footerOnly: true, children: [
     ["mission", "Mission"], ["contact", "Contact"], ["rights", "Rights & Licensing"], ["press", "Press"] ] },
 ];
 
