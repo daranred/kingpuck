@@ -119,6 +119,7 @@
   --border-night: var(--border-divider-night); /* legacy alias */
   --border-dashed: var(--border-width-hair) dashed var(--color-muted);
   --border-accent: var(--border-width-thick) solid var(--color-red);
+  --border-focus: var(--border-width-thick) solid var(--color-navy); /* focus is navy; red is only for errors */
 
   /* Radius */
   --radius-none: 0;
