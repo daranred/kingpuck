@@ -1,0 +1,18 @@
+import { Meta } from "@storybook/addon-docs/blocks";
+
+<Meta title="Introduction" />
+
+# King Puck design system
+
+**Modern editorial + museum + Irish archival material.** The goat, the crown, the legend.
+
+- **Foundations**: every value lives in `public/tokens.css`. Colour, type, spacing, gap/stack/inset, borders, radius, shadow, motion, layout and layers. The Foundations pages read that file directly, so they never drift.
+- **Layout**: `.stack`, `.cluster`, `.grid-auto` and `.split` carry all spacing. Use a size modifier (`stack-lg`, `cluster-xs`) instead of one-off margins.
+- **Components** and **Sections** are the building blocks of `src/pages`. The homepage sections are read straight from `src/pages/index.html`.
+- **Navigation** is responsive: desktop masthead (1100px and up), tablet sidebar (700–1099px), phone bottom bar (under 700px). Switch the viewport in the toolbar.
+- **Pages** render every page with the shared layout from `src/layout.mjs`.
+
+### Editorial rules
+- Label history honestly: <span class="tag documented">Documented</span> <span class="tag tradition">Tradition</span> <span class="tag legend">Legend</span> <span class="tag unknown">Unknown</span>
+- 1613 is the earliest surviving written record, not the founding date.
+- Short, declarative headlines. Photography is the primary design element.

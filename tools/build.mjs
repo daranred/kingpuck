@@ -1,15 +1,7 @@
 // Wraps each src/pages/*.html body in the shared layout (src/layout.mjs) and writes it to public/.
 // Each page starts with a JSON comment: <!-- {"title": "...", "desc": "...", "section": "/story"} -->
 import { readdirSync, readFileSync, writeFileSync } from "node:fs";
-import { chrome, esc } from "../src/layout.mjs";
-
-export const FONTS = "https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Libre+Caslon+Text:ital,wght@0,400;0,700;1,400&family=Inter:wght@400;500;600;700&display=swap";
-
-export function parsePage(raw, file = "page") {
-  const m = raw.match(/^<!--\s*(\{[\s\S]*?\})\s*-->/);
-  if (!m) throw new Error(`${file}: missing JSON header comment`);
-  return { meta: JSON.parse(m[1]), body: raw.slice(m[0].length).trim() };
-}
+import { chrome, esc, parsePage, FONTS } from "../src/layout.mjs";
 
 if (import.meta.url === `file://${process.argv[1]}`) {
   for (const file of readdirSync("src/pages").filter((f) => f.endsWith(".html"))) {

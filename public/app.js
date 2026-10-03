@@ -60,12 +60,15 @@ export async function renderCart() {
   const count = cart.reduce((n, l) => n + l.qty, 0);
   document.querySelectorAll("[data-cart-count]").forEach((el) => (el.textContent = count));
   const list = document.querySelector(".cart-items");
-  if (!list) return;
+  const subtotalEl = document.querySelector("[data-subtotal]");
+  const noteEl = document.querySelector("[data-ship-note]");
+  const checkoutBtn = document.querySelector("[data-checkout]");
+  if (!list || !subtotalEl || !checkoutBtn) return;
   if (!cart.length) {
     list.innerHTML = `<li class="empty" style="display:block">Your cart is empty.</li>`;
-    document.querySelector("[data-subtotal]").textContent = money(0);
-    document.querySelector("[data-ship-note]").textContent = "";
-    document.querySelector("[data-checkout]").disabled = true;
+    subtotalEl.textContent = money(0);
+    if (noteEl) noteEl.textContent = "";
+    checkoutBtn.disabled = true;
     return;
   }
   const { products, freeShippingOver } = await loadCatalog();
@@ -84,10 +87,10 @@ export async function renderCart() {
     inc.onclick = () => setQty(i, l.qty + 1);
     list.append(li);
   });
-  document.querySelector("[data-subtotal]").textContent = money(subtotal);
+  subtotalEl.textContent = money(subtotal);
   const left = freeShippingOver - subtotal;
-  document.querySelector("[data-ship-note]").textContent = left > 0 ? `Add ${money(left)} more for free shipping.` : "You've unlocked free shipping.";
-  document.querySelector("[data-checkout]").disabled = false;
+  if (noteEl) noteEl.textContent = left > 0 ? `Add ${money(left)} more for free shipping.` : "You've unlocked free shipping.";
+  checkoutBtn.disabled = false;
 }
 
 async function checkout(btn) {

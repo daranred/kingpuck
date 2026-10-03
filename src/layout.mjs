@@ -1,6 +1,15 @@
 // Shared page chrome. Used by tools/build.mjs (static pages) and by Storybook.
 import { sections, childHref, icons, sectionIcon, tabs } from "./site.mjs";
 
+export const FONTS = "https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Libre+Caslon+Text:ital,wght@0,400;0,700;1,400&family=Inter:wght@400;500;600;700&display=swap";
+
+// Each src/pages/*.html starts with a JSON comment holding title, desc, section, bodyAttrs.
+export function parsePage(raw, file = "page") {
+  const m = raw.match(/^<!--\s*(\{[\s\S]*?\})\s*-->/);
+  if (!m) throw new Error(`${file}: missing JSON header comment`);
+  return { meta: JSON.parse(m[1]), body: raw.slice(m[0].length).trim() };
+}
+
 export const esc = (s) => String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/"/g, "&quot;");
 export const icon = (name, cls = "icon") => `<svg class="${cls}" viewBox="0 0 24 24" aria-hidden="true">${icons[name]}</svg>`;
 const shortLabel = { "Support the Archive": "Support", "The Story": "Story", "The Archive": "Archive" };

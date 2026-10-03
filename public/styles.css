@@ -100,7 +100,7 @@ h4 { font-size: var(--text-lg); }
 .cart-btn, .menu-btn { background: none; border: var(--border-width-hair) solid currentColor; color: inherit; padding: var(--inset-sm); font: var(--weight-semibold) var(--text-2xs)/1 var(--font-sans); letter-spacing: var(--tracking-caps); text-transform: uppercase; white-space: nowrap; cursor: pointer; }
 .cart-btn span { display: inline-block; min-width: 1.4em; margin-left: var(--space-1); padding: 0 var(--space-1); background: var(--color-red); color: var(--color-card); }
 .menu-btn { display: none; }
-.masthead.night, body.home .masthead { --masthead-bg: var(--color-night); background: var(--masthead-bg); color: var(--color-card); border-bottom-color: var(--color-night-rule); }
+.masthead.night, .home .masthead { --masthead-bg: var(--color-night); background: var(--masthead-bg); color: var(--color-card); border-bottom-color: var(--color-night-rule); }
 .icon { width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; flex: none; }
 .sheet-title { display: none; }
 .sidebar, .tabbar { display: none; }

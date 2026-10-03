@@ -50,6 +50,20 @@ Use Stripe test card `4242 4242 4242 4242` with any future date and any CVC.
 
 Until `STRIPE_SECRET_KEY` is set, the site works fully but checkout shows "The shop isn't taking orders just yet".
 
+## Storybook (design system)
+
+```sh
+npm run storybook        # http://localhost:6006
+npm run build-storybook  # static build in storybook-static/
+```
+
+- **Foundations:** colour, typography, spacing (space / gap / stack / inset), borders, radius, shadow, motion, layout and layers. Read live from `public/tokens.css`.
+- **Layout:** `.stack`, `.cluster`, `.grid-auto`, `.split`.
+- **Components, Sections, Navigation, Commerce, Forms:** every building block, with the homepage sections read straight from `src/pages/index.html`.
+- **Pages:** every page with the shared layout. Use the viewport toolbar (Phone · Tablet · Desktop) to see the bottom bar, sidebar and masthead.
+
+To publish it, create a second Cloudflare Pages project from this repo with build command `npm run build-storybook` and output directory `storybook-static`.
+
 ## Editing products
 
 Edit `functions/_lib/catalog.json`. Prices are in cents (`2800` = €28.00). `variants` lists sizes or options, and `variantPrices` overrides the price for a specific option. Put product photos in `public/img/products/` and update `image`. The current images are placeholder illustrations.

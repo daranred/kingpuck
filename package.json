@@ -7,7 +7,9 @@
     "dev": "wrangler pages dev",
     "deploy": "wrangler pages deploy",
     "test": "node --test test/*.test.js",
-    "build": "node tools/build.mjs"
+    "build": "node tools/build.mjs",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build"
   },
   "devDependencies": {
     "@storybook/addon-docs": "^10.6.1",
