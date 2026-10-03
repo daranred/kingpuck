@@ -115,11 +115,10 @@ async function checkout(btn) {
 }
 
 /* ---------- Shop ---------- */
-export function productCard(p, categoryName = "", onAdd = () => {}) {
+export function productCard(p, onAdd = () => {}) {
   const card = document.createElement("article");
   card.className = "card";
-  card.innerHTML = `<img src="${p.image}" alt="" loading="lazy"><div class="card-body"><span class="cat"></span><h3></h3><p></p><div class="card-foot"><span class="price"></span>${p.variants ? `<select aria-label="Option">${p.variants.map((v) => `<option>${v}</option>`).join("")}</select>` : ""}<button class="btn" type="button">Add</button></div></div>`;
-  card.querySelector(".cat").textContent = categoryName;
+  card.innerHTML = `<img src="${p.image}" alt="" loading="lazy"><div class="card-body"><h3></h3><p></p><div class="card-foot"><span class="price"></span>${p.variants ? `<select aria-label="Option">${p.variants.map((v) => `<option>${v}</option>`).join("")}</select>` : ""}<button class="btn" type="button">Add</button></div></div>`;
   card.querySelector("h3").textContent = p.name;
   card.querySelector("p").textContent = p.description;
   const price = card.querySelector(".price");
@@ -136,7 +135,6 @@ export async function renderShop(root) {
   const limit = Number(root.dataset.limit) || Infinity;
   const filters = root.querySelector(".filters");
   const grid = root.querySelector(".grid");
-  const catName = Object.fromEntries(categories.map((c) => [c.id, c.name]));
   let active = new URLSearchParams(location.search).get("c") || "all";
 
   if (filters) {
@@ -160,7 +158,7 @@ export async function renderShop(root) {
     grid.innerHTML = "";
     const list = products.filter((p) => active === "all" || p.category === active).slice(0, limit);
     if (!list.length) grid.innerHTML = `<p class="muted">New pieces for this collection are on the way.</p>`;
-    list.forEach((p) => grid.append(productCard(p, catName[p.category], addToCart)));
+    list.forEach((p) => grid.append(productCard(p, addToCart)));
   }
   draw();
 }
@@ -197,8 +195,8 @@ export function stayArea(a, cfg) {
   link.href = vrboSearch(a.query, cfg);
   link.target = "_blank";
   link.rel = "noopener sponsored";
-  link.innerHTML = `<span class="caption"></span><b></b><span></span>`;
-  const [dist, name, note] = link.children;
+  link.innerHTML = `<b></b><span class="meta"></span><span></span>`;
+  const [name, dist, note] = link.children;
   dist.textContent = a.distance;
   name.textContent = `${a.name} →`;
   note.textContent = a.note;
@@ -233,9 +231,9 @@ export async function renderStays(root) {
     for (const s of cfg.featured) {
       const card = document.createElement("article");
       card.className = "card";
-      card.innerHTML = `<img alt="" loading="lazy"><div class="card-body"><span class="cat"></span><h3></h3><p></p><div class="card-foot"><span class="price"></span><a class="btn red" target="_blank" rel="noopener sponsored">View on VRBO</a></div></div>`;
+      card.innerHTML = `<img alt="" loading="lazy"><div class="card-body"><h3></h3><span class="meta"></span><p></p><div class="card-foot"><span class="price"></span><a class="btn red" target="_blank" rel="noopener sponsored">View on VRBO</a></div></div>`;
       card.querySelector("img").src = s.image;
-      card.querySelector(".cat").textContent = [s.area, s.sleeps && `Sleeps ${s.sleeps}`].filter(Boolean).join(" · ");
+      card.querySelector(".meta").textContent = [s.area, s.sleeps && `Sleeps ${s.sleeps}`].filter(Boolean).join(" · ");
       card.querySelector("h3").textContent = s.title;
       card.querySelector("p").textContent = s.description ?? "";
       card.querySelector(".price").textContent = s.priceFrom ? `From ${s.priceFrom}/night` : "";

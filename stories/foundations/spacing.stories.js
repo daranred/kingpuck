@@ -3,7 +3,7 @@ import { tokensWith, resolved, sb } from "../_tokens.js";
 export default { title: "Foundations/Spacing" };
 
 const bar = (t) =>
-  sb.row([sb.code(t.name), `<div style="height:16px;width:var(${t.name});background:var(--color-red)"></div>`, `<span class="muted" style="font:var(--text-xs) var(--font-sans)">${t.value}${t.value.startsWith("var(") || t.value.startsWith("clamp(") ? ` → ${resolved(t.name)}` : ""}</span>`]);
+  sb.row([sb.code(t.name), `<div style="height:16px;width:var(${t.name});background:var(--color-red)"></div>`, `<span class="muted" style="font:var(--text-sm) var(--font-sans)">${t.value}${t.value.startsWith("var(") || t.value.startsWith("clamp(") ? ` → ${resolved(t.name)}` : ""}</span>`]);
 
 export const Scale = {
   name: "Space scale",

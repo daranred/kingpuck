@@ -28,8 +28,7 @@ export const ShopRow = {
   render: () =>
     el(homeSection(8), (d) => {
       const grid = d.querySelector(".grid");
-      const names = Object.fromEntries(catalog.categories.map((c) => [c.id, c.name]));
-      catalog.products.slice(0, 4).forEach((p) => grid.append(productCard(p, names[p.category])));
+      catalog.products.slice(0, 4).forEach((p) => grid.append(productCard(p)));
     }),
 };
 export const Closing = { name: "Closing CTA + add your story", render: () => homeSection(9) };

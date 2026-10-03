@@ -7,33 +7,36 @@
   /* Color — ink */
   --color-ink: #141412;
   --color-ink-2: #36342f;
-  --color-muted: #6e695f;
+  --color-muted: #5f5a51; /* 4.97:1 on paper-2, 5.61:1 on paper (AA) */
   --color-rule: #cdc2aa;
-  /* Color — night (dark bands) */
-  --color-night: #121211;
-  --color-night-2: #1e1d1b;
-  --color-night-rule: #3b3934;
-  --color-night-text: #cfc8b8;
-  --color-night-muted: #9a9486;
+  /* Color — brand: navy, forest green, red (from the King Puck marks) */
+  --color-navy: #14202e;
+  --color-navy-2: #1d2c3d;
+  --color-forest: #1d3326;
+  --color-forest-2: #264233;
+  /* Color — night (dark surfaces are navy) */
+  --color-night: var(--color-navy);
+  --color-night-2: var(--color-navy-2);
+  --color-night-rule: #34465a;
+  --color-night-text: #d9d2c1; /* 10.9:1 on navy, 9:1 on forest */
+  --color-night-muted: #a9b4c0; /* 7.8:1 on navy, 6.4:1 on forest */
   /* Color — accents */
-  --color-red: #9b1c1c;
-  --color-red-2: #b42828;
-  --color-gold: #b08a3e;
+  --color-red: #b01e23; /* 5:1+ on every paper tone */
+  --color-red-2: #8f171b;
+  --color-gold: #c9a24a; /* decoration and dark surfaces only: 2.6:1 on paper */
   --color-gold-2: #d4b56d;
-  --color-green: #2b4a36;
+  --color-green: var(--color-forest);
   /* Color — evidence labels */
-  --color-documented: #2b4a36;
-  --color-tradition: #8a6a26;
-  --color-legend: #9b1c1c;
-  --color-unknown: #6e695f;
+  --color-documented: var(--color-forest);
+  --color-tradition: #74571c; /* AA on every paper tone */
+  --color-legend: var(--color-red);
+  --color-unknown: #5f5a51;
 
   /* Typography — families */
+  /* Two families: display serif for headings, sans for everything else. */
   --font-display: "Instrument Serif", "Bodoni 72", Didot, Georgia, serif;
-  --font-serif: "Libre Caslon Text", Georgia, "Times New Roman", serif;
   --font-sans: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
-  /* Typography — scale */
-  --text-2xs: 0.68rem;
-  --text-xs: 0.75rem;
+  /* Typography — scale. Nothing smaller than --text-sm (14px). */
   --text-sm: 0.875rem;
   --text-md: 1rem;
   --text-lg: 1.2rem;
@@ -50,13 +53,9 @@
   --tracking-tight: -0.01em;
   --tracking-normal: 0;
   --tracking-wide: 0.04em;
-  --tracking-caps: 0.16em;
-  --tracking-caps-wide: 0.26em;
   /* Typography — weight */
   --weight-regular: 400;
-  --weight-medium: 500;
   --weight-semibold: 600;
-  --weight-bold: 700;
 
   /* Spacing */
   --space-1: 4px;
@@ -109,7 +108,13 @@
   /* Radius */
   --radius-none: 0;
   --radius-sm: 2px;
+  --radius-badge: 4px;
+  --radius-control: 8px;
   --radius-full: 999px;
+
+  /* Controls: buttons, inputs and selects share one height. Touch targets are never under 44px. */
+  --control-height: 48px;
+  --target-min: 44px;
 
   /* Shadow */
   --shadow-print: 0 10px 28px rgba(18, 18, 17, 0.28);

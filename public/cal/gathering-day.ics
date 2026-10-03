@@ -1,0 +1,18 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//King Puck//kingpuck.com//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+BEGIN:VEVENT
+UID:gathering-day@kingpuck.com
+DTSTAMP:20261003T000000Z
+DTSTART;VALUE=DATE:20270810
+DTEND;VALUE=DATE:20270811
+RRULE:FREQ=YEARLY
+SUMMARY:Puck Fair: Gathering Day
+DESCRIPTION:The goat is paraded through Killorglin and crowned King Puck b
+ y the Queen of Puck. https://kingpuck.com/puck-fair
+LOCATION:Killorglin\, County Kerry\, Ireland
+TRANSP:TRANSPARENT
+END:VEVENT
+END:VCALENDAR

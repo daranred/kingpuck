@@ -8,7 +8,7 @@ const swatch = ({ name, value }) => `
     <div style="padding:var(--space-3);display:grid;gap:var(--gap-2xs);font-family:var(--font-sans)">
       <b style="font-size:var(--text-sm)">${name.replace("--color-", "")}</b>
       ${sb.code(name)}
-      <span class="muted" style="font-size:var(--text-xs)">${value.startsWith("var(") ? `${value} → ${resolved(name)}` : value}</span>
+      <span class="muted" style="font-size:var(--text-sm)">${value.startsWith("var(") ? `${value} → ${resolved(name)}` : value}</span>
     </div>
   </div>`;
 

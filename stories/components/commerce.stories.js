@@ -4,7 +4,6 @@ import stays from "../../public/stays.json";
 
 export default { title: "Commerce" };
 
-const names = Object.fromEntries(catalog.categories.map((c) => [c.id, c.name]));
 const wrap = (inner) => {
   const d = document.createElement("div");
   d.className = "sb-pad wrap";
@@ -19,7 +18,7 @@ export const ProductCard = {
   argTypes: { product: { control: "select", options: catalog.products.map((p) => p.id) } },
   render: ({ product }) => {
     const d = wrap(`<div style="max-width:300px"></div>`);
-    d.firstChild.append(productCard(catalog.products.find((p) => p.id === product), names[catalog.products.find((p) => p.id === product).category]));
+    d.firstChild.append(productCard(catalog.products.find((p) => p.id === product)));
     return d;
   },
 };

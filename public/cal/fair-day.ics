@@ -1,0 +1,18 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//King Puck//kingpuck.com//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+BEGIN:VEVENT
+UID:fair-day@kingpuck.com
+DTSTAMP:20261003T000000Z
+DTSTART;VALUE=DATE:20270811
+DTEND;VALUE=DATE:20270812
+RRULE:FREQ=YEARLY
+SUMMARY:Puck Fair: Fair Day
+DESCRIPTION:The traditional horse and livestock fair\, with markets and mu
+ sic across the town. https://kingpuck.com/puck-fair
+LOCATION:Killorglin\, County Kerry\, Ireland
+TRANSP:TRANSPARENT
+END:VEVENT
+END:VCALENDAR

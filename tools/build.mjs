@@ -1,7 +1,8 @@
 // Wraps each src/pages/*.html body in the shared layout (src/layout.mjs) and writes it to public/.
 // Each page starts with a JSON comment: <!-- {"title": "...", "desc": "...", "section": "/story"} -->
-import { readdirSync, readFileSync, writeFileSync } from "node:fs";
+import { mkdirSync, readdirSync, readFileSync, writeFileSync } from "node:fs";
 import { chrome, esc, parsePage, FONTS } from "../src/layout.mjs";
+import { events, ics } from "../src/calendar.mjs";
 
 if (import.meta.url === `file://${process.argv[1]}`) {
   for (const file of readdirSync("src/pages").filter((f) => f.endsWith(".html"))) {
@@ -31,4 +32,7 @@ ${chrome(meta.section, body)}
 `);
     console.log("built", file);
   }
+  mkdirSync("public/cal", { recursive: true });
+  for (const id of Object.keys(events)) writeFileSync(`public/cal/${id}.ics`, ics(id));
+  console.log("built calendar files");
 }
