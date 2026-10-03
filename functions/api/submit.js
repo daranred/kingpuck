@@ -1,4 +1,5 @@
 // Archive submissions: stores the form + files in R2 (binding ARCHIVE) for review.
+import { getSession, indexForCustomer } from "../_lib/auth.js";
 const MAX_FILES = 5;
 const MAX_BYTES = 20 * 1024 * 1024;
 const TEXT_FIELDS = ["name", "email", "year", "place", "people", "story", "provenance"];
@@ -46,5 +47,7 @@ export async function onRequestPost({ request, env }) {
   await env.ARCHIVE.put(`submissions/${id}/submission.json`, JSON.stringify(record, null, 2), {
     httpMetadata: { contentType: "application/json" },
   });
+  const session = await getSession(request, env);
+  await indexForCustomer(env, session?.email ?? entry.email, "submission", id, { id, received: record.received, status: record.status, year: entry.year, place: entry.place, files: stored.length });
   return Response.json({ ok: true, id });
 }

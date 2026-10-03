@@ -33,7 +33,7 @@ export const MotionAndLayers = {
     sb.page(
       [
         sb.section("Motion", "", [...tokensWith("--duration-"), ...tokensWith("--ease")].map((t) => sb.row([sb.code(t.name), "", `<span class="muted">${t.value}</span>`])).join("")),
-        sb.section("Layout", "Breakpoints: phone < 700px · tablet 700–1099px · desktop ≥ 1100px.", [...tokensWith("--container"), ...tokensWith("--gutter"), ...tokensWith("--header-"), ...tokensWith("--sidebar-"), ...tokensWith("--tabbar-")].map((t) => sb.row([sb.code(t.name), "", `<span class="muted">${t.value}</span>`])).join("")),
+        sb.section("Layout", "Breakpoints: phone < 700px · tablet 700–1199px · desktop ≥ 1200px.", [...tokensWith("--container"), ...tokensWith("--gutter"), ...tokensWith("--header-"), ...tokensWith("--sidebar-"), ...tokensWith("--tabbar-")].map((t) => sb.row([sb.code(t.name), "", `<span class="muted">${t.value}</span>`])).join("")),
         sb.section("Layers (z-index)", "", tokensWith("--z-").map((t) => sb.row([sb.code(t.name), "", `<span class="muted">${t.value}</span>`])).join("")),
       ].join(""),
     ),

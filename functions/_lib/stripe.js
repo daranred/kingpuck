@@ -1,7 +1,7 @@
 import { catalog } from "./cart.js";
 
 // Builds the form-encoded body for POST /v1/checkout/sessions.
-export function checkoutParams({ lines, subtotal }, { siteUrl, currency }) {
+export function checkoutParams({ lines, subtotal }, { siteUrl, currency, customerEmail }) {
   const p = new URLSearchParams();
   p.set("mode", "payment");
   p.set("success_url", `${siteUrl}/success.html?session_id={CHECKOUT_SESSION_ID}`);
@@ -9,6 +9,7 @@ export function checkoutParams({ lines, subtotal }, { siteUrl, currency }) {
   p.set("billing_address_collection", "auto");
   p.set("phone_number_collection[enabled]", "true");
   p.set("allow_promotion_codes", "true");
+  if (customerEmail) p.set("customer_email", customerEmail);
 
   lines.forEach((l, i) => {
     p.set(`line_items[${i}][quantity]`, String(l.qty));

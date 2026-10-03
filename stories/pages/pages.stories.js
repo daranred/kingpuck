@@ -35,5 +35,6 @@ export const WhereToStay = { name: "Where to Stay", render: page("stay") };
 export const Shop = { render: page("shop") };
 export const Support = { name: "Support the Archive", render: page("support") };
 export const About = { render: page("about") };
+export const SignIn = { name: "Sign in", render: page("login") };
 export const HomePhone = { name: "Home · phone", globals: { viewport: { value: "phone" } }, render: page("index") };
 export const HomeTablet = { name: "Home · tablet", globals: { viewport: { value: "tablet" } }, render: page("index") };

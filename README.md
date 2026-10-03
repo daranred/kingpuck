@@ -20,7 +20,7 @@ test/              node --test unit tests
 
 **Editing pages:** change `src/pages/*.html` (or `src/layout.mjs` for the header/footer), run `npm run build`, and commit both `src/` and `public/`. Cloudflare serves `public/` as-is, so no build command is needed there.
 
-**Navigation:** desktop (≥1100px) top bar with dropdowns · tablet (700–1099px) left sidebar · phone (<700px) bottom tab bar with a Menu sheet.
+**Navigation:** desktop (≥1200px) top bar with dropdowns · tablet (700–1199px) left sidebar · phone (<700px) bottom tab bar with a Menu sheet.
 
 **Where to Stay (VRBO):** edit `public/stays.json`. Add featured listings (title, url, image, area, sleeps, priceFrom) and, if you join the Expedia Group affiliate programme, your `affiliateId`. Update the `fair` dates each year.
 
@@ -49,6 +49,15 @@ Use Stripe test card `4242 4242 4242 4242` with any future date and any CVC.
 6. **Order log (optional):** run `npx wrangler kv namespace create ORDERS`, then uncomment the block in `wrangler.toml` and paste in the id. Paid orders will also be saved there. Stripe's dashboard always lists every order either way.
 
 Until `STRIPE_SECRET_KEY` is set, the site works fully but checkout shows "The shop isn't taking orders just yet".
+
+## Sign in (magic links)
+
+Customers sign in with a one-time email link: no passwords. The account page lists their orders and archive submissions, and checkout pre-fills their email.
+
+1. `npx wrangler kv namespace create AUTH`, paste the id into the `AUTH` block in `wrangler.toml` and uncomment it (or add a KV binding named `AUTH` to the Pages project).
+2. Create a free account at resend.com, verify the kingpuck.com domain, and add the secret `RESEND_API_KEY` (and optionally `EMAIL_FROM`, e.g. `King Puck <hello@kingpuck.com>`).
+
+Until both are set, the "Sign in" link stays hidden. For local testing, put `DEV_LOG_MAGIC_LINKS=true` in `.dev.vars` and run `npx wrangler pages dev --kv AUTH --r2 ARCHIVE`: sign-in links are printed to the console instead of emailed.
 
 ## Storybook (design system)
 

@@ -1,4 +1,5 @@
 import { verifyStripeSignature } from "../_lib/stripe.js";
+import { indexForCustomer } from "../_lib/auth.js";
 
 export async function onRequestPost({ request, env }) {
   const payload = await request.text();
@@ -20,6 +21,7 @@ export async function onRequestPost({ request, env }) {
     };
     console.log("Order paid", order.id, order.total);
     if (env.ORDERS) await env.ORDERS.put(`order:${order.created}:${order.id}`, JSON.stringify(order));
+    await indexForCustomer(env, order.email, "order", order.id, { id: order.id, created: order.created, total: order.total, currency: order.currency, status: order.paymentStatus });
   }
   return new Response("ok");
 }

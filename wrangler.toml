@@ -12,6 +12,13 @@ CURRENCY = "eur"
 # binding = "ORDERS"
 # id = "REPLACE_ME"
 
+# Sign-in links and sessions (also indexes each customer's orders and submissions).
+# Create with: npx wrangler kv namespace create AUTH  — then uncomment and paste the id.
+# Also set secrets RESEND_API_KEY (resend.com) and optionally EMAIL_FROM.
+# [[kv_namespaces]]
+# binding = "AUTH"
+# id = "REPLACE_ME"
+
 # Archive submissions (photos + stories) land here for review.
 # Create with: npx wrangler r2 bucket create kingpuck-archive
 # then uncomment:

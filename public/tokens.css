@@ -123,8 +123,8 @@
   --tabbar-height: 64px;
   /* Breakpoints (for reference; media queries can't read variables):
      phone < 700px  → top bar + bottom tab bar
-     tablet 700–1099px → left sidebar
-     desktop ≥ 1100px → top masthead with dropdowns */
+     tablet 700–1199px → left sidebar
+     desktop ≥ 1200px → top masthead with dropdowns */
 
   /* Motion */
   --duration-fast: 0.15s;

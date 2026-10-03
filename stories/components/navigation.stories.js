@@ -24,7 +24,7 @@ export const MastheadNight = {
 export const SidebarTablet = {
   name: "Sidebar · tablet",
   globals: { viewport: { value: "tablet" } },
-  parameters: { docs: { description: { story: "700–1099px. All sections with icons; the current section expands to its sub-pages." } } },
+  parameters: { docs: { description: { story: "700–1199px. All sections with icons; the current section expands to its sub-pages." } } },
   render: () => mount(`${header("/king-puck")}${sidebar("/king-puck")}<div class="page">${sample}</div>`),
 };
 export const BottomBarPhone = {

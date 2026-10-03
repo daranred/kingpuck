@@ -42,3 +42,19 @@ test("verifies Stripe signatures", async () => {
   assert.equal(await verifyStripeSignature(payload, `t=${t - 1000},v1=${sig}`, secret), false);
   assert.equal(await verifyStripeSignature(payload, null, secret), false);
 });
+
+import { safeNext, readCookie, sha256, normalizeEmail, validEmail } from "../functions/_lib/auth.js";
+
+test("auth helpers", async () => {
+  assert.equal(safeNext("/shop?c=prints"), "/shop?c=prints");
+  assert.equal(safeNext("//evil.com"), "/account");
+  assert.equal(safeNext("https://evil.com"), "/account");
+  assert.equal(safeNext(undefined), "/account");
+  const req = new Request("https://x", { headers: { Cookie: "a=1; kp_session=abc%3D; b=2" } });
+  assert.equal(readCookie(req, "kp_session"), "abc=");
+  assert.equal(readCookie(req, "missing"), null);
+  assert.equal((await sha256("x")).length, 64);
+  assert.equal(normalizeEmail("  Me@Example.COM "), "me@example.com");
+  assert.equal(validEmail("me@example.com"), true);
+  assert.equal(validEmail("nope"), false);
+});

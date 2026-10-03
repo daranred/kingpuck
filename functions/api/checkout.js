@@ -1,5 +1,6 @@
 import { resolveCart, CartError } from "../_lib/cart.js";
 import { checkoutParams } from "../_lib/stripe.js";
+import { getSession } from "../_lib/auth.js";
 
 export async function onRequestPost({ request, env }) {
   if (!env.STRIPE_SECRET_KEY) {
@@ -22,7 +23,7 @@ export async function onRequestPost({ request, env }) {
       Authorization: `Bearer ${env.STRIPE_SECRET_KEY}`,
       "Content-Type": "application/x-www-form-urlencoded",
     },
-    body: checkoutParams(cart, { siteUrl, currency: env.CURRENCY || "eur" }),
+    body: checkoutParams(cart, { siteUrl, currency: env.CURRENCY || "eur", customerEmail: (await getSession(request, env))?.email }),
   });
   const session = await res.json();
   if (!res.ok) {

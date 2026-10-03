@@ -15,7 +15,7 @@ export const icon = (name, cls = "icon") => `<svg class="${cls}" viewBox="0 0 24
 const shortLabel = { "Support the Archive": "Support", "The Story": "Story", "The Archive": "Archive" };
 const subLinks = (s) => s.children.map((c) => `<li><a href="${childHref(s, c)}">${esc(c[1])}</a></li>`).join("");
 
-/* Desktop masthead (≥1100px). On phones it collapses to logo + cart; its nav becomes the Menu sheet. */
+/* Desktop masthead (≥1200px). On phones it collapses to logo + cart; its nav becomes the Menu sheet. */
 export function header(current) {
   const items = sections.map((s) => `
         <li class="nav-item${s.href === current ? " is-current" : ""}">
@@ -31,13 +31,14 @@ export function header(current) {
       </ul>
     </nav>
     <div class="masthead-actions">
+      <a class="account-btn" href="/login" data-account-link aria-label="Sign in">${icon("user")}<span data-account-label>Sign in</span></a>
       <button class="cart-btn" type="button" data-open-cart>Cart <span data-cart-count>0</span></button>
     </div>
   </div>
 </header>`;
 }
 
-/* Tablet sidebar (700–1099px): every section, the current one expanded. */
+/* Tablet sidebar (700–1199px): every section, the current one expanded. */
 export function sidebar(current) {
   const items = sections.map((s) => {
     const on = s.href === current;
@@ -52,6 +53,7 @@ export function sidebar(current) {
   <nav><ul class="side-list">
       <li class="side-item${!current ? " is-current" : ""}"><a href="/"${!current ? ' aria-current="page"' : ""}>${icon("home")}<span>Home</span></a></li>${items}
   </ul></nav>
+  <a class="side-account" href="/login" data-account-link>${icon("user")}<span data-account-label>Sign in</span></a>
   <button class="side-cart" type="button" data-open-cart>${icon("cart")}<span>Cart</span><b data-cart-count>0</b></button>
 </aside>`;
 }

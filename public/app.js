@@ -245,6 +245,83 @@ export async function renderStays(root) {
   }
 }
 
+/* ---------- Account (magic-link sign-in) ---------- */
+export async function initAccountLinks(root = document) {
+  const links = root.querySelectorAll("[data-account-link]");
+  if (!links.length) return null;
+  const me = await fetch("/api/auth/me").then((r) => (r.ok ? r.json() : null)).catch(() => null);
+  if (me?.signedIn) {
+    links.forEach((a) => {
+      a.href = "/account";
+      a.setAttribute("aria-label", "Your account");
+      a.querySelector("[data-account-label]").textContent = "Account";
+    });
+  } else if (me && !me.available) {
+    links.forEach((a) => (a.hidden = true)); // sign-in not configured yet
+  }
+  return me;
+}
+
+export function initLoginForm(form) {
+  const status = form.querySelector("[data-form-status]");
+  const err = new URLSearchParams(location.search).get("error");
+  if (err) {
+    status.className = "form-status err";
+    status.textContent = err === "expired" ? "That link has expired or was already used. Request a new one below." : "That link isn't valid. Request a new one below.";
+  }
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const btn = form.querySelector("button[type=submit]");
+    btn.disabled = true;
+    status.className = "form-status";
+    status.textContent = "Sending…";
+    try {
+      const res = await fetch("/api/auth/request", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email: form.email.value, next: new URLSearchParams(location.search).get("next") }),
+      });
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok) throw new Error(data.error || "Something went wrong. Please try again.");
+      status.classList.add("ok");
+      status.textContent = `Check your inbox. We've sent a sign-in link to ${form.email.value}.`;
+    } catch (error) {
+      status.classList.add("err");
+      status.textContent = error.message;
+    } finally {
+      btn.disabled = false;
+    }
+  });
+}
+
+export async function renderAccount(root) {
+  const res = await fetch("/api/account");
+  if (res.status === 401 || res.status === 503) return location.replace("/login?next=/account");
+  const data = await res.json();
+  document.querySelector("[data-account-email]").textContent = `Signed in as ${data.email}`;
+  const li = (left, right) => {
+    const el = document.createElement("li");
+    const a = document.createElement("span");
+    const b = document.createElement("span");
+    a.textContent = left;
+    b.className = "muted";
+    b.textContent = right;
+    el.append(a, b);
+    return el;
+  };
+  const orders = root.querySelector("[data-orders]");
+  if (!data.orders.length) orders.append(li("No orders yet.", ""));
+  data.orders.forEach((o) => orders.append(li(`Order ${o.id.slice(-8).toUpperCase()} · ${new Date(o.created).toLocaleDateString("en-IE")}`, money(o.total ?? 0))));
+  const subs = root.querySelector("[data-submissions]");
+  if (!data.submissions.length) subs.append(li("Nothing shared yet.", ""));
+  data.submissions.forEach((s) => subs.append(li(`${[s.year, s.place].filter(Boolean).join(" · ") || "Submission"} · ${s.files} file(s)`, s.status === "pending-review" ? "Awaiting review" : s.status)));
+  root.hidden = false;
+  root.querySelector("[data-logout]").onclick = async () => {
+    await fetch("/api/auth/logout", { method: "POST" });
+    location.href = "/";
+  };
+}
+
 document.addEventListener("DOMContentLoaded", () => {
   initMenu();
   document.querySelectorAll("[data-compare]").forEach(initCompare);
@@ -256,6 +333,9 @@ document.addEventListener("DOMContentLoaded", () => {
   document.querySelectorAll("[data-shop]").forEach(renderShop);
   document.querySelectorAll("[data-submit-form]").forEach(initSubmitForm);
   document.querySelectorAll("[data-stays]").forEach(renderStays);
+  document.querySelectorAll("[data-login-form]").forEach(initLoginForm);
+  document.querySelectorAll("[data-account]").forEach(renderAccount);
+  initAccountLinks();
   if (document.body.hasAttribute("data-clear-cart")) writeCart([]);
   renderCart();
 });
