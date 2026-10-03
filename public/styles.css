@@ -79,6 +79,16 @@ h4 { font-size: var(--text-lg); }
 .legend-key div { padding: var(--space-5) var(--space-5) var(--space-5) 0; }
 .legend-key div + div { padding-left: var(--space-5); border-left: var(--border-divider); }
 .legend-key p { margin: var(--stack-sm) 0 0; font-size: var(--text-sm); color: var(--color-muted); }
+/* Info icon that reveals a tooltip panel on hover, focus or tap. It stays open while hovered and closes with Escape. */
+.info-tip { position: relative; display: inline-block; }
+.info-btn { display: inline-flex; align-items: center; gap: var(--gap-xs); min-height: var(--target-min); padding: 0; background: none; border: 0; color: var(--color-ink-2); font: var(--weight-semibold) var(--text-sm) var(--font-sans); cursor: help; }
+.info-btn .icon { width: 20px; height: 20px; }
+.info-pop { position: absolute; left: 0; top: 100%; z-index: var(--z-header); width: min(560px, calc(100vw - 2 * var(--gutter))); padding: var(--inset-card); background: var(--color-card); border: var(--border-divider); border-radius: var(--radius-control); box-shadow: var(--shadow-raised); visibility: hidden; opacity: 0; transition: opacity var(--duration-fast), visibility var(--duration-fast); }
+.info-tip:hover .info-pop, .info-tip:focus-within .info-pop { visibility: visible; opacity: 1; }
+.info-tip.is-dismissed .info-pop { visibility: hidden; opacity: 0; }
+.info-pop .legend-key { grid-template-columns: 1fr 1fr; gap: var(--gap-lg); border: 0; }
+.info-pop .legend-key div, .info-pop .legend-key div + div { padding: 0; border: 0; }
+@media (max-width: 520px) { .info-pop .legend-key { grid-template-columns: 1fr; } }
 @media (max-width: 860px) { .legend-key { grid-template-columns: 1fr 1fr; } .legend-key div:nth-child(3) { border-left: 0; padding-left: 0; } }
 
 /* ---------- Masthead ---------- */

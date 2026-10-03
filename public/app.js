@@ -321,8 +321,21 @@ export async function renderAccount(root) {
   };
 }
 
+// Hover/focus tooltips: Escape hides them until the pointer or focus leaves (WCAG 1.4.13).
+function initInfoTips() {
+  const tips = document.querySelectorAll("[data-info-tip]");
+  if (!tips.length) return;
+  document.addEventListener("keydown", (e) => e.key === "Escape" && tips.forEach((t) => t.classList.add("is-dismissed")));
+  tips.forEach((t) => {
+    const reset = () => t.classList.remove("is-dismissed");
+    t.addEventListener("mouseleave", reset);
+    t.addEventListener("focusout", (e) => !t.contains(e.relatedTarget) && reset());
+  });
+}
+
 document.addEventListener("DOMContentLoaded", () => {
   initMenu();
+  initInfoTips();
   document.querySelectorAll("[data-compare]").forEach(initCompare);
   document.querySelectorAll("[data-open-cart]").forEach((b) => (b.onclick = openCart));
   document.querySelectorAll("[data-close-cart]").forEach((b) => (b.onclick = closeCart));

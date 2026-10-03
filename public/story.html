@@ -13,8 +13,8 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif&family=Inter:wght@400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/tokens.css?v=9270adc890">
-  <link rel="stylesheet" href="/styles.css?v=c2d59c8c81">
-  <script type="module" src="/app.js?v=67a8eca033"></script>
+  <link rel="stylesheet" href="/styles.css?v=17720397ce">
+  <script type="module" src="/app.js?v=40b5762196"></script>
 </head>
 <body>
 <header class="masthead">
@@ -125,11 +125,16 @@
   <div class="wrap">
     <h2>Four Centuries, Labelled Honestly</h2>
     <p class="lead">This archive separates documented history from tradition, theory and folklore. Every claim on the timeline carries one of four labels.</p>
-    <div class="legend-key mt-2">
-      <div><span class="tag documented">Documented</span><p>Supported by records or reliable sources.</p></div>
-      <div><span class="tag tradition">Tradition</span><p>Passed down through generations.</p></div>
-      <div><span class="tag legend">Legend</span><p>Associated with Puck, not established as fact.</p></div>
-      <div><span class="tag unknown">Unknown</span><p>The evidence doesn't allow a confident answer.</p></div>
+    <div class="info-tip mt-2" data-info-tip>
+      <button type="button" class="info-btn" aria-describedby="label-key"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 7.5v.01"/></svg>How we label history</button>
+      <div class="info-pop" id="label-key" role="tooltip">
+        <div class="legend-key">
+          <div><span class="tag documented">Documented</span><p>Supported by records or reliable sources.</p></div>
+          <div><span class="tag tradition">Tradition</span><p>Passed down through generations.</p></div>
+          <div><span class="tag legend">Legend</span><p>Associated with Puck, not established as fact.</p></div>
+          <div><span class="tag unknown">Unknown</span><p>The evidence doesn't allow a confident answer.</p></div>
+        </div>
+      </div>
     </div>
     <ol class="timeline mt-2">
       <li><div class="when">Before 1613<br><span class="tag unknown">Unknown</span></div><div><h3>Older Than the Records?</h3><p>Many people connect Puck to Lughnasa, the Celtic festival marking the start of harvest in early August. It's a reasonable theory, but no record links the two directly.</p></div></li>
