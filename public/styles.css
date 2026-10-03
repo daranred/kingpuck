@@ -171,7 +171,7 @@ h4 { font-size: var(--text-lg); }
 .dark .muted { color: var(--color-night-muted); }
 .photo-band { position: relative; overflow: hidden; isolation: isolate; }
 .photo-band .band-photo { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: -1; }
-.photo-band .band-photo::after, .photo-band::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(20,32,46,.68), rgba(20,32,46,.35) 70%), linear-gradient(0deg, rgba(20,32,46,.45), transparent 40%); z-index: -1; pointer-events: none; }
+.photo-band .band-photo::after, .photo-band::after { content: ""; position: absolute; inset: 0; background: var(--scrim-side); z-index: -1; pointer-events: none; }
 
 /* ---------- Layout ---------- */
 .split { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(var(--gap-xl), 6vw, var(--space-9)); align-items: center; }
@@ -322,7 +322,7 @@ h4 { font-size: var(--text-lg); }
 .dark .empty-state { border-color: var(--color-night-muted); color: var(--color-night-muted); }
 .dark .empty-state h3 { color: var(--color-card); }
 /* Text over photos: a near-solid scrim so every line clears AA (4.5:1) over the brightest pixel. */
-.content-section.photo-band::after { background: rgba(20, 32, 46, 0.68); }
+.content-section.photo-band::after { background: var(--scrim-side); }
 .prose { max-width: 42rem; }
 .prose p { color: var(--color-ink-2); }
 .note-box { border: var(--border-divider); padding: var(--inset-card); background: var(--color-card); }
@@ -488,8 +488,8 @@ body.cart-open .drawer-backdrop { opacity: 1; pointer-events: auto; }
 /* Light scrims so the photos show; each line of text carries its own dark halo, which is what
    WCAG measures contrast against when text sits on an image. */
 .photo-band :is(h1, h2, h3, p, .crumbs, .tagline, .hero-meta, .lead) { text-shadow: 0 0 2px rgba(8,14,23,.95), 0 0 8px rgba(8,14,23,.85), 0 0 24px rgba(8,14,23,.6); }
-.hero.photo-band::after { background: linear-gradient(90deg, rgba(20,32,46,.9) 0%, rgba(20,32,46,.82) 40%, rgba(20,32,46,.35) 70%, rgba(20,32,46,.12) 100%); }
-.closing-band.photo-band::after { background: rgba(20, 32, 46, 0.68); }
+.hero.photo-band::after { background: var(--scrim-side); }
+.closing-band.photo-band::after { background: rgba(20, 32, 46, 0.82); }
 @media (max-width: 860px) {
   .hero.photo-band::after { background: linear-gradient(0deg, rgba(20,32,46,.82) 0%, rgba(20,32,46,.72) 55%, rgba(20,32,46,.32) 85%, rgba(20,32,46,.12) 100%); }
 }
@@ -528,7 +528,8 @@ main.page-stack { display: flex; flex-direction: column; gap: 0; }
 
 /* ---------- Page headers over a photo ---------- */
 .page-head.photo-band { background: var(--color-chrome); }
-.page-head.photo-band::after { background: linear-gradient(90deg, rgba(20,32,46,.7) 0%, rgba(20,32,46,.55) 50%, rgba(20,32,46,.2) 100%); }
+.page-head.photo-band::after { background: var(--scrim-side); }
+@media (max-width: 860px) { :is(.page-head, .content-section).photo-band::after { background: rgba(20, 32, 46, 0.82); } }
 /* Every image fills its frame. */
 .band-photo, .ph-photo > img, .card img, .strip img { object-fit: cover; }
 /* Illustrations are labelled wherever they stand in for archive photographs. */

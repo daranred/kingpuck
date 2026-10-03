@@ -119,6 +119,8 @@
   --border-night: var(--border-divider-night); /* legacy alias */
   --border-dashed: var(--border-width-hair) dashed var(--color-muted);
   --border-accent: var(--border-width-thick) solid var(--color-red);
+  /* One scrim for every photo band: dark behind the text on the left, fading across the photo. */
+  --scrim-side: linear-gradient(90deg, rgba(20,32,46,.9) 0%, rgba(20,32,46,.82) 40%, rgba(20,32,46,.35) 70%, rgba(20,32,46,.12) 100%);
   --border-focus: var(--border-width-thick) solid var(--color-navy); /* focus is navy; red is only for errors */
 
   /* Radius */
