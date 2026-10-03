@@ -457,7 +457,7 @@ body.cart-open .drawer-backdrop { opacity: 1; pointer-events: auto; }
 .cal-options a:hover { background: var(--color-paper-2); }
 
 /* Background photos smaller than their band: softened so they read as atmosphere. */
-.band-photo.soft { filter: blur(3px) brightness(0.55); transform: scale(1.06); }
+.band-photo.soft { filter: brightness(0.55); }
 @media (max-width: 699px) { .masthead .nav-item { border-bottom: var(--border-divider-chrome); } }
 .ph-photo.wide, .plate .ph-photo.wide { aspect-ratio: 3 / 2; }
 .ph-photo > img.top { object-position: top; }
