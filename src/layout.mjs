@@ -16,7 +16,7 @@ export function parsePage(raw, file = "page") {
 
 export const esc = (s) => String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/"/g, "&quot;");
 export const icon = (name, cls = "icon") => `<svg class="${cls}" viewBox="0 0 24 24" aria-hidden="true">${icons[name]}</svg>`;
-const shortLabel = { "Support the Archive": "Support", "The Story": "Story", "The Archive": "Archive", "King Puck": "King", "Queen Puck": "Queen", "Puck Fair": "Fair" };
+const shortLabel = { "Support the Archive": "Support", "The Story": "Story", "The Archive": "Archive" };
 const subLinks = (s) => s.children.map((c) => `<li><a href="${childHref(s, c)}">${esc(c[1])}</a></li>`).join("");
 
 /* Desktop masthead (≥1200px). On phones it collapses to logo + cart; its nav becomes the Menu sheet. */

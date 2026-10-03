@@ -97,9 +97,9 @@ h4 { font-size: var(--text-lg); }
 .wordmark { display: flex; align-items: center; gap: var(--gap-xs); text-decoration: none; font: var(--weight-regular) 1.9rem/1 var(--font-display); text-transform: uppercase; letter-spacing: var(--tracking-wide); white-space: nowrap; }
 .wordmark img { width: 30px; height: 30px; }
 .site-nav { margin-left: auto; }
-.nav-list { list-style: none; margin: 0; padding: 0; display: flex; gap: clamp(var(--gap-sm), 1.4vw, var(--gap-lg)); }
+.nav-list { list-style: none; margin: 0; padding: 0; display: flex; gap: clamp(var(--gap-2xs), 0.6vw, var(--gap-xs)); }
 .nav-item { position: relative; }
-.nav-item > a { display: block; min-width: var(--target-min); text-align: center; white-space: nowrap; padding: var(--space-5) 0; text-decoration: none; font: var(--weight-semibold) var(--text-sm)/1 var(--font-sans); opacity: 0.8; border-bottom: var(--border-width-thick) solid transparent; }
+.nav-item > a { display: block; white-space: nowrap; padding: var(--space-5) var(--space-4); text-decoration: none; font: var(--weight-semibold) var(--text-sm)/1 var(--font-sans); opacity: 0.8; border-bottom: var(--border-width-thick) solid transparent; }
 .nav-item > a:hover, .nav-item.is-current > a { opacity: 1; border-bottom-color: var(--color-red); }
 .nav-sub { list-style: none; margin: 0; padding: var(--space-2) 0; position: absolute; left: calc(-1 * var(--space-4)); top: 100%; min-width: 230px; background: var(--color-card); color: var(--color-ink); border: var(--border-divider); box-shadow: var(--shadow-raised); visibility: hidden; opacity: 0; transform: translateY(var(--space-1)); transition: opacity var(--duration-fast), transform var(--duration-fast), visibility var(--duration-fast); }
 .nav-item:nth-last-child(-n+3) .nav-sub { left: auto; right: calc(-1 * var(--space-4)); }
@@ -488,7 +488,7 @@ body.cart-open .drawer-backdrop { opacity: 1; pointer-events: auto; }
 /* Light scrims so the photos show; each line of text carries its own dark halo, which is what
    WCAG measures contrast against when text sits on an image. */
 .photo-band :is(h1, h2, h3, p, .crumbs, .tagline, .hero-meta, .lead) { text-shadow: 0 0 2px rgba(8,14,23,.95), 0 0 8px rgba(8,14,23,.85), 0 0 24px rgba(8,14,23,.6); }
-.hero.photo-band::after { background: linear-gradient(90deg, rgba(20,32,46,.78) 0%, rgba(20,32,46,.7) 45%, rgba(20,32,46,.32) 75%, rgba(20,32,46,.12) 100%); }
+.hero.photo-band::after { background: linear-gradient(90deg, rgba(20,32,46,.9) 0%, rgba(20,32,46,.82) 40%, rgba(20,32,46,.35) 70%, rgba(20,32,46,.12) 100%); }
 .closing-band.photo-band::after { background: rgba(20, 32, 46, 0.68); }
 @media (max-width: 860px) {
   .hero.photo-band::after { background: linear-gradient(0deg, rgba(20,32,46,.82) 0%, rgba(20,32,46,.72) 55%, rgba(20,32,46,.32) 85%, rgba(20,32,46,.12) 100%); }
