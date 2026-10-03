@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Shop — King Puck</title>
+  <meta name="description" content="T-shirts, posters, books and gifts celebrating Puck Fair and King Puck. Shipped from Ireland.">
+  <meta property="og:title" content="Shop — King Puck">
+  <meta property="og:description" content="T-shirts, posters, books and gifts celebrating Puck Fair and King Puck. Shipped from Ireland.">
+  <meta property="og:image" content="https://kingpuck.com/img/logo.svg">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles.css">
+  <script src="/app.js" defer></script>
+</head>
+<body>
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="/"><img src="/img/logo.svg" alt="">King Puck</a>
+    <nav class="nav">
+      <a href="/">Home</a>
+      <a href="/history.html">History</a>
+      <a href="/shop.html" aria-current="page">Shop</a>
+    </nav>
+    <button class="cart-btn" type="button" data-open-cart>Cart · <span data-cart-count>0</span></button>
+  </div>
+</header>
+
+<main>
+<section class="page-hero">
+  <div class="wrap">
+    <p class="eyebrow" style="color:var(--gold)">The Royal Shop</p>
+    <h1>Everything Puck</h1>
+    <p>T-shirts, posters, books and keepsakes, shipped from Kerry to wherever you call home.</p>
+  </div>
+</section>
+<section>
+  <div class="wrap" data-shop>
+    <div class="filters" role="group" aria-label="Filter by category"></div>
+    <div class="grid"></div>
+  </div>
+</section>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div>
+      <h4>King Puck</h4>
+      <p>Celebrating Puck Fair in Killorglin, Co. Kerry — one of Ireland's oldest festivals — and the wild goat who is crowned king every August.</p>
+    </div>
+    <div>
+      <h4>Explore</h4>
+      <a href="/">Home</a>
+      <a href="/history.html">History</a>
+      <a href="/shop.html">Shop</a>
+    </div>
+    <div>
+      <h4>Shop</h4>
+      <a href="/shop.html?c=apparel">T-shirts &amp; Apparel</a>
+      <a href="/shop.html?c=posters">Posters &amp; Prints</a>
+      <a href="/shop.html?c=books">Books</a>
+      <a href="/shop.html?c=gifts">Gifts</a>
+    </div>
+    <p class="fine">© 2026 KingPuck.com · Secure payments by Stripe · Questions? <a href="mailto:hello@kingpuck.com" style="display:inline">hello@kingpuck.com</a></p>
+  </div>
+</footer>
+
+<div class="drawer-backdrop" data-close-cart></div>
+<aside class="drawer" aria-label="Shopping cart">
+  <header><h2>Your cart</h2><button class="icon-btn" type="button" aria-label="Close cart" data-close-cart>×</button></header>
+  <ul class="cart-items"></ul>
+  <footer>
+    <div class="row"><span>Subtotal</span><span data-subtotal>€0.00</span></div>
+    <p class="note" data-ship-note></p>
+    <p class="error" data-cart-error role="alert"></p>
+    <button class="btn gold" type="button" data-checkout disabled>Checkout securely</button>
+    <p class="note">Shipping and taxes are calculated at checkout.</p>
+  </footer>
+</aside>
+</body>
+</html>

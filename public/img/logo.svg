@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" role="img" aria-label="King Puck">
+  <circle cx="60" cy="60" r="58" fill="#14452f"/>
+  <circle cx="60" cy="60" r="52" fill="none" stroke="#c9a227" stroke-width="2"/>
+  <path d="M30 52 L36 26 L48 40 L60 20 L72 40 L84 26 L90 52 Z" fill="#c9a227"/>
+  <rect x="30" y="52" width="60" height="7" rx="2" fill="#c9a227"/>
+  <circle cx="60" cy="20" r="3.5" fill="#c9a227"/><circle cx="36" cy="26" r="3" fill="#c9a227"/><circle cx="84" cy="26" r="3" fill="#c9a227"/>
+  <path d="M50 66 C40 66 34 78 38 92 C42 82 46 76 54 74 Z" fill="#f6f1e4"/>
+  <path d="M70 66 C80 66 86 78 82 92 C78 82 74 76 66 74 Z" fill="#f6f1e4"/>
+  <path d="M52 72 Q60 68 68 72 L64 98 Q60 104 56 98 Z" fill="#f6f1e4"/>
+</svg>

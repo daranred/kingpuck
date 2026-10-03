@@ -1,0 +1,13 @@
+name = "kingpuck"
+compatibility_date = "2026-09-01"
+pages_build_output_dir = "public"
+
+[vars]
+SITE_URL = "https://kingpuck.com"
+CURRENCY = "eur"
+
+# Paid orders are written here by the Stripe webhook.
+# Create with: npx wrangler kv namespace create ORDERS  — then paste the id below.
+# [[kv_namespaces]]
+# binding = "ORDERS"
+# id = "REPLACE_ME"

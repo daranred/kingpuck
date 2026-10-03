@@ -1,0 +1,113 @@
+{
+  "categories": [
+    { "id": "apparel", "name": "T-shirts & Apparel" },
+    { "id": "posters", "name": "Posters & Prints" },
+    { "id": "books", "name": "Books" },
+    { "id": "gifts", "name": "Gifts & Keepsakes" }
+  ],
+  "products": [
+    {
+      "id": "tee-crowned",
+      "category": "apparel",
+      "name": "Crowned King T-shirt",
+      "description": "The King on his throne above the Square. Heavyweight organic cotton, printed in Ireland.",
+      "image": "/img/products/tee.svg",
+      "price": 2800,
+      "variants": ["S", "M", "L", "XL", "XXL"]
+    },
+    {
+      "id": "tee-scattering",
+      "category": "apparel",
+      "name": "Gathering · Fair · Scattering T-shirt",
+      "description": "The three days of August, 10th to 12th, across the chest.",
+      "image": "/img/products/tee-days.svg",
+      "price": 2800,
+      "variants": ["S", "M", "L", "XL", "XXL"]
+    },
+    {
+      "id": "hoodie-reeks",
+      "category": "apparel",
+      "name": "Reeks Mountain Hoodie",
+      "description": "Where every King comes from. Brushed fleece, embroidered crown.",
+      "image": "/img/products/hoodie.svg",
+      "price": 5500,
+      "variants": ["S", "M", "L", "XL", "XXL"]
+    },
+    {
+      "id": "cap-crown",
+      "category": "apparel",
+      "name": "Crown Cap",
+      "description": "Embroidered gold crown on bottle green. One size.",
+      "image": "/img/products/cap.svg",
+      "price": 2200
+    },
+    {
+      "id": "poster-vintage",
+      "category": "posters",
+      "name": "Vintage Fair Poster",
+      "description": "Letterpress-style poster celebrating the fair. Printed on 300gsm matte stock.",
+      "image": "/img/products/poster.svg",
+      "price": 2000,
+      "variants": ["A3", "A2", "A1"],
+      "variantPrices": { "A2": 3000, "A1": 4500 }
+    },
+    {
+      "id": "poster-timeline",
+      "category": "posters",
+      "name": "History of Puck Timeline Print",
+      "description": "Four centuries of the fair on one print, from the 1613 charter to today.",
+      "image": "/img/products/timeline.svg",
+      "price": 2500,
+      "variants": ["A3", "A2"],
+      "variantPrices": { "A2": 3500 }
+    },
+    {
+      "id": "book-history",
+      "category": "books",
+      "name": "King of the Fair: A History of Puck",
+      "description": "Illustrated hardback history of the fair, its legends and its people.",
+      "image": "/img/products/book.svg",
+      "price": 3000
+    },
+    {
+      "id": "book-kids",
+      "category": "books",
+      "name": "The Goat Who Became King",
+      "description": "A picture book for children about a mountain goat's three days as royalty.",
+      "image": "/img/products/book-kids.svg",
+      "price": 1500
+    },
+    {
+      "id": "mug-king",
+      "category": "gifts",
+      "name": "King Puck Mug",
+      "description": "Stoneware mug, 350ml, crown in gold.",
+      "image": "/img/products/mug.svg",
+      "price": 1600
+    },
+    {
+      "id": "stickers",
+      "category": "gifts",
+      "name": "Sticker Pack",
+      "description": "Eight weatherproof vinyl stickers.",
+      "image": "/img/products/stickers.svg",
+      "price": 600
+    },
+    {
+      "id": "pin-crown",
+      "category": "gifts",
+      "name": "Enamel Crown Pin",
+      "description": "Hard enamel pin, gold plated.",
+      "image": "/img/products/pin.svg",
+      "price": 900
+    }
+  ],
+  "shipping": {
+    "allowedCountries": ["IE", "GB", "US", "CA", "AU", "NZ", "DE", "FR", "NL", "BE", "ES", "IT", "PT", "AT", "DK", "SE", "NO", "FI", "PL"],
+    "options": [
+      { "name": "Ireland — An Post", "amount": 500, "minDays": 2, "maxDays": 4 },
+      { "name": "International — Tracked", "amount": 1500, "minDays": 5, "maxDays": 12 }
+    ],
+    "freeOver": 7500
+  }
+}
