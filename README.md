@@ -94,9 +94,4 @@ Edit `functions/_lib/catalog.js`. Prices are in cents (`2800` = €28.00). `vari
 
 ## Before launch
 
-- [ ] Fact-check the history page (`public/history.html`) with local sources or the Puck Fair committee. The legends are written as legends, but dates and details should be verified.
-- [ ] Replace the placeholder product art with real photos.
-- [ ] Decide on fulfilment: ship it yourself, or use print-on-demand (Printful/Gelato) for tees and posters. Print-on-demand can be wired into the webhook later.
-- [ ] Check whether "Puck Fair" is a registered trademark before selling merchandise that carries the name.
-- [ ] Add shipping/returns and privacy pages. They're required for EU consumer sales.
-- [ ] Set up `hello@` and `stories@kingpuck.com`. Cloudflare Email Routing is free.
+The full to-do list, including everything that used to be here, is in [TODO.md](TODO.md).
