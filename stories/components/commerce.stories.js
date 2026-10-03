@@ -38,7 +38,7 @@ export const CartDrawer = {
     <aside class="drawer is-open" aria-label="Shopping cart" style="position:absolute">
       <header><h2>Your cart</h2><button class="icon-btn" type="button" aria-label="Close cart">×</button></header>
       <ul class="cart-items">
-        <li><img src="/img/posters/long-live-the-king.svg" alt=""><div><div class="name">Long Live the King Poster (A2)</div><div class="qty"><button type="button">−</button><span>1</span><button type="button">+</button></div></div><div class="price">€32.00</div></li>
+        <li><img src="/img/posters/long-live-king-puck.jpg" alt=""><div><div class="name">Long Live King Puck (A2)</div><div class="qty"><button type="button">−</button><span>1</span><button type="button">+</button></div></div><div class="price">€32.00</div></li>
         <li><img src="/img/products/tee.svg" alt=""><div><div class="name">Crowned King T-shirt (M)</div><div class="qty"><button type="button">−</button><span>2</span><button type="button">+</button></div></div><div class="price">€56.00</div></li>
       </ul>
       <footer>

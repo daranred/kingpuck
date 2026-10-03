@@ -14,7 +14,7 @@ src/pages/*.html   page content; `npm run build` wraps each in the layout and wr
 public/            the deployed site: tokens.css (design tokens), styles.css, app.js, img/, stays.json
 functions/api/     products, checkout, stripe-webhook, submit (archive uploads)
 functions/_lib/    catalog.js (products), cart.js, stripe.js
-tools/             build.mjs (pages), posters.mjs (poster SVGs)
+tools/             build.mjs (pages), printful-variants.mjs
 test/              node --test unit tests
 ```
 

@@ -32,11 +32,45 @@ export default {
   ],
   "products": [
     {
-      "id": "poster-long-live",
+      "id": "poster-king-puck",
       "category": "prints",
-      "name": "Long Live the King Poster",
-      "description": "Propaganda-style street poster. Red sunburst, crowned goat, stencil lettering. Printed on heavy matte stock.",
-      "image": "/img/posters/long-live-the-king.svg",
+      "name": "King Puck · The Goat. The Crown. The Legend.",
+      "description": "Red sunburst, crowned goat and the King Puck motto. Printed on heavy matte stock.",
+      "image": "/img/posters/king-puck-goat-crown-legend.jpg",
+      "variants": [
+        "A3",
+        "A2",
+        "A1"
+      ],
+      "variantPrices": {
+        "A2": 3200,
+        "A1": 4800
+      },
+      "price": 2400
+    },
+    {
+      "id": "poster-puck-fair",
+      "category": "prints",
+      "name": "Puck Fair · Killorglin",
+      "description": "The King in his red robe above the town and the Reeks. 10 · 11 · 12 August. Printed on heavy matte stock.",
+      "image": "/img/posters/puck-fair-killorglin.jpg",
+      "variants": [
+        "A3",
+        "A2",
+        "A1"
+      ],
+      "variantPrices": {
+        "A2": 3200,
+        "A1": 4800
+      },
+      "price": 2400
+    },
+    {
+      "id": "poster-queen-puck",
+      "category": "prints",
+      "name": "Queen Puck · The Girl Behind the Crown",
+      "description": "The Queen of Puck in gold, red and cream. Printed on heavy matte stock.",
+      "image": "/img/posters/queen-puck.jpg",
       "variants": [
         "A3",
         "A2",
@@ -51,9 +85,9 @@ export default {
     {
       "id": "poster-puck",
       "category": "prints",
-      "name": "PUCK Poster",
-      "description": "Navy and gold sunburst with the King in cream. Three days in August, one word.",
-      "image": "/img/posters/puck.svg",
+      "name": "PUCK · The Goat. The Crown. The Legend.",
+      "description": "Bold profile of the King on red, with the motto in stencil type. Printed on heavy matte stock.",
+      "image": "/img/posters/puck-goat-crown-legend.jpg",
       "variants": [
         "A3",
         "A2",
@@ -66,11 +100,62 @@ export default {
       "price": 2400
     },
     {
-      "id": "poster-legend",
+      "id": "poster-three-days",
       "category": "prints",
-      "name": "The Goat. The Crown. The Legend. Poster",
-      "description": "Cream sunburst with red halftone. The King Puck motto in stencil type.",
-      "image": "/img/posters/goat-crown-legend.svg",
+      "name": "Three Days. One King.",
+      "description": "Bunting, crowds and the King above the Square. Printed on heavy matte stock.",
+      "image": "/img/posters/three-days-one-king.jpg",
+      "variants": [
+        "A3",
+        "A2",
+        "A1"
+      ],
+      "variantPrices": {
+        "A2": 3200,
+        "A1": 4800
+      },
+      "price": 2400
+    },
+    {
+      "id": "poster-long-live",
+      "category": "prints",
+      "name": "Long Live King Puck",
+      "description": "Navy sunburst and a gold halo around the King. Printed on heavy matte stock.",
+      "image": "/img/posters/long-live-king-puck.jpg",
+      "variants": [
+        "A3",
+        "A2",
+        "A1"
+      ],
+      "variantPrices": {
+        "A2": 3200,
+        "A1": 4800
+      },
+      "price": 2400
+    },
+    {
+      "id": "poster-killorglin",
+      "category": "prints",
+      "name": "Killorglin · A Town. A Goat. A Tradition.",
+      "description": "The town on the Laune, the bridge and the mountains. Printed on heavy matte stock.",
+      "image": "/img/posters/killorglin-a-town-a-goat.jpg",
+      "variants": [
+        "A3",
+        "A2",
+        "A1"
+      ],
+      "variantPrices": {
+        "A2": 3200,
+        "A1": 4800
+      },
+      "price": 2400
+    },
+    {
+      "id": "poster-august",
+      "category": "prints",
+      "name": "10 · 11 · 12 August",
+      "description": "The three days of the fair in giant red-and-cream type. Printed on heavy matte stock.",
+      "image": "/img/posters/puck-fair-10-11-12-august.jpg",
       "variants": [
         "A3",
         "A2",
@@ -210,9 +295,9 @@ export default {
     {
       "id": "screenprint-king",
       "category": "limited",
-      "name": "Long Live the King Screenprint",
+      "name": "Long Live King Puck Screenprint",
       "description": "Hand-pulled four-colour screenprint, 50 x 70 cm. Signed and numbered edition of 100.",
-      "image": "/img/posters/long-live-the-king.svg",
+      "image": "/img/posters/long-live-king-puck.jpg",
       "price": 12000
     },
     {
@@ -250,8 +335,8 @@ export default {
       "id": "postcards",
       "category": "gifts",
       "name": "Postcard Set",
-      "description": "Twelve postcards from the poster series and the archive.",
-      "image": "/img/products/stickers.svg",
+      "description": "Eight postcards, one for each poster in the series.",
+      "image": "/img/posters/killorglin-a-town-a-goat.jpg",
       "price": 1200
     },
     {

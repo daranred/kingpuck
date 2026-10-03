@@ -25,7 +25,7 @@ export const PhotoPlaceholder = {
   render: () => `<div class="sb-pad grid-auto" style="--grid-min:220px">
     <div class="ph-photo" style="aspect-ratio:4/5"><span>Archive photograph</span></div>
     <div class="ph-photo now" style="aspect-ratio:4/5"><span>Contemporary photograph</span></div>
-    <div class="ph-photo" style="aspect-ratio:4/5"><img src="/img/posters/puck.svg" alt=""></div>
+    <div class="ph-photo" style="aspect-ratio:4/5"><img src="/img/king/crowned.jpg" alt=""></div>
   </div>`,
 };
 
