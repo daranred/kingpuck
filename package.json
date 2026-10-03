@@ -9,7 +9,8 @@
     "test": "node --test test/*.test.js",
     "build": "node tools/build.mjs",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "build-storybook": "storybook build",
+    "printful-variants": "node tools/printful-variants.mjs"
   },
   "devDependencies": {
     "@storybook/addon-docs": "^10.6.1",

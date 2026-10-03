@@ -49,6 +49,20 @@ Use Stripe test card `4242 4242 4242 4242` with any future date and any CVC.
 6. **Order log (optional):** run `npx wrangler kv namespace create ORDERS`, then uncomment the block in `wrangler.toml` and paste in the id. Paid orders will also be saved there. Stripe's dashboard always lists every order either way.
 7. **Password (optional, e.g. before launch):** add a secret `SITE_PASSWORD`, then redeploy. Every page then asks for it (any username works). Delete the secret and redeploy to open the site. The Stripe webhook is never blocked.
 
+## Printing and shipping (Printful)
+
+Paid orders can go straight to Printful, which prints and ships from Europe and the US. Until it's set up, nothing is sent and you fulfil orders yourself.
+
+1. Create a Printful account and a **Manual order / API** store. Add your products there (upload the artwork, pick the options).
+2. Create an API token (Printful → Settings → API access) and add it as the secret `PRINTFUL_API_KEY`. If your account has more than one store, also add `PRINTFUL_STORE_ID`.
+3. List your product ids: `PRINTFUL_API_KEY=... npm run printful-variants`. Copy each id into the matching product in `functions/_lib/catalog.js`, either one id or one per option:
+   - `"printful": 4321` (mug, cap)
+   - `"printful": { "S": 4321, "M": 4322, "L": 4323 }` (sizes)
+4. In Stripe → Webhooks, also send `checkout.session.async_payment_succeeded` to the same endpoint, so bank-debit payments are sent once the money arrives.
+5. Orders arrive in Printful as **drafts**, so you can check them before Printful charges your card. To send them straight to print, add the variable `PRINTFUL_AUTO_CONFIRM` = `true`.
+
+Products without a `printful` id (books, enamel pins, signed editions) are never sent; fulfil those yourself. Printful's own costs are charged to your Printful account, so check the shipping prices in `catalog.js` cover them.
+
 Until `STRIPE_SECRET_KEY` is set, the site works fully but checkout shows "The shop isn't taking orders just yet".
 
 ## Sign in (magic links)
