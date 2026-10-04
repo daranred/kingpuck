@@ -257,7 +257,8 @@ h4 { font-size: var(--text-lg); }
 /* Connector: a numbered marker on each shared edge, pointing to the next day. */
 .days > div:not(:last-child)::after { content: "→"; position: absolute; z-index: 1; top: calc(var(--inset-card) + 1.6rem); right: -18px; width: 36px; height: 36px; border-radius: var(--radius-full);
   display: grid; place-items: center; background: var(--color-red); color: var(--color-card); font: var(--weight-semibold) var(--text-md)/1 var(--font-sans); box-shadow: 0 0 0 4px var(--color-card); }
-.days .date { font: var(--weight-regular) var(--text-3xl)/1 var(--font-display); color: var(--color-red); }
+.days .date { font: var(--weight-regular) var(--text-3xl)/1 var(--font-display); color: var(--color-ink); }
+.dark .days .date { color: var(--color-card); }
 .days .date small { font: var(--weight-semibold) var(--text-sm) var(--font-sans); color: var(--color-muted); vertical-align: top; margin-left: var(--space-1); }
 .dark .days > div { background: var(--color-night-2); border-color: var(--color-divider-night); border-top-color: var(--color-red); color: var(--color-card); }
 .dark .days > div:not(:last-child)::after { box-shadow: 0 0 0 4px var(--color-night-2); }
