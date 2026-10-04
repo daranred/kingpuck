@@ -134,7 +134,7 @@ export function productCard(p, onAdd = () => {}) {
 export async function renderShop(root) {
   const { categories, products } = await loadCatalog();
   const limit = Number(root.dataset.limit) || Infinity;
-  const filters = root.querySelector(".filters");
+  const filters = root.querySelector(".filters") ?? document.querySelector(".filters");
   const grid = root.querySelector(".grid");
   let active = new URLSearchParams(location.search).get("c") || "all";
 

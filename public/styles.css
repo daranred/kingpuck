@@ -149,8 +149,8 @@ h4 { font-size: var(--text-lg); }
 .section-index .wrap { display: flex; align-items: center; gap: var(--gap-lg); padding: var(--space-2) 0; overflow-x: auto; scrollbar-width: none; }
 .section-index .wrap::-webkit-scrollbar { display: none; }
 .section-index span { flex: none; font: var(--weight-semibold) var(--text-sm) var(--font-sans); color: var(--color-muted); }
-.section-index a { flex: none; display: inline-flex; align-items: center; min-height: var(--target-min); font: var(--text-sm) var(--font-sans); text-decoration: none; color: var(--color-ink-2); border-bottom: var(--border-width-thick) solid transparent; }
-.section-index a:hover { color: var(--color-ink); border-bottom-color: var(--color-red); }
+.section-index a, .chip { flex: none; display: inline-flex; align-items: center; min-height: var(--target-min); font: var(--text-sm) var(--font-sans); text-decoration: none; color: var(--color-ink-2); border-bottom: var(--border-width-thick) solid transparent; }
+.section-index a:hover, .chip:hover { color: var(--color-ink); border-bottom-color: var(--color-red); }
 
 /* ---------- Bands ---------- */
 .block { padding: var(--space-section) 0; }
@@ -360,9 +360,9 @@ h4 { font-size: var(--text-lg); }
 .form-status.err { color: var(--color-red); }
 
 /* ---------- Shop ---------- */
-.filters { display: flex; flex-wrap: wrap; gap: var(--gap-xs) var(--gap-lg); margin-bottom: var(--stack-xl); border-bottom: var(--border-divider); }
-.chip { min-height: var(--target-min); background: none; border: 0; border-bottom: var(--border-accent); border-bottom-color: transparent; margin-bottom: calc(-1 * var(--border-width-hair)); padding: var(--space-3) 0; font: var(--weight-semibold) var(--text-sm) var(--font-sans); color: var(--color-muted); cursor: pointer; }
-.chip[aria-pressed="true"] { color: var(--color-ink); border-bottom-color: var(--color-red); }
+.filters { display: flex; gap: var(--gap-lg); }
+.chip { background: none; border-top: 0; border-left: 0; border-right: 0; padding: 0; cursor: pointer; white-space: nowrap; }
+.chip[aria-pressed="true"] { color: var(--color-ink); font-weight: var(--weight-semibold); border-bottom-color: var(--color-red); }
 .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: var(--gap-lg); text-align: left; }
 .card { display: flex; flex-direction: column; overflow: hidden; background: var(--color-card); border: var(--border-divider); border-radius: var(--radius-control); }
 .card img { width: 100%; aspect-ratio: 3 / 4; object-fit: cover; background: var(--color-card); }
