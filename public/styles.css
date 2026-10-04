@@ -2,7 +2,8 @@
 
 /* ---------- Base ---------- */
 * { box-sizing: border-box; }
-html { scroll-behavior: smooth; scroll-padding-top: calc(var(--header-height) + var(--space-8)); }
+/* Anchors jump (no animation: Chrome repositions sticky bars mid-animation) and land 1px under the sticky stack, so nothing peeks between the strip and the section. */
+html { scroll-padding-top: calc(var(--sticky-stack) - 1px); }
 body { margin: 0; background: var(--color-paper); color: var(--color-ink); font: var(--weight-regular) var(--text-md)/var(--leading-normal) var(--font-sans); -webkit-font-smoothing: antialiased; }
 img { max-width: 100%; display: block; }
 a { color: inherit; }
@@ -75,14 +76,14 @@ h4 { font-size: var(--text-lg); }
 .dark .tag.tradition { color: var(--color-gold-2); }
 .dark .tag.legend { color: #e0907c; }
 .dark .tag.unknown { color: var(--color-night-muted); }
-/* Hovering or focusing a badge explains it: the same one-liners as the legend key, in a small tip above the badge. */
+/* Hovering or focusing a badge explains it: the same one-liners as the legend key, in a small tip below the badge (below, so the sticky masthead and section index never cover it). */
 .tag { position: relative; }
 .tag.documented::after { content: "Supported by records or reliable sources."; }
 .tag.tradition::after { content: "Passed down through generations."; }
 .tag.legend::after { content: "Associated with Puck, not established as fact."; }
 .tag.unknown::after { content: "The evidence doesn't allow a confident answer."; }
 .tag.illustration::after { content: "An artist's impression, not an archive photograph."; }
-.tag::after { position: absolute; z-index: var(--z-header); right: 0; bottom: calc(100% + var(--space-2)); width: max-content; max-width: 240px; padding: var(--space-2) var(--space-3); border-radius: var(--radius-control); background: var(--color-card); color: var(--color-ink-2); border: var(--border-divider); box-shadow: var(--shadow-raised); font: var(--weight-regular) var(--text-sm)/var(--leading-snug) var(--font-sans); white-space: normal; text-align: left; text-shadow: none; visibility: hidden; opacity: 0; transition: opacity var(--duration-fast), visibility var(--duration-fast); pointer-events: none; }
+.tag::after { position: absolute; z-index: var(--z-header); right: 0; top: calc(100% + var(--space-2)); width: max-content; max-width: 240px; padding: var(--space-2) var(--space-3); border-radius: var(--radius-control); background: var(--color-card); color: var(--color-ink-2); border: var(--border-divider); box-shadow: var(--shadow-raised); font: var(--weight-regular) var(--text-sm)/var(--leading-snug) var(--font-sans); white-space: normal; text-align: left; text-shadow: none; visibility: hidden; opacity: 0; transition: opacity var(--duration-fast), visibility var(--duration-fast); pointer-events: none; }
 .tag:hover::after, .tag:focus-visible::after { visibility: visible; opacity: 1; }
 .prose .tag::after, .photo-tag::after { left: 0; right: auto; }
 .legend-key .tag::after { display: none; }
@@ -164,7 +165,7 @@ h4 { font-size: var(--text-lg); }
 /* ---------- Section index: on-page navigation at every size (scrolls sideways when it must) ---------- */
 /* The masthead is sticky on every page; the section index sticks just under it, so the jump links stay in reach. */
 .section-index { position: sticky; top: var(--header-height); z-index: calc(var(--z-header) - 1); background: var(--color-paper); }
-@media (max-width: 699px) { .section-index { top: 56px; } }
+@media (max-width: 699px) { .section-index { top: 56px; } html { scroll-padding-top: calc(var(--sticky-stack) - var(--header-height) + 56px - 1px); } }
 /* Links fill the strip's height so the 4px bar sits on its bottom line. */
 /* The divider is an inset line on the strip itself, so the 4px bar paints over it and no seam can open at a half-pixel sticky offset. */
 .section-index .wrap { display: flex; align-items: stretch; gap: var(--gap-lg); padding: 0; overflow-x: auto; scrollbar-width: none; box-shadow: inset 0 calc(-1 * var(--border-width-hair)) 0 var(--color-divider); }

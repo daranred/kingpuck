@@ -145,6 +145,8 @@
   --gutter: var(--space-5); /* 24px page padding at every breakpoint */
   --header-height: 68px;
   --tabbar-height: 64px;
+  /* Height of the sticky stack (masthead + its divider + section index): anchors land just under it. */
+  --sticky-stack: calc(var(--header-height) + var(--border-width-hair) + var(--target-min) + 2 * var(--space-2));
   /* Breakpoints (for reference; media queries can't read variables):
      < 700px   → 56px top bar + bottom tab bar; nav in the menu sheet
      < 1000px  → nav in the menu sheet, opened from the masthead
