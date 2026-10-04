@@ -110,7 +110,8 @@ h4 { font-size: var(--text-lg); }
 .masthead { --masthead-bg: var(--color-chrome); position: sticky; top: 0; z-index: var(--z-header); background: var(--masthead-bg); color: var(--color-card); border-bottom: var(--border-divider-chrome); }
 .masthead-top { display: flex; align-items: center; gap: var(--gap-lg); height: var(--header-height); }
 .wordmark { display: flex; align-items: center; gap: var(--gap-xs); text-decoration: none; font: var(--weight-regular) 1.9rem/1 var(--font-display); text-transform: uppercase; letter-spacing: var(--tracking-wide); white-space: nowrap; }
-.wordmark img { height: 36px; width: auto; }
+/* The emblem is cropped to its drawing (no padding). The nudge lifts it 0.02em so its centre meets the centre of the capital letters, which sit a hair above the line box's centre. */
+.wordmark img { height: 36px; width: auto; transform: translateY(-0.02em); }
 /* The nav fills the masthead's height so the 4px current-item bar sits flush on its bottom edge (over the 1px divider). */
 .site-nav { margin-left: auto; align-self: stretch; display: flex; }
 .nav-list { list-style: none; margin: 0; padding: 0; display: flex; align-items: stretch; gap: clamp(var(--gap-2xs), 0.6vw, var(--gap-xs)); }
