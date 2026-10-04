@@ -160,6 +160,8 @@ h4 { font-size: var(--text-lg); }
 .section-index span { flex: none; align-self: center; font: var(--weight-semibold) var(--text-sm) var(--font-sans); color: var(--color-muted); }
 .section-index a, .chip { flex: none; display: inline-flex; align-items: center; min-height: calc(var(--target-min) + 2 * var(--space-2)); font: var(--text-sm) var(--font-sans); text-decoration: none; color: var(--color-ink-2); border-bottom: var(--border-width-bar) solid transparent; }
 .section-index a:hover, .chip:hover { color: var(--color-ink); border-bottom-color: var(--color-red); }
+/* The section in view (set by app.js while scrolling, and on click). */
+.section-index a.is-current { color: var(--color-ink); font-weight: var(--weight-semibold); border-bottom-color: var(--color-red); }
 
 /* ---------- Bands ---------- */
 .block { padding: var(--space-section) 0; }
@@ -288,6 +290,9 @@ h4 { font-size: var(--text-lg); }
 .compare { --pos: 50%; position: relative; aspect-ratio: 16 / 7; overflow: hidden; user-select: none; }
 .compare > .ph-photo { position: absolute; inset: 0; }
 .compare > .ph-photo > span { display: none; }
+/* A placeholder on the Then side keeps its label, set to the left so the slider never hides it. */
+.compare > .compare-then > span { display: block; position: absolute; left: var(--space-5); top: var(--space-5); text-align: left; max-width: 40%; }
+.compare > .compare-then > span::before { margin-left: 0; }
 .compare-then { clip-path: inset(0 calc(100% - var(--pos)) 0 0); filter: grayscale(1); }
 .compare-label { position: absolute; bottom: var(--space-5); font: var(--weight-regular) var(--text-2xl)/1 var(--font-display); color: var(--color-card); pointer-events: none; }
 .compare-label.l { left: var(--space-5); }

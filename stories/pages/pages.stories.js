@@ -25,12 +25,12 @@ const page = (name) => () => {
 };
 
 export const Home = { render: page("index") };
-export const TheStory = { name: "The Story", render: page("story") };
+export const History = { name: "History", render: page("story") };
 export const KingPuck = { name: "King Puck", render: page("king-puck") };
 export const QueenPuck = { name: "Queen Puck", render: page("queen-puck") };
 export const Archive = { name: "The Archive", render: page("archive") };
 export const Stories = { render: page("stories") };
-export const PuckFair = { name: "Puck Fair", render: page("puck-fair") };
+export const TheFair = { name: "The Fair", render: page("puck-fair") };
 export const WhereToStay = { name: "Where to Stay", render: page("stay") };
 export const Shop = { render: page("shop") };
 export const Support = { name: "Support the Archive", render: page("support") };

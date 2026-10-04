@@ -32,10 +32,13 @@ The code is deployed and switched off until `PRINTFUL_API_KEY` is set.
 - [ ] Decide how to fulfil what Printful can't make: books (e.g. Lulu), enamel pins and patches (a batch from a pin maker), signed editions.
 
 ## Content
-- [ ] Get larger originals of the King Puck photos. The current files are at most 600px wide, so the full-screen hero looks soft.
 - [ ] Replace the placeholder product art with real product photos.
-- [ ] Fill the empty photo slots with real archive photographs: the timeline strip, Then / Now, the Archive and Queen Puck galleries, the people and story cards.
-- [ ] Fact-check the history on the Story page (`src/pages/story.html`) with local sources or the Puck Fair committee.
+- [ ] Fill the empty photo slots with real archive photographs: the Then side of Then / Now, the Archive and Queen Puck galleries, the people and story cards, the music plate on The Fair. The blurry scene art that used to fill them is in `dont-use/`.
+- [ ] Ask Killorglin Archives (killorglinarchives.com) whether and on what terms their photographs can be used. The site blocks automated reading, so open it in a browser.
+- [ ] Larger originals of the page-header banners in `public/img/heroes` (about 2000×450 now; fine as short bands, too soft for anything taller).
+- [x] Check the history against puckfair.ie (done 4 October 2026; see `docs/research/puck-fair.md`).
+- [ ] Settle the 1613 document with the committee or the Patent Rolls: charter from James I (puckfair.ie/history) or patent from the Irish Parliament (Tom Doyle's chronology)? And confirm the spelling of Seán Moraghan's name against his 2013 book.
+- [ ] Each year: refresh the programme fixed points on The Fair page from puckfair.ie.
 
 ## Legal (before selling)
 - [ ] Add shipping and returns, and privacy pages. They're required for EU consumer sales.

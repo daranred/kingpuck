@@ -22,6 +22,45 @@ export function initMenu(root = document) {
   document.addEventListener("keydown", (e) => e.key === "Escape" && set(false));
 }
 
+/* ---------- Section index: highlight the section in view, and the one just clicked ---------- */
+export function initSectionIndex(root = document) {
+  const nav = root.querySelector(".section-index");
+  const links = nav ? [...nav.querySelectorAll('a[href^="#"]')] : [];
+  const targets = links.map((a) => root.querySelector(`#${CSS.escape(a.hash.slice(1))}`));
+  if (!links.length || targets.every((t) => !t)) return;
+  const strip = nav.querySelector(".wrap");
+  let active = null;
+  const mark = (link) => {
+    if (link === active) return;
+    active = link;
+    links.forEach((a) => {
+      a.classList.toggle("is-current", a === link);
+      if (a === link) a.setAttribute("aria-current", "location"); else a.removeAttribute("aria-current");
+    });
+    // Keep the highlighted link visible when the strip scrolls sideways.
+    if (link && strip) {
+      const l = link.getBoundingClientRect(), s = strip.getBoundingClientRect();
+      if (l.left < s.left || l.right > s.right) strip.scrollBy({ left: l.left - s.left - 24, behavior: "smooth" });
+    }
+  };
+  const update = () => {
+    // Anchor jumps land a section at the page's scroll-padding-top, just under the sticky masthead and strip.
+    const pad = parseFloat(getComputedStyle(document.documentElement).scrollPaddingTop);
+    const offset = Math.max(nav.getBoundingClientRect().bottom + 8, (Number.isFinite(pad) ? pad : 0) + 4);
+    const atEnd = window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 2;
+    let current = null;
+    targets.forEach((t, i) => { if (t && t.getBoundingClientRect().top <= offset) current = links[i]; });
+    if (atEnd) current = links[links.length - 1];
+    mark(current);
+  };
+  let ticking = false;
+  const onScroll = () => { if (!ticking) { ticking = true; requestAnimationFrame(() => { ticking = false; update(); }); } };
+  window.addEventListener("scroll", onScroll, { passive: true });
+  window.addEventListener("resize", onScroll);
+  links.forEach((a) => a.addEventListener("click", () => mark(a)));
+  update();
+}
+
 /* ---------- Then / Now ---------- */
 export function initCompare(el) {
   const input = el.querySelector("input[type=range]");
@@ -335,6 +374,7 @@ function initInfoTips() {
 
 document.addEventListener("DOMContentLoaded", () => {
   initMenu();
+  initSectionIndex();
   initInfoTips();
   document.querySelectorAll("[data-compare]").forEach(initCompare);
   document.querySelectorAll("[data-open-cart]").forEach((b) => (b.onclick = openCart));
