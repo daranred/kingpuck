@@ -31,6 +31,10 @@ export const icons = {
 };
 ''' + s[j:]
 s = s.replace('["/story", "Story", "story"]', '["/story", "History", "story"]')
+m = re.search(r'  \{ href: "/puck-fair".*?\] \},\n', s, re.S); fair = m.group(0); s = s.replace(fair, "", 1)
+k = s.index('  { href: "/story"'); s = s[:k] + fair + s[k:]
+s = s.replace('["/story", "History", "story"]', '["/puck-fair", "The Fair", "fair"]')
+s = s.replace("  home: '<path d=\"M3 11l9-7 9 7\"/>", "  fair: '<path d=\"M3 20l9-15 9 15z\"/><path d=\"M12 5v15M8.5 20l3.5-6 3.5 6\"/>',\n  home: '<path d=\"M3 11l9-7 9 7\"/>")
 open(R + "src/site.mjs", "w").write(s)
 
 # ---------- layout.mjs: one nav ----------

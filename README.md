@@ -8,8 +8,8 @@ A site celebrating the history of Puck Fair (Killorglin, Co. Kerry), with an onl
 - **Products:** `functions/_lib/catalog.js`, the single source of truth. The browser only sends product ids and quantities; prices are always looked up on the server.
 
 ```
-src/site.mjs       site hierarchy (drives the menus, sidebar, bottom bar and footer sitemap)
-src/layout.mjs     shared chrome: masthead, tablet sidebar, phone bottom bar, footer, cart drawer
+src/site.mjs       site hierarchy (drives the nav, bottom bar, section index and footer sitemap)
+src/layout.mjs     shared chrome: masthead (one nav), phone bottom bar, section index, footer, cart drawer
 src/pages/*.html   page content; `npm run build` wraps each in the layout and writes public/
 public/            the deployed site: tokens.css (design tokens), styles.css, app.js, img/, stays.json
 functions/api/     products, checkout, stripe-webhook, submit (archive uploads)
@@ -20,7 +20,7 @@ test/              node --test unit tests
 
 **Editing pages:** change `src/pages/*.html` (or `src/layout.mjs` for the header/footer), run `npm run build`, and commit both `src/` and `public/`. Cloudflare serves `public/` as-is, so no build command is needed there.
 
-**Navigation:** desktop (≥1200px) top bar with dropdowns · tablet (700–1199px) left sidebar · phone (<700px) bottom tab bar with a Menu sheet.
+**Navigation:** one nav list. Inline in the masthead from 1000px; a menu sheet below that (Menu button in the masthead, or in the phone bottom bar under 700px). Each page's section index scrolls sideways on small screens. Support and About live in the sheet and the footer; the red Share button is always in the header.
 
 **Where to Stay (VRBO):** edit `public/stays.json`. Add featured listings (title, url, image, area, sleeps, priceFrom) and, if you join the Expedia Group affiliate programme, your `affiliateId`. Update the `fair` dates each year.
 
@@ -84,7 +84,7 @@ npm run build-storybook  # static build in storybook-static/
 - **Foundations:** colour, typography, spacing (space / gap / stack / inset), borders, radius, shadow, motion, layout and layers. Read live from `public/tokens.css`.
 - **Layout:** `.stack`, `.cluster`, `.grid-auto`, `.split`.
 - **Components, Sections, Navigation, Commerce, Forms:** every building block, with the homepage sections read straight from `src/pages/index.html`.
-- **Pages:** every page with the shared layout. Use the viewport toolbar (Phone · Tablet · Desktop) to see the bottom bar, sidebar and masthead.
+- **Pages:** every page with the shared layout. Use the viewport toolbar (Phone · Tablet · Desktop) to see the bottom bar, menu sheet and masthead.
 
 To publish it, create a second Cloudflare Pages project from this repo with build command `npm run build-storybook` and output directory `storybook-static`.
 

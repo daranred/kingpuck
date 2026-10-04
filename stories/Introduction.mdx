@@ -9,7 +9,7 @@ import { Meta } from "@storybook/addon-docs/blocks";
 - **Foundations**: every value lives in `public/tokens.css`. Colour, type, spacing, gap/stack/inset, borders, radius, shadow, motion, layout and layers. The Foundations pages read that file directly, so they never drift.
 - **Layout**: `.stack`, `.cluster`, `.grid-auto` and `.split` carry all spacing. Use a size modifier (`stack-lg`, `cluster-xs`) instead of one-off margins.
 - **Components** and **Sections** are the building blocks of `src/pages`. The homepage sections are read straight from `src/pages/index.html`.
-- **Navigation** is responsive: desktop masthead (1200px and up), tablet sidebar (700–1199px), phone bottom bar (under 700px). Switch the viewport in the toolbar.
+- **Navigation** is one component: inline masthead list from 1000px, a menu sheet below that, and a phone bottom bar under 700px that opens the same sheet. On-page section index at every size.
 - **Pages** render every page with the shared layout from `src/layout.mjs`.
 
 ### Editorial rules

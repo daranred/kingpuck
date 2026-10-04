@@ -1,4 +1,4 @@
-import { header, sidebar, tabbar, footer, sectionIndex } from "../../src/layout.mjs";
+import { header, tabbar, footer, sectionIndex } from "../../src/layout.mjs";
 import { initMenu } from "../../public/app.js";
 
 export default { title: "Navigation" };
@@ -21,16 +21,20 @@ export const MastheadNight = {
   globals: { viewport: { value: "desktop" } },
   render: () => mount(`<div class="home">${header()}</div>` + sample),
 };
-export const SidebarTablet = {
-  name: "Sidebar · tablet",
+export const MenuSheetTablet = {
+  name: "Menu sheet · tablet",
   globals: { viewport: { value: "tablet" } },
-  parameters: { docs: { description: { story: "700–1199px. All sections with icons; the current section expands to its sub-pages." } } },
-  render: () => mount(`${header("/king-puck")}${sidebar("/king-puck")}<div class="page">${sample}</div>`),
+  parameters: { docs: { description: { story: "Under 1000px the same nav list becomes a sheet, opened from the Menu button in the masthead." } } },
+  render: () =>
+    mount(`${header("/king-puck")}${sample}`, (d) => {
+      initMenu(d);
+      requestAnimationFrame(() => d.querySelector(".menu-btn").click());
+    }),
 };
 export const BottomBarPhone = {
   name: "Bottom bar · phone",
   globals: { viewport: { value: "phone" } },
-  parameters: { docs: { description: { story: "Under 700px. Four destinations plus Menu, which opens the full hierarchy as a sheet." } } },
+  parameters: { docs: { description: { story: "Under 700px. Four destinations plus Menu, which opens the same sheet from the bottom bar." } } },
   render: () => mount(`${header("/archive")}${sample}${tabbar("/archive")}`, (d) => initMenu(d)),
 };
 export const MenuSheetPhone = {

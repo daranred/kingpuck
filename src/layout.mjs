@@ -1,9 +1,10 @@
 // Shared page chrome. Used by tools/build.mjs (static pages) and by Storybook.
-import { sections, childHref, icons, sectionIcon, tabs } from "./site.mjs";
-
-// Support and About live in the footer only; the header and sidebar skip them.
-const navSections = sections.filter((s) => !s.footerOnly);
+import { sections, childHref, icons, tabs } from "./site.mjs";
 import { expandCalendars } from "./calendar.mjs";
+
+// Support and About are reached from the header button, the menu sheet and the footer, not the main list.
+const primary = sections.filter((s) => !s.footerOnly);
+const secondary = sections.filter((s) => s.footerOnly);
 
 export const FONTS = "https://fonts.googleapis.com/css2?family=Instrument+Serif&family=Inter:wght@400;600&display=swap";
 
@@ -16,53 +17,32 @@ export function parsePage(raw, file = "page") {
 
 export const esc = (s) => String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/"/g, "&quot;");
 export const icon = (name, cls = "icon") => `<svg class="${cls}" viewBox="0 0 24 24" aria-hidden="true">${icons[name]}</svg>`;
-const shortLabel = { "Support the Archive": "Support", "The Story": "Story", "The Archive": "Archive" };
-const subLinks = (s) => s.children.map((c) => `<li><a href="${childHref(s, c)}">${esc(c[1])}</a></li>`).join("");
+const navItem = (s, current) => `
+        <li class="nav-item${s.href === current ? " is-current" : ""}"><a href="${s.href}"${s.href === current ? ' aria-current="page"' : ""}>${esc(s.label)}</a></li>`;
 
-/* Desktop masthead (≥1200px). On phones it collapses to logo + cart; its nav becomes the Menu sheet. */
+/* The one navigation. Inline in the masthead from 1000px; below that the list becomes a menu sheet
+   opened by the Menu button (in the masthead on tablets, in the bottom bar on phones). */
 export function header(current) {
-  const items = navSections.map((s) => `
-        <li class="nav-item${s.href === current ? " is-current" : ""}">
-          <a href="${s.href}"${s.href === current ? ' aria-current="page"' : ""}>${esc(shortLabel[s.label] ?? s.label)}</a>
-          <ul class="nav-sub">${subLinks(s)}</ul>
-        </li>`).join("");
   return `<header class="masthead">
   <div class="wrap masthead-top">
     <a class="wordmark" href="/" aria-label="King Puck home"><img src="/img/emblem.svg" alt="" width="30" height="30"><span>King Puck</span></a>
     <nav class="site-nav" id="site-nav" aria-label="Main">
-      <p class="sheet-title">Explore King Puck</p>
-      <ul class="nav-list">${items}
+      <ul class="nav-list">${primary.map((s) => navItem(s, current)).join("")}
+      </ul>
+      <ul class="nav-list nav-more">${secondary.map((s) => navItem(s, current)).join("")}
       </ul>
     </nav>
     <div class="masthead-actions">
+      <a class="btn red share-btn" href="/support#submit" aria-label="Share your story">${icon("support")}<span>Share your story</span></a>
       <a class="account-btn" href="/login" data-account-link aria-label="Sign in">${icon("user")}<span data-account-label>Sign in</span></a>
       <button class="cart-btn" type="button" data-open-cart aria-label="Cart, 0 items">${icon("cart")}<span data-cart-count>0</span></button>
+      <button class="menu-btn" type="button" data-menu aria-controls="site-nav" aria-expanded="false" aria-label="Menu">${icon("menu")}</button>
     </div>
   </div>
 </header>`;
 }
 
-/* Tablet sidebar (700–1199px): every section, the current one expanded. */
-export function sidebar(current) {
-  const items = navSections.map((s) => {
-    const on = s.href === current;
-    return `
-      <li class="side-item${on ? " is-current" : ""}">
-        <a href="${s.href}"${on ? ' aria-current="page"' : ""}>${icon(sectionIcon[s.href])}<span>${esc(s.label)}</span></a>
-        ${on ? `<ul class="side-sub">${subLinks(s)}</ul>` : ""}
-      </li>`;
-  }).join("");
-  return `<aside class="sidebar" aria-label="Sections">
-  <a class="wordmark" href="/"><img src="/img/emblem.svg" alt="" width="28" height="28"><span>King Puck</span></a>
-  <nav><ul class="side-list">
-      <li class="side-item${!current ? " is-current" : ""}"><a href="/"${!current ? ' aria-current="page"' : ""}>${icon("home")}<span>Home</span></a></li>${items}
-  </ul></nav>
-  <a class="side-account" href="/login" data-account-link>${icon("user")}<span data-account-label>Sign in</span></a>
-  <button class="side-cart" type="button" data-open-cart aria-label="Cart, 0 items">${icon("cart")}<span>Cart</span><b data-cart-count>0</b></button>
-</aside>`;
-}
-
-/* Phone bottom bar (<700px). */
+/* Phone bottom bar (<700px): four destinations plus Menu, which opens the same sheet. */
 export function tabbar(current) {
   const tab = ([href, label, ic]) => {
     const on = href === "/" ? !current : href === current;
@@ -119,7 +99,6 @@ const withSectionIndex = (section, body) => {
 
 /* Everything inside <body>. */
 export const chrome = (section, body) => `${header(section)}
-${sidebar(section)}
 <div class="page">
 <main class="page-stack">
 ${withSectionIndex(section, body)}
