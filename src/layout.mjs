@@ -12,7 +12,19 @@ export const FONTS = "https://fonts.googleapis.com/css2?family=Instrument+Serif&
 export function parsePage(raw, file = "page") {
   const m = raw.match(/^<!--\s*(\{[\s\S]*?\})\s*-->/);
   if (!m) throw new Error(`${file}: missing JSON header comment`);
-  return { meta: JSON.parse(m[1]), body: expandCalendars(raw.slice(m[0].length).trim()) };
+  return { meta: JSON.parse(m[1]), body: externalLinks(expandCalendars(raw.slice(m[0].length).trim())) };
+}
+
+// Links to other sites open in a new tab, with rel="noopener" (kept alongside any existing rel).
+export function externalLinks(html) {
+  return html.replace(/<a\b([^>]*?)href="(https?:\/\/[^"]+)"([^>]*)>/g, (m, pre, href, post) => {
+    if (/\btarget=/.test(m)) return m;
+    const attrs = pre + post;
+    const rel = /\brel="([^"]*)"/.exec(attrs);
+    const relValue = rel ? (rel[1].split(/\s+/).includes("noopener") ? rel[1] : rel[1] + " noopener") : "noopener";
+    const rest = rel ? attrs.replace(rel[0], "") : attrs;
+    return `<a href="${href}" target="_blank" rel="${relValue}"${rest.replace(/\s+/g, " ").replace(/\s+$/, "")}>`;
+  });
 }
 
 export const esc = (s) => String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/"/g, "&quot;");
@@ -70,7 +82,7 @@ export function sectionIndex(current, page = current) {
 </nav>`;
 }
 
-export const footer = () => `<footer class="site-footer">
+export const footer = () => externalLinks(`<footer class="site-footer">
   <div class="wrap">
     <div class="footer-lead">
       <p class="footer-mark">Long live Puck Fair.</p>
@@ -82,7 +94,7 @@ export const footer = () => `<footer class="site-footer">
     </div>
     <p class="fine">© 2026 KingPuck.com. An independent project, not the official Puck Fair organisation. Secure payments by Stripe.</p>
   </div>
-</footer>`;
+</footer>`);
 
 export const drawer = () => `<div class="drawer-backdrop" data-close-cart></div>
 <aside class="drawer" aria-label="Shopping cart">
