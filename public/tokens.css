@@ -132,7 +132,7 @@
   --radius-full: 999px;
 
   /* Controls: buttons, inputs and selects share one height. Touch targets are never under 44px. */
-  --control-height: 40px; /* every button, select and text field */
+  --control-height: 48px; /* every button, select and text field */
   --target-min: 44px;
 
   /* Shadow */
@@ -143,14 +143,14 @@
   --container: 1200px;
   --container-narrow: 760px;
   --gutter: var(--space-5); /* 24px page padding at every breakpoint */
-  --header-height: 68px;
+  --header-height: 68px; /* 84px from 1200px, see the end of this file */
   --tabbar-height: 64px;
   /* Height of the sticky stack (masthead + its divider + section index): anchors land just under it. */
   --sticky-stack: calc(var(--header-height) + var(--border-width-hair) + var(--target-min) + 2 * var(--space-2));
   /* Breakpoints (for reference; media queries can't read variables):
      < 700px   → 56px top bar + bottom tab bar; nav in the menu sheet
-     < 1000px  → nav in the menu sheet, opened from the masthead
-     ≥ 1000px  → inline nav in the masthead */
+     < 1200px  → nav in the menu sheet, opened from the masthead
+     ≥ 1200px  → inline nav in the masthead (needs about 1100px) */
 
   /* Motion */
   --duration-fast: 0.15s;
@@ -162,4 +162,8 @@
   --z-nav: 35;
   --z-backdrop: 40;
   --z-drawer: 50;
+}
+/* Large screens: a taller masthead and a bigger wordmark. Everything that sits under the masthead reads the token. */
+@media (min-width: 1200px) {
+  :root { --header-height: 84px; }
 }

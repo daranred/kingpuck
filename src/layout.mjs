@@ -20,7 +20,7 @@ export const icon = (name, cls = "icon") => `<svg class="${cls}" viewBox="0 0 24
 const navItem = (s, current) => `
         <li class="nav-item${s.href === current ? " is-current" : ""}"><a href="${s.href}"${s.href === current ? ' aria-current="page"' : ""}>${esc(s.label)}</a></li>`;
 
-/* The one navigation. Inline in the masthead from 1000px; below that the list becomes a menu sheet
+/* The one navigation. Inline in the masthead from 1200px; below that the list becomes a menu sheet
    opened by the Menu button (in the masthead on tablets, in the bottom bar on phones). */
 export function header(current) {
   return `<header class="masthead">
@@ -66,7 +66,7 @@ export function sectionIndex(current, page = current) {
     return `<a href="${page === current ? "" : current}#${slug}">${esc(label)}</a>`;
   };
   return `<nav class="section-index" aria-label="${esc(s.label)}">
-  <div class="wrap"><span>In this section</span>${links.map(link).join("")}</div>
+  <div class="wrap">${links.map(link).join("")}</div>
 </nav>`;
 }
 

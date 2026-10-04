@@ -361,9 +361,14 @@ export async function renderAccount(root) {
 }
 
 // Evidence badges explain themselves on hover (CSS); make them focusable so the keyboard gets the same tip.
-function initTagTips(root = document) {
+export function initTagTips(root = document) {
+  // The tip opens to the right of the badge's left edge unless that would run off the screen; then it ends at the badge's right edge.
+  const place = (t) => t.classList.toggle("tip-end", t.getBoundingClientRect().left + 240 > window.innerWidth - 16);
   root.querySelectorAll(".tag.documented, .tag.tradition, .tag.legend, .tag.unknown, .tag.illustration").forEach((t) => {
-    if (!t.closest(".legend-key")) t.tabIndex = 0;
+    if (t.closest(".legend-key")) return;
+    t.tabIndex = 0;
+    t.addEventListener("mouseenter", () => place(t));
+    t.addEventListener("focus", () => place(t));
   });
 }
 

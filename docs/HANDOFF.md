@@ -29,7 +29,7 @@ Written 4 October 2026 at the end of a long session. Read this, `CLAUDE.md`, `TO
 ## How the site works
 
 - `src/pages/*.html` are page bodies with a JSON header comment; `src/layout.mjs` wraps them (header, footer, cart drawer, section index); `src/site.mjs` is the hierarchy that drives all navigation; `tools/build.mjs` writes `public/`. Commit `src/` and `public/` together.
-- `public/tokens.css` holds every design value (colours, type, spacing, `--control-height` 40px, `--scrim-side` photo gradient, `--radius-control` 8px). `public/styles.css` is components. Nothing smaller than 14px; no all-caps except the wordmark; headings in Title Case; focus rings navy, red only for errors; every control ≥40px, tap targets ≥44px.
+- `public/tokens.css` holds every design value (colours, type, spacing, `--control-height` 48px, `--scrim-side` photo gradient, `--radius-control` 8px). `public/styles.css` is components. Nothing smaller than 14px; no all-caps except the wordmark; headings in Title Case; focus rings navy, red only for errors; every control 48px, tap targets ≥44px.
 - `functions/` are Cloudflare Pages Functions: Stripe checkout and webhook, Printful (dormant until `PRINTFUL_API_KEY`), magic-link auth, archive submissions, a site-wide password gate (`SITE_PASSWORD`). `functions/_lib/catalog.js` is the product source of truth.
 - `<!-- calendar:id -->` in a page expands to an add-to-calendar menu; `.ics` files build into `public/cal/`.
 - `npm test` (19 tests) must pass; `npm run build`; `npm run build-storybook` should still compile. The Pages build uses Wrangler 3.114, which rejects JSON import attributes.

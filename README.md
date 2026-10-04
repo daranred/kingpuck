@@ -20,7 +20,7 @@ test/              node --test unit tests
 
 **Editing pages:** change `src/pages/*.html` (or `src/layout.mjs` for the header/footer), run `npm run build`, and commit both `src/` and `public/`. Cloudflare serves `public/` as-is, so no build command is needed there.
 
-**Navigation:** one nav list. Inline in the masthead from 1000px; a menu sheet below that (Menu button in the masthead, or in the phone bottom bar under 700px). Each page's section index scrolls sideways on small screens. Support and About live in the sheet and the footer; the red Share button is always in the header.
+**Navigation:** one nav list. Inline in the masthead from 1200px; a menu sheet below that (Menu button in the masthead, or in the phone bottom bar under 700px). Each page's section index scrolls sideways on small screens. Support and About live in the sheet and the footer; the red Share button is always in the header.
 
 **Where to Stay (VRBO):** edit `public/stays.json`. Add featured listings (title, url, image, area, sleeps, priceFrom) and, if you join the Expedia Group affiliate programme, your `affiliateId`. Update the `fair` dates each year.
 
@@ -83,7 +83,7 @@ npm run build-storybook  # static build in storybook-static/
 
 - **Foundations:** colour, typography, spacing (space / gap / stack / inset), borders, radius, shadow, motion, layout and layers. Read live from `public/tokens.css`.
 - **Layout:** `.stack`, `.cluster`, `.grid-auto`, `.split`.
-- **Components, Sections, Navigation, Commerce, Forms:** every building block, with the homepage sections read straight from `src/pages/index.html`.
+- **Components, Sections, Navigation, Commerce, Forms:** every building block. Sections (Home, The Fair, History, Archive & galleries) are read straight from `src/pages/*.html` via `stories/_pages.js`, so they never drift from the site.
 - **Pages:** every page with the shared layout. Use the viewport toolbar (Phone · Tablet · Desktop) to see the bottom bar, menu sheet and masthead.
 
 To publish it, create a second Cloudflare Pages project from this repo with build command `npm run build-storybook` and output directory `storybook-static`.
