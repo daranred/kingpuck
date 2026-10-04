@@ -3,14 +3,20 @@
 import { mkdirSync, readdirSync, readFileSync, writeFileSync } from "node:fs";
 import { chrome, esc, parsePage, FONTS } from "../src/layout.mjs";
 import { events, ics } from "../src/calendar.mjs";
+import { structuredData, shopGrid, SITE } from "../src/seo.mjs";
+import catalog from "../functions/_lib/catalog.js";
 import { createHash } from "node:crypto";
 
 // Content fingerprint for cache-busting: a deploy that changes a file changes its URL.
 const v = (file) => createHash("sha256").update(readFileSync(`public/${file}`)).digest("hex").slice(0, 10);
 
 if (import.meta.url === `file://${process.argv[1]}`) {
+  const pages = [];
   for (const file of readdirSync("src/pages").filter((f) => f.endsWith(".html"))) {
-    const { meta, body } = parsePage(readFileSync(`src/pages/${file}`, "utf8"), file);
+    let { meta, body } = parsePage(readFileSync(`src/pages/${file}`, "utf8"), file);
+    if (file === "shop.html") body = body.replace('<div class="grid"></div>', `<div class="grid">\n      ${shopGrid(catalog)}\n    </div>`);
+    const path = "/" + file.replace(/\.html$/, "").replace(/^index$/, "");
+    if (!meta.noindex) pages.push({ path, image: meta.image });
     writeFileSync(`public/${file}`, `<!doctype html>
 <html lang="en">
 <head>
@@ -18,9 +24,19 @@ if (import.meta.url === `file://${process.argv[1]}`) {
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>${esc(meta.title)}</title>
   <meta name="description" content="${esc(meta.desc)}">
+  <link rel="canonical" href="${SITE}${path}">${meta.noindex ? '\n  <meta name="robots" content="noindex">' : ""}
+  <meta property="og:type" content="${meta.ogType ?? "website"}">
+  <meta property="og:site_name" content="King Puck · Puck Fair">
+  <meta property="og:url" content="${SITE}${path}">
   <meta property="og:title" content="${esc(meta.title)}">
   <meta property="og:description" content="${esc(meta.desc)}">
-  <meta property="og:image" content="https://kingpuck.com/img/emblem.svg">
+  <meta property="og:image" content="${SITE}${meta.image ?? "/img/heroes/puck-fair.jpg"}">
+  <meta property="og:locale" content="en_IE">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="${esc(meta.title)}">
+  <meta name="twitter:description" content="${esc(meta.desc)}">
+  <meta name="twitter:image" content="${SITE}${meta.image ?? "/img/heroes/puck-fair.jpg"}">
+  <script type="application/ld+json">${structuredData(path, meta, catalog)}</script>
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -30,12 +46,19 @@ if (import.meta.url === `file://${process.argv[1]}`) {
   <script type="module" src="/app.js?v=${v("app.js")}"></script>
 </head>
 <body${meta.bodyAttrs ? " " + meta.bodyAttrs : ""}>
-${chrome(meta.section, body, "/" + file.replace(/\.html$/, "").replace(/^index$/, ""))}
+${chrome(meta.section, body, path)}
 </body>
 </html>
 `);
     console.log("built", file);
   }
+  const today = new Date().toISOString().slice(0, 10);
+  writeFileSync("public/sitemap.xml", `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+${pages.map((p) => `  <url><loc>${SITE}${p.path}</loc><lastmod>${today}</lastmod>${p.image ? `<image:image><image:loc>${SITE}${p.image}</image:loc></image:image>` : ""}</url>`).join("\n")}
+</urlset>
+`);
+  console.log("built sitemap.xml");
   mkdirSync("public/cal", { recursive: true });
   for (const id of Object.keys(events)) writeFileSync(`public/cal/${id}.ics`, ics(id));
   console.log("built calendar files");

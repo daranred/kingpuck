@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+  <url><loc>https://kingpuck.com/about</loc><lastmod>2026-10-04</lastmod><image:image><image:loc>https://kingpuck.com/img/heroes/about.jpg</image:loc></image:image></url>
+  <url><loc>https://kingpuck.com/archive</loc><lastmod>2026-10-04</lastmod><image:image><image:loc>https://kingpuck.com/img/heroes/archive.jpg</image:loc></image:image></url>
+  <url><loc>https://kingpuck.com/</loc><lastmod>2026-10-04</lastmod><image:image><image:loc>https://kingpuck.com/img/heroes/puck-fair.jpg</image:loc></image:image></url>
+  <url><loc>https://kingpuck.com/king-puck</loc><lastmod>2026-10-04</lastmod><image:image><image:loc>https://kingpuck.com/img/heroes/king-puck.jpg</image:loc></image:image></url>
+  <url><loc>https://kingpuck.com/puck-fair</loc><lastmod>2026-10-04</lastmod><image:image><image:loc>https://kingpuck.com/img/heroes/puck-fair.jpg</image:loc></image:image></url>
+  <url><loc>https://kingpuck.com/queen-puck</loc><lastmod>2026-10-04</lastmod><image:image><image:loc>https://kingpuck.com/img/heroes/queen-puck.jpg</image:loc></image:image></url>
+  <url><loc>https://kingpuck.com/shop</loc><lastmod>2026-10-04</lastmod><image:image><image:loc>https://kingpuck.com/img/heroes/shop.jpg</image:loc></image:image></url>
+  <url><loc>https://kingpuck.com/stay</loc><lastmod>2026-10-04</lastmod><image:image><image:loc>https://kingpuck.com/img/king/town-sunset.jpg</image:loc></image:image></url>
+  <url><loc>https://kingpuck.com/stories</loc><lastmod>2026-10-04</lastmod><image:image><image:loc>https://kingpuck.com/img/heroes/stories.jpg</image:loc></image:image></url>
+  <url><loc>https://kingpuck.com/story</loc><lastmod>2026-10-04</lastmod><image:image><image:loc>https://kingpuck.com/img/heroes/story.jpg</image:loc></image:image></url>
+  <url><loc>https://kingpuck.com/support</loc><lastmod>2026-10-04</lastmod><image:image><image:loc>https://kingpuck.com/img/heroes/support.jpg</image:loc></image:image></url>
+</urlset>
