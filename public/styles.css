@@ -495,6 +495,7 @@ body.cart-open .drawer-backdrop { opacity: 1; pointer-events: auto; }
 /* Background photos smaller than their band: softened so they read as atmosphere. */
 .band-photo.soft { filter: brightness(0.85); }
 .ph-photo.wide, .plate .ph-photo.wide { aspect-ratio: 3 / 2; }
+.ph-photo.square, .plate .ph-photo.square { aspect-ratio: 1; }
 .ph-photo > img.top { object-position: top; }
 
 /* Add to cart is always the red primary action. */
