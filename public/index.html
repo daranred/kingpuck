@@ -13,8 +13,8 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif&family=Inter:wght@400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/tokens.css?v=896a7329a7">
-  <link rel="stylesheet" href="/styles.css?v=45b4b5d17b">
-  <script type="module" src="/app.js?v=31ec81506e"></script>
+  <link rel="stylesheet" href="/styles.css?v=4030c7758c">
+  <script type="module" src="/app.js?v=1e11559b31"></script>
 </head>
 <body class="home">
 <header class="masthead">
@@ -36,9 +36,9 @@
       </ul>
     </nav>
     <div class="masthead-actions">
-      <a class="btn red share-btn" href="/support#submit" aria-label="Share your story"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20s-7-4.5-7-10a4 4 0 017-2.6A4 4 0 0119 10c0 5.5-7 10-7 10z"/></svg><span>Share your story</span></a>
+      <a class="btn red share-btn" href="/support#submit"><span class="share-long">Share your story</span><span class="share-short">Share</span></a>
       <a class="account-btn" href="/login" data-account-link aria-label="Sign in"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"/></svg><span data-account-label>Sign in</span></a>
-      <button class="cart-btn" type="button" data-open-cart aria-label="Cart, 0 items"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 8h14l-1 12H6z"/><path d="M9 8V6a3 3 0 016 0v2"/></svg><span data-cart-count>0</span></button>
+      <button class="cart-btn" type="button" data-open-cart aria-label="Cart, 0 items"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 8h14l-1 12H6z"/><path d="M9 8V6a3 3 0 016 0v2"/></svg><span data-cart-count hidden>0</span></button>
       <button class="menu-btn" type="button" data-menu aria-controls="site-nav" aria-expanded="false" aria-label="Menu"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
     </div>
   </div>
@@ -46,7 +46,7 @@
 <div class="page">
 <main class="page-stack">
 <section class="hero photo-band">
-  <img class="band-photo" src="/img/heroes/puck-fair.jpg" alt="" style="object-position: 65% 30%" fetchpriority="high">
+  <img class="band-photo" src="/img/king/crowd.jpg" alt="" style="object-position: 62% 28%" fetchpriority="high">
   <div class="wrap hero-inner">
     <h1>Puck<br>Fair</h1>
     <p class="tagline">Three days. One town. A goat for a King.</p>
@@ -75,13 +75,13 @@
     <h2 class="display sm">A History in Motion</h2>
     <p class="muted">400+ years of Puck. 1613 is the earliest surviving written record, not necessarily the beginning.</p>
     <ol class="timeline-strip" aria-label="Puck Fair through the centuries">
-      <li><div class="ph-photo"><img src="/img/scenes/engraving-goat-on-plinth.jpg" alt="Engraving-style illustration of the goat on his plinth" loading="lazy"></div><div class="body"><b>Before 1613</b><span class="tag unknown">Unknown</span><p>An August gathering that may reach back to Lughnasa, the Celtic harvest festival.</p></div></li>
-      <li><div class="ph-photo"><img src="/img/scenes/engraving-town-and-bridge.jpg" alt="Engraving-style illustration of Killorglin and its bridge" loading="lazy"></div><div class="body"><b>1613</b><span class="tag documented">Documented</span><p>A royal patent grants Jenkyn Conway a fair on Lammas Day and the two days after.</p></div></li>
-      <li><div class="ph-photo"><img src="/img/scenes/sepia-bridge-bunting-crowd.jpg" alt="Sepia illustration of crowds and bunting at the bridge" loading="lazy"></div><div class="body"><b>1808</b><span class="tag tradition">Tradition</span><p>A toll loophole, a young Daniel O'Connell, and a goat hoisted onto a platform.</p></div></li>
-      <li><div class="ph-photo"><img src="/img/scenes/sepia-goat-on-plinth.jpg" alt="Sepia illustration of the crowned goat on his stand" loading="lazy"></div><div class="body"><b>1840s</b><span class="tag documented">Documented</span><p>Reports of a goat actually crowned King become consistent.</p></div></li>
+      <li><div class="ph-photo"><img src="/img/king/mountain.jpg" alt="The mountains above Killorglin, where the goat comes from" loading="lazy"></div><div class="body"><b>Before 1613</b><span class="tag unknown">Unknown</span><p>An August gathering that may reach back to Lughnasa, the Celtic harvest festival.</p></div></li>
+      <li><div class="ph-photo"><img src="/img/king/town-bridge.jpg" alt="Killorglin and its bridge over the Laune" loading="lazy"></div><div class="body"><b>1613</b><span class="tag documented">Documented</span><p>A royal patent grants Jenkyn Conway a fair on Lammas Day and the two days after.</p></div></li>
+      <li><div class="ph-photo"><img src="/img/king/black-and-white.jpg" alt="King Puck in black and white" loading="lazy"></div><div class="body"><b>1808</b><span class="tag tradition">Tradition</span><p>A toll loophole, a young Daniel O'Connell, and a goat hoisted onto a platform.</p></div></li>
+      <li><div class="ph-photo"><img src="/img/king/riverside.jpg" alt="King Puck crowned above the river" loading="lazy"></div><div class="body"><b>1840s</b><span class="tag documented">Documented</span><p>Reports of a goat actually crowned King become consistent.</p></div></li>
       <li><div class="ph-photo"><img src="/img/king/crowd.jpg" alt="King Puck on his stand over a packed, bunting-lined street" loading="lazy"></div><div class="body"><b>Today</b><span class="tag documented">Documented</span><p>A new King and Queen every 10 August, and three days the whole town turns over to the fair.</p></div></li>
     </ol>
-    <p class="illustration-note"><span class="tag illustration">Illustration</span> Artist's impressions, not archive photographs. <a href="/support#submit">Have the real thing? Share it.</a></p>
+    <p class="muted">Archive photographs from each period wanted. <a href="/support#submit">Have one? Share it.</a></p>
     <a class="btn line" href="/story#history">Explore the timeline →</a>
   </div>
 </section>
@@ -106,8 +106,8 @@
     <p class="lead center" style="margin-inline:auto">Every year the fair has a King, a Queen and a cast of thousands.</p>
     <div class="cards-3">
       <a class="royal-card" href="/king-puck"><div class="ph-photo"><img src="/img/king/street.jpg" alt="King Puck in his crown" loading="lazy"></div><h3>King Puck</h3><p>A wild mountain goat, crowned on Gathering Day and raised above the town for three days.</p><span class="more">Meet the King →</span></a>
-      <a class="royal-card" href="/queen-puck"><div class="ph-photo"><img src="/img/scenes/scene-03-c.jpg" alt="Illustration: Queen Puck and the King above the crowd" loading="lazy"></div><h3>Queen Puck</h3><p>A local girl chosen each year to crown the King.</p><span class="more">Meet the Queens →</span></a>
-      <a class="royal-card" href="/stories#people"><div class="ph-photo"><img src="/img/scenes/sepia-two-men-and-goat.jpg" alt="Sepia illustration of two men with the goat" loading="lazy"></div><h3>The People</h3><p>Goat catchers, horse traders, musicians and the families who keep the fair alive.</p><span class="more">Their stories →</span></a>
+      <a class="royal-card" href="/queen-puck"><div class="ph-photo"><span>Queen Puck<br>Photograph wanted</span></div><h3>Queen Puck</h3><p>A local girl chosen each year to crown the King.</p><span class="more">Meet the Queens →</span></a>
+      <a class="royal-card" href="/stories#people"><div class="ph-photo"><img src="/img/king/gathering.jpg" alt="The crowd below King Puck on Gathering Day" loading="lazy"></div><h3>The People</h3><p>Goat catchers, horse traders, musicians and the families who keep the fair alive.</p><span class="more">Their stories →</span></a>
     </div>
   </div>
 </section>
@@ -117,13 +117,13 @@
   <div class="wrap center">
     <div class="compare" data-compare>
       <!-- Swap in real archive photographs of the same view when they arrive -->
-      <div class="compare-now ph-photo now"><img src="/img/scenes/town-bridge-panorama.jpg" alt="Killorglin's bridge and town today, mountains behind"></div>
-      <div class="compare-then ph-photo"><img src="/img/scenes/sepia-bridge-bunting-crowd.jpg" alt="Sepia illustration of crowds on the bridge under bunting"></div>
+      <div class="compare-now ph-photo now"><img src="/img/king/town-bridge.jpg" alt="Killorglin's bridge and town today, mountains behind"></div>
+      <div class="compare-then ph-photo"><span>Archive photograph wanted</span></div>
       <span class="compare-label l">Then</span><span class="compare-label r">Now</span>
       <div class="compare-handle" aria-hidden="true"></div>
       <input type="range" min="0" max="100" value="50" aria-label="Compare then and now">
     </div>
-    <p class="illustration-note"><span class="tag illustration">Illustration</span> Then and now shown as artist's impressions until archive photographs of the same view arrive.</p>
+    <p class="muted">The Then side is waiting for an archive photograph of this same view of the bridge. <a href="/support#submit">Have one? Share it.</a></p>
     <h2 class="display sm mt-2">The Faces Change.<br>The Fair Remains.</h2>
     <p class="muted">Different times. The same extraordinary tradition.</p>
     <a class="btn line dark-text" href="/archive#photographs">Explore more then &amp; now →</a>
@@ -171,7 +171,7 @@
 
 <!-- 10 The CTA -->
 <section class="block dark photo-band closing-band">
-  <img class="band-photo" src="/img/scenes/scene-39.jpg" alt="" loading="lazy">
+  <img class="band-photo" src="/img/king/town-sunset.jpg" alt="" loading="lazy">
   <div class="wrap center">
     <h2 class="display">400+ Years of Stories.<br>And Still Counting.</h2>
     <p class="lead" style="margin-inline:auto">Your Puck. Your story.</p>
@@ -195,9 +195,9 @@
       <a class="btn red" href="/support#submit">Your Puck. Your story. →</a>
     </div>
     <div class="sitemap">
-      <div><h4><a href="/puck-fair">The Fair</a></h4><a href="/puck-fair#three-days">Three Days</a><a href="/puck-fair#coronation">Coronation</a><a href="/puck-fair#schedule">Schedule</a><a href="/puck-fair#music">Music &amp; Entertainment</a><a href="/puck-fair#traditions">Traditions</a><a href="/puck-fair#visit">Visit Killorglin</a><a href="/stay">Where to Stay</a></div>
-      <div><h4><a href="/story">History</a></h4><a href="/story#what-is-puck-fair">What Is Puck Fair?</a><a href="/story#history">Timeline</a><a href="/story#why-a-goat">Why a Goat?</a><a href="/story#legend">The Legend</a><a href="/story#sources">Sources</a></div>
-      <div><h4><a href="/king-puck">King Puck</a></h4><a href="/king-puck#crowned-goat">The Crowned Goat</a><a href="/king-puck#kings">Kings Through the Years</a><a href="/king-puck#gallery">Gallery</a><a href="/king-puck#coronation">Coronation</a><a href="/king-puck#after-the-fair">What Happens to the Goat?</a></div>
+      <div><h4><a href="/puck-fair">The Fair</a></h4><a href="/puck-fair#three-days">Three Days</a><a href="/puck-fair#coronation">Coronation</a><a href="/puck-fair#schedule">Programme</a><a href="/puck-fair#music">Music &amp; Entertainment</a><a href="/puck-fair#traditions">Traditions</a><a href="/puck-fair#visit">Getting There</a><a href="/stay">Where to Stay</a></div>
+      <div><h4><a href="/story">History</a></h4><a href="/story#what-is-puck-fair">What Is Puck Fair?</a><a href="/story#history">Chronology</a><a href="/story#why-a-goat">Why a Goat?</a><a href="/story#legend">The Legend</a><a href="/story#sources">Sources</a></div>
+      <div><h4><a href="/king-puck">King Puck</a></h4><a href="/king-puck#crowned-goat">The Crowned Goat</a><a href="/king-puck#kings">Kings Through the Years</a><a href="/king-puck#gallery">Gallery</a><a href="/king-puck#coronation">Coronation</a><a href="/king-puck#after-the-fair">Welfare &amp; the Way Home</a></div>
       <div><h4><a href="/queen-puck">Queen Puck</a></h4><a href="/queen-puck#tradition">Tradition</a><a href="/queen-puck#queens">Queens Through the Years</a><a href="/queen-puck#gallery">Gallery</a><a href="/queen-puck#queen-stories">Queen Stories</a><a href="/queen-puck#current-queen">Current Queen</a></div>
       <div><h4><a href="/archive">Archive</a></h4><a href="/archive#photographs">Historic Photos</a><a href="/archive#posters">Posters</a><a href="/archive#ephemera">Newspapers &amp; Ephemera</a><a href="/archive#programs">Programs</a><a href="/archive#film">Video &amp; Film</a><a href="/archive#audio">Audio</a><a href="/archive#search">Search</a></div>
       <div><h4><a href="/stories">Stories</a></h4><a href="/stories#puck-stories">Puck Stories</a><a href="/stories#people">People of Puck</a><a href="/stories#where-are-they-now">Where Are They Now?</a><a href="/stories#memories">Memories</a><a href="/stories#legends-and-lore">Legends &amp; Lore</a><a href="/stories#photo-stories">Photo Stories</a></div>

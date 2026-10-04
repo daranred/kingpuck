@@ -33,9 +33,9 @@ export function header(current) {
       </ul>
     </nav>
     <div class="masthead-actions">
-      <a class="btn red share-btn" href="/support#submit" aria-label="Share your story">${icon("support")}<span>Share your story</span></a>
+      <a class="btn red share-btn" href="/support#submit"><span class="share-long">Share your story</span><span class="share-short">Share</span></a>
       <a class="account-btn" href="/login" data-account-link aria-label="Sign in">${icon("user")}<span data-account-label>Sign in</span></a>
-      <button class="cart-btn" type="button" data-open-cart aria-label="Cart, 0 items">${icon("cart")}<span data-cart-count>0</span></button>
+      <button class="cart-btn" type="button" data-open-cart aria-label="Cart, 0 items">${icon("cart")}<span data-cart-count hidden>0</span></button>
       <button class="menu-btn" type="button" data-menu aria-controls="site-nav" aria-expanded="false" aria-label="Menu">${icon("menu")}</button>
     </div>
   </div>

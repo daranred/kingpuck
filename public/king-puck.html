@@ -13,8 +13,8 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif&family=Inter:wght@400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/tokens.css?v=896a7329a7">
-  <link rel="stylesheet" href="/styles.css?v=45b4b5d17b">
-  <script type="module" src="/app.js?v=31ec81506e"></script>
+  <link rel="stylesheet" href="/styles.css?v=4030c7758c">
+  <script type="module" src="/app.js?v=1e11559b31"></script>
 </head>
 <body>
 <header class="masthead">
@@ -36,9 +36,9 @@
       </ul>
     </nav>
     <div class="masthead-actions">
-      <a class="btn red share-btn" href="/support#submit" aria-label="Share your story"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20s-7-4.5-7-10a4 4 0 017-2.6A4 4 0 0119 10c0 5.5-7 10-7 10z"/></svg><span>Share your story</span></a>
+      <a class="btn red share-btn" href="/support#submit"><span class="share-long">Share your story</span><span class="share-short">Share</span></a>
       <a class="account-btn" href="/login" data-account-link aria-label="Sign in"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"/></svg><span data-account-label>Sign in</span></a>
-      <button class="cart-btn" type="button" data-open-cart aria-label="Cart, 0 items"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 8h14l-1 12H6z"/><path d="M9 8V6a3 3 0 016 0v2"/></svg><span data-cart-count>0</span></button>
+      <button class="cart-btn" type="button" data-open-cart aria-label="Cart, 0 items"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 8h14l-1 12H6z"/><path d="M9 8V6a3 3 0 016 0v2"/></svg><span data-cart-count hidden>0</span></button>
       <button class="menu-btn" type="button" data-menu aria-controls="site-nav" aria-expanded="false" aria-label="Menu"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
     </div>
   </div>
@@ -54,7 +54,7 @@
   </div>
 </header>
 <nav class="section-index" aria-label="King Puck">
-  <div class="wrap"><span>In this section</span><a href="#crowned-goat">The Crowned Goat</a><a href="#kings">Kings Through the Years</a><a href="#gallery">Gallery</a><a href="#coronation">Coronation</a><a href="#after-the-fair">What Happens to the Goat?</a></div>
+  <div class="wrap"><span>In this section</span><a href="#crowned-goat">The Crowned Goat</a><a href="#kings">Kings Through the Years</a><a href="#gallery">Gallery</a><a href="#coronation">Coronation</a><a href="#after-the-fair">Welfare &amp; the Way Home</a></div>
 </nav>
 
 <section class="content-section" id="crowned-goat">
@@ -65,13 +65,9 @@
     </figure>
     <div class="prose">
       <h2>Not a Mascot. A Monarch.</h2>
-      <p>Each year's King is a wild male goat, a puck, taken from the mountains around Killorglin in the weeks before the fair.</p>
-      <p>On Gathering Day he is paraded through the town, crowned, and placed on a tall stand above the square, where he presides over the fair until Scattering Day.</p>
-      <div class="gallery mt-2" style="--min: 140px">
-        <figure><div class="ph-photo"><img src="/img/scenes/crown-eye-closeup.jpg" alt="Illustration: the crown above the King's eye" loading="lazy"></div><figcaption>The crown <span class="tag illustration">Illustration</span></figcaption></figure>
-        <figure><div class="ph-photo"><img src="/img/scenes/robe-detail.jpg" alt="Illustration: gold embroidery on the red robe" loading="lazy"></div><figcaption>The robe <span class="tag illustration">Illustration</span></figcaption></figure>
-        <figure><div class="ph-photo"><img src="/img/scenes/sunset-over-town.jpg" alt="Illustration: the King on his stand at sunset over the town" loading="lazy"></div><figcaption>The stand <span class="tag illustration">Illustration</span></figcaption></figure>
-      </div>
+      <p>Each year's King is a wild male goat, a <em>poc</em>, caught in the mountains around Killorglin by a goat handler in the weeks before the fair.</p>
+      <p>On Gathering Day he is paraded through the town, crowned by Queen Puck, and placed on the Puck Stand above the Square, where he presides over the fair until Scattering Day. On the third day he is dethroned and returned to the mountains.</p>
+      <p>The fair came first; the King came later. Regular reports of a goat being crowned only begin in the 1840s, two centuries after the fair's earliest records. <a href="/story#history">How he got the crown</a>.</p>
     </div>
   </div>
 </section>
@@ -101,20 +97,10 @@
       <figure><div class="ph-photo"><img src="/img/king/bridge.jpg" alt="By the river and bridge" loading="lazy"></div><figcaption>By the river and bridge</figcaption></figure>
       <figure><div class="ph-photo"><img src="/img/king/crowd.jpg" alt="Over the crowd" loading="lazy"></div><figcaption>Over the crowd</figcaption></figure>
       <figure><div class="ph-photo"><img src="/img/king/sunset.jpg" alt="At sunset" loading="lazy"></div><figcaption>At sunset</figcaption></figure>
-      <figure><div class="ph-photo"><img src="/img/scenes/scene-01-c.jpg" alt="Illustration: The King" loading="lazy"></div><figcaption>The King <span class="tag illustration">Illustration</span></figcaption></figure>
-      <figure><div class="ph-photo"><img src="/img/scenes/scene-04-c.jpg" alt="Illustration: On his stand, early days" loading="lazy"></div><figcaption>On his stand, early days <span class="tag illustration">Illustration</span></figcaption></figure>
-      <figure><div class="ph-photo"><img src="/img/scenes/scene-09-c.jpg" alt="Illustration: The mountains he comes from" loading="lazy"></div><figcaption>The mountains he comes from <span class="tag illustration">Illustration</span></figcaption></figure>
-      <figure><div class="ph-photo"><img src="/img/scenes/scene-10-c.jpg" alt="Illustration: Crowned" loading="lazy"></div><figcaption>Crowned <span class="tag illustration">Illustration</span></figcaption></figure>
-      <figure><div class="ph-photo"><img src="/img/scenes/scene-13-c.jpg" alt="Illustration: The King above the valley" loading="lazy"></div><figcaption>The King above the valley <span class="tag illustration">Illustration</span></figcaption></figure>
-      <figure><div class="ph-photo"><img src="/img/scenes/scene-24-c.jpg" alt="Illustration: The robe" loading="lazy"></div><figcaption>The robe <span class="tag illustration">Illustration</span></figcaption></figure>
-      <figure><div class="ph-photo"><img src="/img/scenes/scene-26-c.jpg" alt="Illustration: Looking out over Killorglin" loading="lazy"></div><figcaption>Looking out over Killorglin <span class="tag illustration">Illustration</span></figcaption></figure>
-      <figure><div class="ph-photo"><img src="/img/scenes/scene-31-c.jpg" alt="Illustration: On the plinth" loading="lazy"></div><figcaption>On the plinth <span class="tag illustration">Illustration</span></figcaption></figure>
-      <figure><div class="ph-photo"><img src="/img/scenes/scene-34-c.jpg" alt="Illustration: King Puck" loading="lazy"></div><figcaption>King Puck <span class="tag illustration">Illustration</span></figcaption></figure>
-      <figure><div class="ph-photo"><img src="/img/scenes/scene-40-c.jpg" alt="Illustration: Sunset on the stand" loading="lazy"></div><figcaption>Sunset on the stand <span class="tag illustration">Illustration</span></figcaption></figure>
-      <figure><div class="ph-photo"><img src="/img/scenes/scene-41-c.jpg" alt="Illustration: The King's eye" loading="lazy"></div><figcaption>The King's eye <span class="tag illustration">Illustration</span></figcaption></figure>
-      <figure><div class="ph-photo"><img src="/img/scenes/scene-47-c.jpg" alt="Illustration: The King in the Square" loading="lazy"></div><figcaption>The King in the Square <span class="tag illustration">Illustration</span></figcaption></figure>
+      <figure><div class="ph-photo"><img src="/img/king/town-bridge.jpg" alt="Killorglin and the Laune" loading="lazy"></div><figcaption>Killorglin and the Laune</figcaption></figure>
+      <figure><div class="ph-photo"><img src="/img/king/town-sunset.jpg" alt="The King above the town at sunset" loading="lazy"></div><figcaption>Above the town at sunset</figcaption></figure>
     </div>
-    <p class="illustration-note mt-2"><span class="tag illustration">Illustration</span> Portraits marked Illustration are artist's impressions. Real photographs replace them as they are contributed.</p>
+    <p class="muted mt-2">Gallery spaces fill as photographs are contributed and cleared for display. <a href="/support#submit">Add yours.</a></p>
   </div>
 </section>
 
@@ -123,7 +109,7 @@
     <div><figure class="plate"><div class="ph-photo wide"><img src="/img/king/crowd.jpg" alt="Crowds under the bunting around the King on his stand" loading="lazy"></div></figure></div>
     <div class="prose">
       <h2>The Crowning</h2>
-      <p>The coronation is the centrepiece of Gathering Day. After a parade through the streets, the Queen of Puck places a crown on the goat's head before the crowd in the square. He is then raised onto his stand.</p>
+      <p>The coronation is the centrepiece of Gathering Day. The parade leaves the bridge at five, crosses the Square and climbs Upper Bridge Street, and at half past five Queen Puck places the crown on the goat's head before the crowd at the Puck Stand. He is then raised onto his stand.</p>
       <p>For three days, the King looks down on the fair. It is the image most people carry home from Killorglin.</p>
       <a class="arrow-link" href="/puck-fair#coronation">Coronation at the fair</a>
     </div>
@@ -133,10 +119,11 @@
 <section class="content-section dark photo-band" id="after-the-fair">
   <img class="band-photo soft" src="/img/king/sunset.jpg" alt="" loading="lazy">
   <div class="wrap">
-    <h2>He Goes Home</h2>
+    <h2>Welfare, and the Way Home</h2>
     <div class="prose">
-      <p>It's the question every visitor asks. After the fair the King is taken down from his stand and returned to the mountains he came from.</p>
-      <p>The goat's welfare has rightly become part of the conversation around Puck. We're preparing a full account of how the King is cared for before, during and after his reign, drawn from the people responsible for him.</p>
+      <p>It's the question every visitor asks. After the fair the King is taken down from his stand on Scattering Day, paraded back through the town, and returned to the mountains he came from.</p>
+      <p>The organisers say the welfare of the goat is of the utmost importance to everyone involved, with strict protocols in place that are overseen and checked by an independent veterinary surgeon. <span class="tag documented">Documented</span></p>
+      <p>We're preparing a fuller account of how the King is cared for before, during and after his reign, drawn from the people responsible for him. Until then, the organisers' own statement is on the <a href="https://puckfair.ie/information/" rel="noopener">official information page</a>.</p>
     </div>
   </div>
 </section>
@@ -149,9 +136,9 @@
       <a class="btn red" href="/support#submit">Your Puck. Your story. →</a>
     </div>
     <div class="sitemap">
-      <div><h4><a href="/puck-fair">The Fair</a></h4><a href="/puck-fair#three-days">Three Days</a><a href="/puck-fair#coronation">Coronation</a><a href="/puck-fair#schedule">Schedule</a><a href="/puck-fair#music">Music &amp; Entertainment</a><a href="/puck-fair#traditions">Traditions</a><a href="/puck-fair#visit">Visit Killorglin</a><a href="/stay">Where to Stay</a></div>
-      <div><h4><a href="/story">History</a></h4><a href="/story#what-is-puck-fair">What Is Puck Fair?</a><a href="/story#history">Timeline</a><a href="/story#why-a-goat">Why a Goat?</a><a href="/story#legend">The Legend</a><a href="/story#sources">Sources</a></div>
-      <div><h4><a href="/king-puck">King Puck</a></h4><a href="/king-puck#crowned-goat">The Crowned Goat</a><a href="/king-puck#kings">Kings Through the Years</a><a href="/king-puck#gallery">Gallery</a><a href="/king-puck#coronation">Coronation</a><a href="/king-puck#after-the-fair">What Happens to the Goat?</a></div>
+      <div><h4><a href="/puck-fair">The Fair</a></h4><a href="/puck-fair#three-days">Three Days</a><a href="/puck-fair#coronation">Coronation</a><a href="/puck-fair#schedule">Programme</a><a href="/puck-fair#music">Music &amp; Entertainment</a><a href="/puck-fair#traditions">Traditions</a><a href="/puck-fair#visit">Getting There</a><a href="/stay">Where to Stay</a></div>
+      <div><h4><a href="/story">History</a></h4><a href="/story#what-is-puck-fair">What Is Puck Fair?</a><a href="/story#history">Chronology</a><a href="/story#why-a-goat">Why a Goat?</a><a href="/story#legend">The Legend</a><a href="/story#sources">Sources</a></div>
+      <div><h4><a href="/king-puck">King Puck</a></h4><a href="/king-puck#crowned-goat">The Crowned Goat</a><a href="/king-puck#kings">Kings Through the Years</a><a href="/king-puck#gallery">Gallery</a><a href="/king-puck#coronation">Coronation</a><a href="/king-puck#after-the-fair">Welfare &amp; the Way Home</a></div>
       <div><h4><a href="/queen-puck">Queen Puck</a></h4><a href="/queen-puck#tradition">Tradition</a><a href="/queen-puck#queens">Queens Through the Years</a><a href="/queen-puck#gallery">Gallery</a><a href="/queen-puck#queen-stories">Queen Stories</a><a href="/queen-puck#current-queen">Current Queen</a></div>
       <div><h4><a href="/archive">Archive</a></h4><a href="/archive#photographs">Historic Photos</a><a href="/archive#posters">Posters</a><a href="/archive#ephemera">Newspapers &amp; Ephemera</a><a href="/archive#programs">Programs</a><a href="/archive#film">Video &amp; Film</a><a href="/archive#audio">Audio</a><a href="/archive#search">Search</a></div>
       <div><h4><a href="/stories">Stories</a></h4><a href="/stories#puck-stories">Puck Stories</a><a href="/stories#people">People of Puck</a><a href="/stories#where-are-they-now">Where Are They Now?</a><a href="/stories#memories">Memories</a><a href="/stories#legends-and-lore">Legends &amp; Lore</a><a href="/stories#photo-stories">Photo Stories</a></div>

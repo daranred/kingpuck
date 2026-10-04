@@ -1,14 +1,14 @@
 // Site hierarchy. Drives the one nav (masthead, menu sheet, bottom bar), the footer sitemap and each page's section index.
 export const sections = [
   { href: "/puck-fair", label: "The Fair", children: [
-    ["three-days", "Three Days"], ["coronation", "Coronation"], ["schedule", "Schedule"],
-    ["music", "Music & Entertainment"], ["traditions", "Traditions"], ["visit", "Visit Killorglin"], ["/stay", "Where to Stay"] ] },
+    ["three-days", "Three Days"], ["coronation", "Coronation"], ["schedule", "Programme"],
+    ["music", "Music & Entertainment"], ["traditions", "Traditions"], ["visit", "Getting There"], ["/stay", "Where to Stay"] ] },
   { href: "/story", label: "History", children: [
-    ["what-is-puck-fair", "What Is Puck Fair?"], ["history", "Timeline"], ["why-a-goat", "Why a Goat?"],
+    ["what-is-puck-fair", "What Is Puck Fair?"], ["history", "Chronology"], ["why-a-goat", "Why a Goat?"],
     ["legend", "The Legend"], ["sources", "Sources"] ] },
   { href: "/king-puck", label: "King Puck", children: [
     ["crowned-goat", "The Crowned Goat"], ["kings", "Kings Through the Years"], ["gallery", "Gallery"],
-    ["coronation", "Coronation"], ["after-the-fair", "What Happens to the Goat?"] ] },
+    ["coronation", "Coronation"], ["after-the-fair", "Welfare & the Way Home"] ] },
   { href: "/queen-puck", label: "Queen Puck", children: [
     ["tradition", "Tradition"], ["queens", "Queens Through the Years"], ["gallery", "Gallery"],
     ["queen-stories", "Queen Stories"], ["current-queen", "Current Queen"] ] },

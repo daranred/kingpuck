@@ -58,7 +58,7 @@ const closeCart = () => document.body.classList.remove("cart-open");
 export async function renderCart() {
   const cart = readCart();
   const count = cart.reduce((n, l) => n + l.qty, 0);
-  document.querySelectorAll("[data-cart-count]").forEach((el) => (el.textContent = count));
+  document.querySelectorAll("[data-cart-count]").forEach((el) => { el.textContent = count; el.hidden = count === 0; });
   document.querySelectorAll("[data-open-cart]").forEach((b) => b.setAttribute("aria-label", `Cart, ${count} item${count === 1 ? "" : "s"}`));
   const list = document.querySelector(".cart-items");
   const subtotalEl = document.querySelector("[data-subtotal]");

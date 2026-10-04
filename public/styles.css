@@ -105,10 +105,13 @@ h4 { font-size: var(--text-lg); }
 .nav-item > a:hover, .nav-item.is-current > a { opacity: 1; border-bottom-color: var(--color-red); }
 .masthead-actions { display: flex; align-items: center; gap: var(--gap-xs); }
 .share-btn { padding-inline: var(--space-4); white-space: nowrap; }
-.share-btn .icon { width: 18px; height: 18px; }
-.cart-btn, .menu-btn { min-height: var(--control-height); min-width: var(--control-height); background: none; border: var(--border-width-hair) solid currentColor; border-radius: var(--radius-control); color: inherit; padding: 0 var(--space-4); font: var(--weight-semibold) var(--text-sm)/1 var(--font-sans); white-space: nowrap; cursor: pointer; }
-.cart-btn span { display: inline-block; border-radius: var(--radius-badge); min-width: 1.4em; margin-left: var(--space-1); padding: 0 var(--space-1); background: var(--color-red); color: var(--color-card); }
-.menu-btn { display: none; padding: 0; }
+.share-short { display: none; }
+/* Account, cart and menu are plain icon buttons of one size (44px target, 24px icon). The cart count is a round badge over the icon's corner. */
+.masthead .account-btn, .cart-btn, .menu-btn { position: relative; display: inline-flex; align-items: center; justify-content: center; min-width: var(--target-min); min-height: var(--target-min); padding: 0; background: none; border: 0; border-radius: var(--radius-control); color: inherit; cursor: pointer; }
+.masthead .account-btn .icon, .cart-btn .icon, .menu-btn .icon { width: 24px; height: 24px; }
+.cart-btn span { position: absolute; top: 0; right: 0; min-width: 20px; height: 20px; padding: 0 var(--space-1); border-radius: var(--radius-full); background: var(--color-red); color: var(--color-card); font: var(--weight-semibold) var(--text-sm)/20px var(--font-sans); text-align: center; }
+.cart-btn span[hidden] { display: none; }
+.menu-btn { display: none; }
 .icon { width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; flex: none; }
 .tabbar { display: none; }
 
@@ -135,8 +138,9 @@ h4 { font-size: var(--text-lg); }
   .masthead-actions { gap: var(--gap-2xs); }
   .site-nav { inset: 56px 0 calc(var(--tabbar-height) + env(safe-area-inset-bottom)) 0; }
   .menu-btn { display: none; }
-  .share-btn { padding: 0; min-width: var(--control-height); }
-  .share-btn span { display: none; }
+  .share-btn { padding-inline: var(--space-3); }
+  .share-long { display: none; }
+  .share-short { display: inline; }
   .tabbar { display: grid; grid-template-columns: repeat(5, 1fr); position: fixed; left: 0; right: 0; bottom: 0; z-index: var(--z-nav); height: calc(var(--tabbar-height) + env(safe-area-inset-bottom)); padding-bottom: env(safe-area-inset-bottom); background: var(--color-chrome); border-top: var(--border-divider-chrome); }
   .tab { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: var(--gap-2xs); background: none; border: 0; color: var(--color-night-muted); text-decoration: none; font: var(--weight-semibold) var(--text-sm) var(--font-sans); letter-spacing: var(--tracking-wide); cursor: pointer; position: relative; }
   .tab.is-current, .tab[aria-expanded="true"] { color: var(--color-card); }
@@ -145,7 +149,9 @@ h4 { font-size: var(--text-lg); }
 }
 
 /* ---------- Section index: on-page navigation at every size (scrolls sideways when it must) ---------- */
-.section-index { border-bottom: var(--border-divider); background: var(--color-paper); }
+/* The masthead is sticky on every page; the section index sticks just under it, so the jump links stay in reach. */
+.section-index { position: sticky; top: var(--header-height); z-index: calc(var(--z-header) - 1); border-bottom: var(--border-divider); background: var(--color-paper); }
+@media (max-width: 699px) { .section-index { top: 56px; } }
 .section-index .wrap { display: flex; align-items: center; gap: var(--gap-lg); padding: var(--space-2) 0; overflow-x: auto; scrollbar-width: none; }
 .section-index .wrap::-webkit-scrollbar { display: none; }
 .section-index span { flex: none; font: var(--weight-semibold) var(--text-sm) var(--font-sans); color: var(--color-muted); }
@@ -231,6 +237,16 @@ h4 { font-size: var(--text-lg); }
   .timeline .when { grid-column: 2; justify-items: start; text-align: left; padding-top: 0; }
   .timeline .entry { grid-column: 2; }
 }
+
+/* Era rows: a heading across the timeline with no marker, in the entry column. */
+.timeline li.era::before { display: none; }
+.timeline li.era > * { grid-column: 3; margin: 0; }
+.timeline li.era { padding-top: var(--space-5); }
+.timeline li.era h3 { font-size: var(--text-2xl); }
+.timeline li.era p { color: var(--color-muted); }
+.timeline .entry .source { margin-top: var(--stack-sm); font-size: var(--text-sm); color: var(--color-muted); }
+.credit { font-size: var(--text-sm); color: var(--color-muted); }
+@media (max-width: 700px) { .timeline li.era > * { grid-column: 2; } }
 
 /* ---------- Three days ---------- */
 /* Three days: one connected row of cards. Subgrid keeps date, title, copy and button aligned across cards. */
@@ -459,9 +475,8 @@ body.cart-open .drawer-backdrop { opacity: 1; pointer-events: auto; }
 
 /* ---------- Account ---------- */
 .account-btn { display: inline-flex; align-items: center; justify-content: center; gap: var(--gap-xs); min-width: var(--control-height); min-height: var(--control-height); padding: 0 var(--space-2); text-decoration: none; font: var(--weight-semibold) var(--text-sm)/1 var(--font-sans); white-space: nowrap; }
-.account-btn .icon { width: 18px; height: 18px; }
 .account-btn:hover { color: var(--color-red); }
-.masthead .account-btn:hover { color: var(--color-gold-2); }
+.masthead .account-btn:hover, .cart-btn:hover, .menu-btn:hover { color: var(--color-gold-2); }
 /* Icon-only in the masthead; the label stays for screen readers via aria-label. */
 .masthead .account-btn span { display: none; }
 
@@ -480,9 +495,6 @@ body.cart-open .drawer-backdrop { opacity: 1; pointer-events: auto; }
 .ph-photo.wide, .plate .ph-photo.wide { aspect-ratio: 3 / 2; }
 .ph-photo > img.top { object-position: top; }
 
-/* Cart: icon + count badge (count announced via aria-label). */
-.cart-btn { display: inline-flex; align-items: center; gap: var(--gap-xs); }
-.cart-btn .icon { width: 20px; height: 20px; }
 /* Add to cart is always the red primary action. */
 .btn.add-to-cart { background: var(--color-red); color: var(--color-card); }
 .btn.add-to-cart:hover { background: var(--color-red-2); }
