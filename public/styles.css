@@ -75,6 +75,17 @@ h4 { font-size: var(--text-lg); }
 .dark .tag.tradition { color: var(--color-gold-2); }
 .dark .tag.legend { color: #e0907c; }
 .dark .tag.unknown { color: var(--color-night-muted); }
+/* Hovering or focusing a badge explains it: the same one-liners as the legend key, in a small tip above the badge. */
+.tag { position: relative; }
+.tag.documented::after { content: "Supported by records or reliable sources."; }
+.tag.tradition::after { content: "Passed down through generations."; }
+.tag.legend::after { content: "Associated with Puck, not established as fact."; }
+.tag.unknown::after { content: "The evidence doesn't allow a confident answer."; }
+.tag.illustration::after { content: "An artist's impression, not an archive photograph."; }
+.tag::after { position: absolute; z-index: var(--z-header); right: 0; bottom: calc(100% + var(--space-2)); width: max-content; max-width: 240px; padding: var(--space-2) var(--space-3); border-radius: var(--radius-control); background: var(--color-card); color: var(--color-ink-2); border: var(--border-divider); box-shadow: var(--shadow-raised); font: var(--weight-regular) var(--text-sm)/var(--leading-snug) var(--font-sans); white-space: normal; text-align: left; visibility: hidden; opacity: 0; transition: opacity var(--duration-fast), visibility var(--duration-fast); pointer-events: none; }
+.tag:hover::after, .tag:focus-visible::after { visibility: visible; opacity: 1; }
+.prose .tag::after, .photo-tag::after { left: 0; right: auto; }
+.legend-key .tag::after { display: none; }
 .legend-key { display: grid; grid-template-columns: repeat(4, 1fr); border-top: var(--border-divider); border-bottom: var(--border-divider); }
 .legend-key div { padding: var(--space-5) var(--space-5) var(--space-5) 0; }
 .legend-key div + div { padding-left: var(--space-5); border-left: var(--border-divider); }

@@ -360,6 +360,13 @@ export async function renderAccount(root) {
   };
 }
 
+// Evidence badges explain themselves on hover (CSS); make them focusable so the keyboard gets the same tip.
+function initTagTips(root = document) {
+  root.querySelectorAll(".tag.documented, .tag.tradition, .tag.legend, .tag.unknown, .tag.illustration").forEach((t) => {
+    if (!t.closest(".legend-key")) t.tabIndex = 0;
+  });
+}
+
 // Hover/focus tooltips: Escape hides them until the pointer or focus leaves (WCAG 1.4.13).
 function initInfoTips() {
   const tips = document.querySelectorAll("[data-info-tip]");
@@ -376,6 +383,7 @@ document.addEventListener("DOMContentLoaded", () => {
   initMenu();
   initSectionIndex();
   initInfoTips();
+  initTagTips();
   document.querySelectorAll("[data-compare]").forEach(initCompare);
   document.querySelectorAll("[data-open-cart]").forEach((b) => (b.onclick = openCart));
   document.querySelectorAll("[data-close-cart]").forEach((b) => (b.onclick = closeCart));
