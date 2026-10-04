@@ -25,7 +25,7 @@ const navItem = (s, current) => `
 export function header(current) {
   return `<header class="masthead">
   <div class="wrap masthead-top">
-    <a class="wordmark" href="/" aria-label="King Puck home"><img src="/img/emblem.svg" alt="" width="30" height="30"><span>King Puck</span></a>
+    <a class="wordmark" href="/" aria-label="King Puck home"><img src="/img/emblem.svg" alt="" width="40" height="36"><span>King Puck</span></a>
     <nav class="site-nav" id="site-nav" aria-label="Main">
       <ul class="nav-list">${primary.map((s) => navItem(s, current)).join("")}
       </ul>

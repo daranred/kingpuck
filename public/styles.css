@@ -110,7 +110,7 @@ h4 { font-size: var(--text-lg); }
 .masthead { --masthead-bg: var(--color-chrome); position: sticky; top: 0; z-index: var(--z-header); background: var(--masthead-bg); color: var(--color-card); border-bottom: var(--border-divider-chrome); }
 .masthead-top { display: flex; align-items: center; gap: var(--gap-lg); height: var(--header-height); }
 .wordmark { display: flex; align-items: center; gap: var(--gap-xs); text-decoration: none; font: var(--weight-regular) 1.9rem/1 var(--font-display); text-transform: uppercase; letter-spacing: var(--tracking-wide); white-space: nowrap; }
-.wordmark img { width: 30px; height: 30px; }
+.wordmark img { height: 36px; width: auto; }
 /* The nav fills the masthead's height so the 4px current-item bar sits flush on its bottom edge (over the 1px divider). */
 .site-nav { margin-left: auto; align-self: stretch; display: flex; }
 .nav-list { list-style: none; margin: 0; padding: 0; display: flex; align-items: stretch; gap: clamp(var(--gap-2xs), 0.6vw, var(--gap-xs)); }
@@ -131,7 +131,7 @@ h4 { font-size: var(--text-lg); }
 .tabbar { display: none; }
 
 /* From 1200px: the bigger wordmark. */
-@media (min-width: 1200px) { .wordmark { font-size: 2.2rem; } .wordmark img { width: 34px; height: 34px; } }
+@media (min-width: 1200px) { .wordmark { font-size: 2.2rem; } .wordmark img { height: 44px; } }
 
 /* Below 1300px the Share button is just "Share". */
 @media (max-width: 1299px) { .share-long { display: none; } .share-short { display: inline; } }
@@ -154,7 +154,7 @@ h4 { font-size: var(--text-lg); }
 @media (max-width: 699px) {
   body { padding-bottom: calc(var(--tabbar-height) + env(safe-area-inset-bottom)); }
   .wordmark { font-size: 1.5rem; gap: var(--gap-2xs); }
-  .wordmark img { width: 26px; height: 26px; }
+  .wordmark img { height: 30px; }
   .masthead-actions { gap: var(--gap-2xs); }
   .site-nav { inset: var(--header-height) 0 calc(var(--tabbar-height) + env(safe-area-inset-bottom)) 0; }
   .menu-btn { display: none; }
@@ -170,7 +170,7 @@ h4 { font-size: var(--text-lg); }
 @media (max-width: 419px) {
   .masthead-top { gap: var(--gap-xs); }
   .wordmark { font-size: 1.3rem; }
-  .wordmark img { width: 22px; height: 22px; }
+  .wordmark img { height: 26px; }
   .masthead-actions { gap: 0; }
   .share-btn { padding-inline: var(--space-3); }
 }
