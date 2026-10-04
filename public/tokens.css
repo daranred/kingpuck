@@ -108,6 +108,7 @@
   /* Borders */
   --border-width-hair: 1px;
   --border-width-thick: 2px;
+  --border-width-bar: 4px; /* current-item underline in the masthead and section index */
   --border-divider: var(--border-width-hair) solid var(--color-divider);
   --border-divider-strong: var(--border-width-hair) solid var(--color-divider-strong);
   --border-divider-night: var(--border-width-hair) solid var(--color-divider-night);

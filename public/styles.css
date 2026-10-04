@@ -98,10 +98,12 @@ h4 { font-size: var(--text-lg); }
 .masthead-top { display: flex; align-items: center; gap: var(--gap-xl); height: var(--header-height); }
 .wordmark { display: flex; align-items: center; gap: var(--gap-xs); text-decoration: none; font: var(--weight-regular) 1.9rem/1 var(--font-display); text-transform: uppercase; letter-spacing: var(--tracking-wide); white-space: nowrap; }
 .wordmark img { width: 30px; height: 30px; }
-.site-nav { margin-left: auto; }
-.nav-list { list-style: none; margin: 0; padding: 0; display: flex; gap: clamp(var(--gap-2xs), 0.6vw, var(--gap-xs)); }
+/* The nav fills the masthead's height so the 4px current-item bar sits flush on its bottom edge (over the 1px divider). */
+.site-nav { margin-left: auto; align-self: stretch; display: flex; }
+.nav-list { list-style: none; margin: 0; padding: 0; display: flex; align-items: stretch; gap: clamp(var(--gap-2xs), 0.6vw, var(--gap-xs)); }
+.nav-item { display: flex; }
 .nav-more { display: none; }
-.nav-item > a { display: block; white-space: nowrap; padding: var(--space-5) var(--space-3); text-decoration: none; font: var(--weight-semibold) var(--text-sm)/1 var(--font-sans); opacity: 0.8; border-bottom: var(--border-width-thick) solid transparent; }
+.nav-item > a { display: flex; align-items: center; white-space: nowrap; padding: 0 var(--space-3); margin-bottom: calc(-1 * var(--border-width-hair)); text-decoration: none; font: var(--weight-semibold) var(--text-sm)/1 var(--font-sans); opacity: 0.8; border-bottom: var(--border-width-bar) solid transparent; }
 .nav-item > a:hover, .nav-item.is-current > a { opacity: 1; border-bottom-color: var(--color-red); }
 .masthead-actions { display: flex; align-items: center; gap: var(--gap-xs); }
 .share-btn { padding-inline: var(--space-4); white-space: nowrap; }
@@ -124,7 +126,7 @@ h4 { font-size: var(--text-lg); }
   .nav-list { flex-direction: column; gap: 0; }
   .nav-more { display: flex; margin-top: var(--stack-lg); padding-top: var(--space-2); border-top: var(--border-divider-chrome); }
   .nav-item { border-bottom: var(--border-divider-chrome); }
-  .nav-item > a { padding: var(--space-4) 0; font-size: var(--text-md); border: 0; opacity: 1; }
+  .nav-item > a { flex: 1; padding: var(--space-4) 0; margin: 0; font-size: var(--text-md); border: 0; opacity: 1; }
   .nav-item.is-current > a { color: var(--color-gold-2); }
   .menu-btn { display: inline-flex; align-items: center; justify-content: center; }
 }
@@ -152,10 +154,11 @@ h4 { font-size: var(--text-lg); }
 /* The masthead is sticky on every page; the section index sticks just under it, so the jump links stay in reach. */
 .section-index { position: sticky; top: var(--header-height); z-index: calc(var(--z-header) - 1); border-bottom: var(--border-divider); background: var(--color-paper); }
 @media (max-width: 699px) { .section-index { top: 56px; } }
-.section-index .wrap { display: flex; align-items: center; gap: var(--gap-lg); padding: var(--space-2) 0; overflow-x: auto; scrollbar-width: none; }
+/* Links fill the strip's height so the 4px bar sits on its bottom line. */
+.section-index .wrap { display: flex; align-items: stretch; gap: var(--gap-lg); padding: 0; overflow-x: auto; scrollbar-width: none; }
 .section-index .wrap::-webkit-scrollbar { display: none; }
-.section-index span { flex: none; font: var(--weight-semibold) var(--text-sm) var(--font-sans); color: var(--color-muted); }
-.section-index a, .chip { flex: none; display: inline-flex; align-items: center; min-height: var(--target-min); font: var(--text-sm) var(--font-sans); text-decoration: none; color: var(--color-ink-2); border-bottom: var(--border-width-thick) solid transparent; }
+.section-index span { flex: none; align-self: center; font: var(--weight-semibold) var(--text-sm) var(--font-sans); color: var(--color-muted); }
+.section-index a, .chip { flex: none; display: inline-flex; align-items: center; min-height: calc(var(--target-min) + 2 * var(--space-2)); font: var(--text-sm) var(--font-sans); text-decoration: none; color: var(--color-ink-2); border-bottom: var(--border-width-bar) solid transparent; }
 .section-index a:hover, .chip:hover { color: var(--color-ink); border-bottom-color: var(--color-red); }
 
 /* ---------- Bands ---------- */
