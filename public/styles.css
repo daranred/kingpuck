@@ -478,14 +478,15 @@ body.cart-open .drawer-backdrop { opacity: 1; pointer-events: auto; }
 .stay-hero { display: flex; justify-content: space-between; align-items: end; gap: var(--gap-lg); flex-wrap: wrap; padding-bottom: var(--space-6); border-bottom: var(--border-divider); }
 .stay-hero h2 { margin-bottom: var(--stack-xs); }
 .stay-hero .lead { margin: 0; }
-.stay-areas { display: grid; grid-template-columns: repeat(3, 1fr); border-top: var(--border-divider); }
-.stay-area { display: flex; flex-direction: column; gap: var(--gap-2xs); padding: var(--space-5) var(--space-5) var(--space-5) 0; border-bottom: var(--border-divider); text-decoration: none; }
-.stay-area:not(:nth-child(3n+1)) { padding-left: var(--space-5); border-left: var(--border-divider); }
+/* Area cards: one surface, one inset, at every column count. */
+.stay-areas { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--gap-md); }
+.stay-area { display: flex; flex-direction: column; gap: var(--gap-2xs); padding: var(--inset-card); background: var(--color-card); border: var(--border-divider); border-radius: var(--radius-control); text-decoration: none; transition: border-color var(--duration-fast); }
 .stay-area b { font: var(--weight-regular) var(--text-xl)/1.1 var(--font-display); }
 .stay-area span:last-child { font-size: var(--text-sm); color: var(--color-muted); }
+.stay-area:hover { border-color: var(--color-red); }
 .stay-area:hover b { color: var(--color-red); }
-@media (max-width: 860px) { .stay-areas { grid-template-columns: 1fr 1fr; } .stay-area:not(:nth-child(3n+1)) { padding-left: 0; border-left: 0; } .stay-area:nth-child(even) { padding-left: var(--space-5); border-left: var(--border-divider); } }
-@media (max-width: 520px) { .stay-areas { grid-template-columns: 1fr; } .stay-area:nth-child(even) { padding-left: 0; border-left: 0; } }
+@media (max-width: 860px) { .stay-areas { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 520px) { .stay-areas { grid-template-columns: 1fr; } }
 
 /* ---------- Account ---------- */
 .account-btn { display: inline-flex; align-items: center; justify-content: center; gap: var(--gap-xs); min-width: var(--control-height); min-height: var(--control-height); padding: 0 var(--space-2); text-decoration: none; font: var(--weight-semibold) var(--text-sm)/1 var(--font-sans); white-space: nowrap; }
