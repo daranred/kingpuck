@@ -150,28 +150,43 @@ h4 { font-size: var(--text-lg); }
   .menu-btn { display: inline-flex; align-items: center; justify-content: center; }
 }
 
-/* Phones: 56px bar, the sheet sits between it and the bottom tab bar, whose Menu replaces the masthead's. */
+/* Phones: a 64px bar (--header-height), the sheet sits between it and the bottom tab bar, whose Menu replaces the masthead's. */
 @media (max-width: 699px) {
   body { padding-bottom: calc(var(--tabbar-height) + env(safe-area-inset-bottom)); }
-  .masthead-top { height: 56px; }
-  .wordmark { font-size: 1.3rem; gap: var(--gap-2xs); }
-  .wordmark img { width: 24px; height: 24px; }
+  .wordmark { font-size: 1.5rem; gap: var(--gap-2xs); }
+  .wordmark img { width: 26px; height: 26px; }
   .masthead-actions { gap: var(--gap-2xs); }
-  .site-nav { inset: 56px 0 calc(var(--tabbar-height) + env(safe-area-inset-bottom)) 0; }
+  .site-nav { inset: var(--header-height) 0 calc(var(--tabbar-height) + env(safe-area-inset-bottom)) 0; }
   .menu-btn { display: none; }
   .share-btn { padding-inline: var(--space-3); }
   .tabbar { display: grid; grid-template-columns: repeat(5, 1fr); position: fixed; left: 0; right: 0; bottom: 0; z-index: var(--z-nav); height: calc(var(--tabbar-height) + env(safe-area-inset-bottom)); padding-bottom: env(safe-area-inset-bottom); background: var(--color-chrome); border-top: var(--border-divider-chrome); }
   .tab { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: var(--gap-2xs); background: none; border: 0; color: var(--color-night-muted); text-decoration: none; font: var(--weight-semibold) var(--text-sm) var(--font-sans); letter-spacing: var(--tracking-wide); cursor: pointer; position: relative; }
   .tab.is-current, .tab[aria-expanded="true"] { color: var(--color-card); }
   .tab.is-current::before { content: ""; position: absolute; top: 0; left: 30%; right: 30%; border-top: var(--border-accent); }
-  .hero { min-height: calc(100svh - 56px - var(--tabbar-height)); }
+  .hero { min-height: calc(100svh - var(--header-height) - var(--tabbar-height)); }
+}
+
+/* Narrow phones: the wordmark gives up a little size so Share, account and cart always fit on one line. */
+@media (max-width: 419px) {
+  .masthead-top { gap: var(--gap-xs); }
+  .wordmark { font-size: 1.3rem; }
+  .wordmark img { width: 22px; height: 22px; }
+  .masthead-actions { gap: 0; }
+  .share-btn { padding-inline: var(--space-3); }
+}
+
+/* Very narrow phones (320–359px): the emblem steps aside so the wordmark, Share, account and cart still fit one line. */
+@media (max-width: 359px) {
+  .masthead .wrap { width: calc(100% - 2 * var(--space-4)); }
+  .wordmark img { display: none; }
+  .wordmark { font-size: 1.25rem; }
+  .share-btn { padding-inline: var(--space-2); }
 }
 
 /* ---------- Section index: on-page navigation at every size (scrolls sideways when it must) ---------- */
 /* The masthead is sticky on every page; the section index sticks just under it, so the jump links stay in reach. */
 /* The divider is an inset line on the full-width strip, under the links, so the 4px bar paints over it and no seam can open at a half-pixel sticky offset. */
 .section-index { position: sticky; top: var(--header-height); z-index: calc(var(--z-header) - 1); background: var(--color-paper); box-shadow: inset 0 calc(-1 * var(--border-width-hair)) 0 var(--color-divider); }
-@media (max-width: 699px) { .section-index { top: 56px; } html { scroll-padding-top: calc(var(--sticky-stack) - var(--header-height) + 56px - 1px); } }
 /* Links fill the strip's height so the 4px bar sits on its bottom line. */
 .section-index .wrap { display: flex; align-items: stretch; gap: var(--gap-lg); padding: 0; overflow-x: auto; scrollbar-width: none; }
 .section-index .wrap::-webkit-scrollbar { display: none; }
