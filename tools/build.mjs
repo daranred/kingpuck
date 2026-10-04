@@ -30,7 +30,7 @@ if (import.meta.url === `file://${process.argv[1]}`) {
   <script type="module" src="/app.js?v=${v("app.js")}"></script>
 </head>
 <body${meta.bodyAttrs ? " " + meta.bodyAttrs : ""}>
-${chrome(meta.section, body)}
+${chrome(meta.section, body, "/" + file.replace(/\.html$/, "").replace(/^index$/, ""))}
 </body>
 </html>
 `);

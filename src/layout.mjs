@@ -54,13 +54,19 @@ export function tabbar(current) {
 </nav>`;
 }
 
-export function sectionIndex(current) {
+/* On-page index for the section. On a child page of the section (page differs from current, e.g. /stay under
+   The Fair) the anchors point back to the section page, and the child page shows as the current item. */
+export function sectionIndex(current, page = current) {
   const s = sections.find((x) => x.href === current);
   if (!s || s.href === "/shop") return "";
   const seen = new Set();
-  const links = s.children.filter(([slug]) => !slug.startsWith("/") && !seen.has(slug) && seen.add(slug));
+  const links = s.children.filter(([slug]) => !slug.startsWith("?") && !seen.has(slug) && seen.add(slug));
+  const link = ([slug, label]) => {
+    if (slug.startsWith("/")) return `<a href="${slug}"${slug === page ? ' class="is-current" aria-current="page"' : ""}>${esc(label)}</a>`;
+    return `<a href="${page === current ? "" : current}#${slug}">${esc(label)}</a>`;
+  };
   return `<nav class="section-index" aria-label="${esc(s.label)}">
-  <div class="wrap"><span>In this section</span>${links.map((c) => `<a href="#${c[0]}">${esc(c[1])}</a>`).join("")}</div>
+  <div class="wrap"><span>In this section</span>${links.map(link).join("")}</div>
 </nav>`;
 }
 
@@ -92,16 +98,16 @@ export const drawer = () => `<div class="drawer-backdrop" data-close-cart></div>
 </aside>`;
 
 // The section index goes straight after the page header.
-const withSectionIndex = (section, body) => {
-  const idx = section ? sectionIndex(section) : "";
+const withSectionIndex = (section, body, page) => {
+  const idx = section ? sectionIndex(section, page) : "";
   return idx && body.includes("</header>") ? body.replace("</header>", `</header>\n${idx}`) : body;
 };
 
 /* Everything inside <body>. */
-export const chrome = (section, body) => `${header(section)}
+export const chrome = (section, body, page = section) => `${header(section)}
 <div class="page">
 <main class="page-stack">
-${withSectionIndex(section, body)}
+${withSectionIndex(section, body, page)}
 </main>
 ${footer()}
 </div>

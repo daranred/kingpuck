@@ -340,6 +340,10 @@ h4 { font-size: var(--text-lg); }
 .plate figcaption { display: flex; gap: var(--gap-sm); padding-top: var(--space-3); font-size: var(--text-sm); color: var(--color-muted); line-height: var(--leading-snug); }
 .plate figcaption b { font: var(--weight-semibold) var(--text-sm)/1.9 var(--font-sans); color: var(--color-ink); white-space: nowrap; }
 .story-card { border-top: var(--border-divider); padding-top: var(--space-5); }
+/* Programme columns: one card per day. */
+.day-card { display: flex; flex-direction: column; gap: var(--stack-md); padding: var(--inset-card); background: var(--color-card); border: var(--border-divider); border-radius: var(--radius-control); }
+.day-card > * { margin: 0; }
+.day-card .list-rules li:last-child { border-bottom: 0; padding-bottom: 0; }
 .story-card .ph-photo { aspect-ratio: 3 / 2; margin-bottom: var(--stack-md); }
 .story-card p { color: var(--color-ink-2); font-size: var(--text-sm); }
 
