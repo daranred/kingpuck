@@ -51,12 +51,12 @@ export const TextStyles = {
         `<div class="stack stack-xl">
           <div>${sb.code(".hero h1")}<h1 style="font-size:var(--text-4xl);line-height:.82" class="mb-0">King Puck</h1></div>
           <div>${sb.code("h1 / .display")}<h1 class="mb-0">A goat becomes King</h1></div>
-          <div>${sb.code("h2 / .display.sm")}<h2 class="mb-0">Meet the royal family</h2></div>
+          <div>${sb.code("h2 / .display.sm")}<h2 class="mb-0">The Characters of the Fair</h2></div>
           <div>${sb.code("h3")}<h3 class="mb-0">Gathering Day</h3></div>
           <div>${sb.code(".lead")}<p class="lead mb-0">Every August, Killorglin crowns a wild goat King and celebrates for three days.</p></div>
           <div>${sb.code("p (body)")}<p class="mb-0" style="max-width:40rem">Puck Fair takes place every year from 10 to 12 August in Killorglin, County Kerry, on the banks of the River Laune.</p></div>
           <div>${sb.code(".muted")}<p class="muted mb-0">Puck Fair · 10–12 August</p></div>
-          <div>${sb.code(".closing")}<p class="closing" style="margin-top:0">Long live King Puck.</p></div>
+          <div>${sb.code(".closing")}<p class="closing" style="margin-top:0">See you at Puck.</p></div>
         </div>`,
       ),
     ),

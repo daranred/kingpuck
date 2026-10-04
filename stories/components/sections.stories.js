@@ -15,7 +15,7 @@ export const Hero = { render: () => homeSection(0) };
 export const GoatBecomesKing = { name: "Intro + stats", render: () => homeSection(1) };
 export const HistoryInMotion = { name: "History in motion", render: () => homeSection(2) };
 export const ThreeDays = { name: "Three days (numbered rows)", render: () => homeSection(3) };
-export const RoyalFamily = { name: "Meet the royal family", render: () => homeSection(4) };
+export const RoyalFamily = { name: "The characters of the fair", render: () => homeSection(4) };
 export const ThenNow = {
   name: "Then / Now compare",
   parameters: { docs: { description: { story: "Drag (or use arrow keys on) the slider. Replace each `.ph-photo` with an `<img>` of the same scene." } } },

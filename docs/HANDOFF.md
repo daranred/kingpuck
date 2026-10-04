@@ -9,16 +9,18 @@ Written 4 October 2026 at the end of a long session. Read this, `CLAUDE.md`, `TO
 3. Simplify the architecture, but **keep every image** and find places to use them (56 are currently unreferenced; list in `docs/unused-images.txt`).
 4. Scrape https://puckfair.ie (timeline, information, history, home) and incorporate it into the sections with links back for reference. The owner asked to use the Chrome MCP for this. Neither was possible from the cloud session: `puckfair.ie` is blocked by the environment's network policy, and Claude in Chrome isn't connected to a cloud session. **Do this from a local session with Claude in Chrome, or ask the owner to allow `puckfair.ie` under Network access in the cloud environment settings.** Every claim already on the site is labelled Documented / Tradition / Legend / Unknown; keep that, and add puckfair.ie links to the Sources section on the History page and to the research file.
 
-## What was agreed and not yet done
+## Done since the handoff was written (all on `main`)
 
-The owner approved these in the last session (apart from deleting images, which they refused):
+- One navigation component (`tools/consolidate-nav.py` has been run; keep it only as a record). The Fair leads: The Fair · History · King Puck · Queen Puck · Archive · Stories · Shop. Support and About are in the menu sheet and footer; the red Share your story button is always in the header. Section index at every size.
+- Renames: The Story → History, Puck Fair → The Fair (URLs unchanged). The three days live only on The Fair page; History links there.
+- Modern timeline (`.timeline`: line, evidence-coloured markers, card entries) on History; the same cards as a horizontal snap strip (`.timeline-strip`) on the home page.
+- One captioned gallery grid (`.gallery`) on Archive, Queen Puck, King Puck and a Killorglin gallery on The Fair. Every image in `public/img` is now referenced; scene cut-outs use cleaned `-c.jpg` crops (originals kept). Art that stands in for archive photographs carries the Illustration tag.
+- Puck Fair reframed as the main story: home hero is "Puck Fair" with the fair banner photo; "The Characters of the Fair" presents King, Queen and the people; page titles, leads and the footer follow.
 
-- **Consolidate the navigation into one component.** Today there are three: desktop top bar with anchor dropdowns, a tablet left sidebar (700–1199px), and a phone top bar + bottom tab bar + menu sheet. Plan: one nav; inline list ≥1000px, menu sheet below, bottom bar on phones; drop the sidebar and the dropdowns; show the on-page section strip at every size (horizontal scroll); add a "Share your story" button to the header. `tools/consolidate-nav.py` is a prepared, **unrun** script that does all of this plus the renames below. Re-read it against the current files before running it; it asserts on exact strings and will stop if the files have moved on. Now that the fair comes first, change the nav order in `src/site.mjs` to: The Fair · History · King Puck · Queen Puck · Archive · Stories · Shop.
-- **Rename** "The Story" → "History" and "Puck Fair" → "The Fair" (URLs `/story` and `/puck-fair` stay). Given direction 1, consider making `/puck-fair` the richest page and the home page's main call to action.
-- **One canonical three-days section** on The Fair page (with the add-to-calendar buttons from `src/calendar.mjs`). Home keeps its three cards as a teaser linking there; History links there instead of repeating it. The script removes the History copy.
-- **Modern timeline**: replace `.timeline` (two-column rows) with a vertical line and markers, the evidence tag on the marker, entries as cards; and the five "dots" strip on the home page with the same component or a horizontal scroller. Galleries: one responsive grid with captions for King, Queen, Archive and Stories (today `.wall` is a 6-column grid with placeholders).
-- **Place the images.** 56 unused: `public/img/scenes/scene-*.jpg` (50 grid cut-outs that carry a sliver of the neighbouring image on the left/bottom and a number badge bottom-left; crop box `(8%, 2%) → (97%, 80%)` cleans them), plus `town-bridge`, `crown-eye-closeup`, `crowned-portrait`, `puck-fair-banner-street`, `robe-detail`, `sepia-two-men-and-goat`, `signpost-killorglin`, `sunset-over-town`. Empty slots that want them: Archive gallery (9), Queen Puck gallery (9), home royal cards (Queen, The people), Stories portraits. The sepia/engraving scenes stand in for archive photographs and must carry the "Illustration" tag (`.tag.illustration`, see `.illustration-note` on the home page).
-- Then: update Storybook's navigation story, README, CLAUDE.md; tests, build, screenshots at 1400 / 900 / 390px; push.
+## Still open
+
+- **puckfair.ie scrape with links back** (direction 4 above). Blocked from the cloud environment; needs a local session with Claude in Chrome, or `puckfair.ie` allowed in the cloud environment's Network access. Add findings and links to `docs/research/puck-fair.md` and the Sources section on History.
+- Replace placeholder product art; the setup items in `TODO.md`.
 
 ## How the site works
 
