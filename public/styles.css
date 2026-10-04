@@ -164,11 +164,11 @@ h4 { font-size: var(--text-lg); }
 
 /* ---------- Section index: on-page navigation at every size (scrolls sideways when it must) ---------- */
 /* The masthead is sticky on every page; the section index sticks just under it, so the jump links stay in reach. */
-.section-index { position: sticky; top: var(--header-height); z-index: calc(var(--z-header) - 1); background: var(--color-paper); }
+/* The divider is an inset line on the full-width strip, under the links, so the 4px bar paints over it and no seam can open at a half-pixel sticky offset. */
+.section-index { position: sticky; top: var(--header-height); z-index: calc(var(--z-header) - 1); background: var(--color-paper); box-shadow: inset 0 calc(-1 * var(--border-width-hair)) 0 var(--color-divider); }
 @media (max-width: 699px) { .section-index { top: 56px; } html { scroll-padding-top: calc(var(--sticky-stack) - var(--header-height) + 56px - 1px); } }
 /* Links fill the strip's height so the 4px bar sits on its bottom line. */
-/* The divider is an inset line on the strip itself, so the 4px bar paints over it and no seam can open at a half-pixel sticky offset. */
-.section-index .wrap { display: flex; align-items: stretch; gap: var(--gap-lg); padding: 0; overflow-x: auto; scrollbar-width: none; box-shadow: inset 0 calc(-1 * var(--border-width-hair)) 0 var(--color-divider); }
+.section-index .wrap { display: flex; align-items: stretch; gap: var(--gap-lg); padding: 0; overflow-x: auto; scrollbar-width: none; }
 .section-index .wrap::-webkit-scrollbar { display: none; }
 .section-index span { flex: none; align-self: center; font: var(--weight-semibold) var(--text-sm) var(--font-sans); color: var(--color-muted); }
 .section-index a, .chip { flex: none; display: inline-flex; align-items: center; min-height: calc(var(--target-min) + 2 * var(--space-2)); font: var(--text-sm) var(--font-sans); text-decoration: none; color: var(--color-ink-2); border-bottom: var(--border-width-bar) solid transparent; }
